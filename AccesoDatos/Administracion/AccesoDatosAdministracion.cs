@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Administracion
 {
-    //Comentario
     public class AccesoDatosAdministracion
     {
 
