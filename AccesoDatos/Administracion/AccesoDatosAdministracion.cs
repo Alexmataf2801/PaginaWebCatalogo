@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Administracion
 {
+    //
     public class AccesoDatosAdministracion
     {
 
