@@ -10,7 +10,7 @@ namespace AccesoDatos.Administracion
 {
     public class AccesoDatosAdministracion
     {
-
+        // SE VOLVIO AGREAGAR EL CODIGO DE ESTE COMENTARIO
         #region INSERT
 
         public static int InsertarUsuario(Usuario usuario, ref int Usuario)
