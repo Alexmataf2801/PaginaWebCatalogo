@@ -1,0 +1,78 @@
+﻿@model List<Entidades.Productos>
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="tab1" style="margin-bottom:100px">
+
+    @if (Model.Count > 0)
+    {
+        for (int j = 0; j < Model.Count; j++)
+        {
+            <div class="col-md-3 product-men">
+                <div class="men-pro-item simpleCart_shelfItem">
+                    <div class="men-thumb-item" @*style="max-width:300px; max-height:400px"*@>
+                        @{
+                            List<Entidades.ImagenesProducto> ListaImagenes = ViewBag.Imagenes;
+
+                            if (ListaImagenes.Count > 0)
+                            {
+                                if (Model[j].IdProducto == ListaImagenes[j].IdProducto)
+                                {
+                                    string ruta = ListaImagenes[j].Url + ListaImagenes[j].NombreImagen + ListaImagenes[j].Raiz;
+
+                                    <img @*style="max-width:300px; max-height:400px"*@ src="@Url.Content(ruta)" alt="" class="pro-image-front">
+                                    <img style="max-width:300px; max-height:400px" src="@Url.Content(ruta)" alt="" class="pro-image-back">
+                                }
+                            }
+
+
+                            <div class="men-cart-pro">
+                                <div class="inner-men-cart-pro">
+                                    <a onclick="ObtenerDetalleProducto(@ListaImagenes[j].IdProducto)" class="link-product-add-cart">Detalles Producto</a>
+                                </div>
+                            </div>
+
+                        }
+                        <span class="product-new-top">Nuevo</span>
+
+                    </div>
+                    <div class="item-info-product ">
+                        <h4><a href="#">@Model[j].Nombre</a></h4>
+                        <div class="info-product-price">
+                            <span class="item_price">@Model[j].Moneda@Model[j].PrecioProducto</span>
+                        </div>
+                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                            <form action="#" method="post">
+                                <fieldset>
+                                    <input type="hidden" name="cmd" value="_cart" />
+                                    <input type="hidden" name="add" value="1" />
+                                    <input type="hidden" name="business" value=" " />
+                                    <input type="hidden" name="item_name" value="@Model[j].Nombre" />
+                                    <input type="hidden" name="amount" value="@Model[j].Moneda@Model[j].PrecioProducto" />
+                                    <input type="hidden" name="cancel_return" value=" " />
+                                    <input type="button" onclick="AgregarAlCarro(@Model[j].IdProducto)" value="Agregar al Carrito" class="button" />
+                                </fieldset>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+            <div class="alert alert-info" style="margin-top:50px; text-align:center" role="alert">
+                <strong>No hay informacion relacionada con los criterios de busqueda</strong>
+            </div>
+    }
+
+
+
+
+    <div class="clearfix"></div>
+</div>
+
+

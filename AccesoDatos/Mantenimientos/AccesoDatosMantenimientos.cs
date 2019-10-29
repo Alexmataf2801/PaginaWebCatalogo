@@ -1,0 +1,350 @@
+﻿using Entidades;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AccesoDatos.Mantenimientos
+{
+    public class AccesoDatosMantenimientos
+    {
+
+        #region INSERT
+
+        public static bool InsertarRedSocial(RedesSociales redSocial)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ObjectParameter respuesta;
+            bool Correcto = false;
+            try
+            {
+                respuesta = new ObjectParameter("Respuesta", typeof(int));
+                var Iconos = entities.paInsertarRedSocial(redSocial.Nombre, redSocial.Descripcion, redSocial.Url, redSocial.Icono, redSocial.UsuarioCreacion, redSocial.Color, respuesta);
+
+                if (respuesta.Value.ToString() == "1")
+                {
+                    Correcto = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return Correcto;
+        }
+
+        public static bool InsertarTipoProducto(TipoProducto tipo)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ObjectParameter respuesta;
+            bool Correcto = false;
+            try
+            {
+                respuesta = new ObjectParameter("Respuesta", typeof(int));
+                var Iconos = entities.paInsertarTipoProducto(tipo.Codigo, tipo.Nombre, tipo.Descripcion, tipo.UsuarioCreacion, respuesta);
+
+                if (respuesta.Value.ToString() == "1")
+                {
+                    Correcto = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return Correcto;
+        }
+
+        public static bool InsertarSubTipoProducto(SubTipoProducto subTipo, ref int IdSubTipoRef)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ObjectParameter respuesta;
+            ObjectParameter IdSubTipo;
+            bool Correcto = false;
+            try
+            {
+                respuesta = new ObjectParameter("Respuesta", typeof(int));
+                IdSubTipo = new ObjectParameter("IdSubTipo", typeof(int));
+
+                entities.paInsertarSubTipoProducto(subTipo.Codigo, subTipo.Nombre, subTipo.Descripcion, subTipo.UsuarioCreacion, respuesta, IdSubTipo);
+
+                if (respuesta.Value.ToString() == "1" && Convert.ToInt32(IdSubTipo.Value.ToString()) > 0)
+                {
+                    IdSubTipoRef = Convert.ToInt32(IdSubTipo.Value.ToString());
+                    Correcto = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return Correcto;
+        }
+
+        public static bool InsertarSubTipoTipoRelacion(SubTipoProducto subTipo)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ObjectParameter respuesta;
+            bool Correcto = false;
+            try
+            {
+                respuesta = new ObjectParameter("Respuesta", typeof(int));
+                entities.paInsertarRelacionTipoSubTipo(subTipo.IdTipo, subTipo.IdSubTipo);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return Correcto;
+        }
+
+        public static bool InsertarMenuPublico(SubTipoProducto subTipo)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            bool Correcto = false;
+            try
+            {
+                entities.paInsertarMenuPublico(subTipo.IdTipo, subTipo.IdSubTipo);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return Correcto;
+        }
+
+        public static int InsertarProducto(Productos productos)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ObjectParameter respuesta;
+            int IdProducto = 0;
+            try
+            {
+                respuesta = new ObjectParameter("IdProducto", typeof(int));
+                entities.paInsertarProducto(productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto), productos.TipoProducto, productos.SubTipoProducto, productos.UsuarioCreacion, respuesta);
+                IdProducto = Convert.ToInt32(respuesta.Value.ToString());
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return IdProducto;
+        }
+
+        public static int InsertarImagen(ImagenesProducto Imagen)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ObjectParameter respuesta;
+            int IdImagen = 0;
+            try
+            {
+                respuesta = new ObjectParameter("IdImagen", typeof(int));
+                entities.paInsertarImagen(Imagen.NombreImagen, Imagen.Raiz, Imagen.Url, Imagen.UsuarioCreacion, respuesta);
+                IdImagen = Convert.ToInt32(respuesta.Value.ToString());
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return IdImagen;
+        }
+
+        public static int InsertarRelacionImagenProd(ImagenesProducto Imagen)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ObjectParameter respuesta;
+            int IdRelacion = 0;
+            try
+            {
+                respuesta = new ObjectParameter("IdRelacion", typeof(int));
+                entities.paInsertarRelacionImagenProducto(Imagen.IdProducto,Imagen.IdImagen,Imagen.IdUsuario, respuesta);
+                IdRelacion = Convert.ToInt32(respuesta.Value.ToString());
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return IdRelacion;
+        }
+
+        #endregion
+
+        #region SELECT 
+
+        public static List<Icono> ObtenerIconos()
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<Icono> ListaIconos = new List<Icono>();
+
+            try
+            {
+                var Iconos = entities.paObtenerIconos();
+
+                foreach (var item in Iconos)
+                {
+                    Icono icono = new Icono();
+                    icono.IdIcono = item.IdIcono;
+                    icono.Codigo = item.Codigo;
+                    icono.Nombre = item.Nombre;
+
+                    ListaIconos.Add(icono);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaIconos;
+        }
+
+        public static List<Icono> ObtenerIconosRedes()
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<Icono> ListaIconos = new List<Icono>();
+
+            try
+            {
+                var Iconos = entities.paObtenerIconosRedes();
+
+                foreach (var item in Iconos)
+                {
+                    Icono icono = new Icono();
+                    icono.IdIcono = item.IdIconoRedes;
+                    icono.Codigo = item.Codigo;
+                    icono.Nombre = item.Nombre;
+
+                    ListaIconos.Add(icono);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaIconos;
+        }
+
+        public static List<TipoProducto> ObtenerTipoProducto()
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<TipoProducto> ListaTipoProducto = new List<TipoProducto>();
+
+            try
+            {
+                var TipoProd = entities.paObtenerTipoProductoActivo();
+
+                foreach (var item in TipoProd)
+                {
+                    TipoProducto tipo = new TipoProducto();
+                    tipo.IdTipo = item.IdTipo;
+                    tipo.Codigo = item.Codigo;
+                    tipo.Nombre = item.Nombre;
+                    tipo.Descripcion = item.Descripcion;
+
+                    ListaTipoProducto.Add(tipo);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaTipoProducto;
+        }
+
+        public static List<SubTipoProducto> ObtenerSubTipoProducto()
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<SubTipoProducto> ListaSubTipoProducto = new List<SubTipoProducto>();
+
+            try
+            {
+                var SubTipoProd = entities.paObtenerSubTipoProdActivo();
+
+                foreach (var item in SubTipoProd)
+                {
+                    SubTipoProducto subTipo = new SubTipoProducto();
+                    subTipo.IdSubTipo = item.IdSubTipo;
+                    subTipo.Codigo = item.Codigo;
+                    subTipo.Nombre = item.Nombre;
+                    subTipo.Descripcion = item.Descripcion;
+
+                    ListaSubTipoProducto.Add(subTipo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaSubTipoProducto;
+        }
+
+        #endregion
+
+        #region UPDATE 
+        #endregion
+
+        #region DELETE
+        #endregion
+
+
+
+
+
+
+
+    }
+}

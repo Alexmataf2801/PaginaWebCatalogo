@@ -1,0 +1,790 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PaginaWebCatalogosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BitacoraCambios">
+          <Key>
+            <PropertyRef Name="IdCambio" />
+          </Key>
+          <Property Name="IdCambio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Detalle" Type="varchar(max)" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BitacoraErrores">
+          <Key>
+            <PropertyRef Name="IdError" />
+          </Key>
+          <Property Name="IdError" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Clase" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Metodo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Error" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Imagenes">
+          <Key>
+            <PropertyRef Name="IdImagen" />
+          </Key>
+          <Property Name="IdImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Raiz" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="ImagenPorProducto">
+          <Key>
+            <PropertyRef Name="IdRegistro" />
+          </Key>
+          <Property Name="IdRegistro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdImagen" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="IdMenu" />
+          </Key>
+          <Property Name="IdMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Icono" Type="varchar" MaxLength="50" />
+          <Property Name="IdPadre" Type="varchar" MaxLength="10" />
+          <Property Name="IdHijo" Type="varchar" MaxLength="10" />
+          <Property Name="Nivel" Type="varchar" MaxLength="10" />
+          <Property Name="Orden" Type="varchar" MaxLength="10" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="IsPadre" Type="int" />
+          <Property Name="Url" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MenuPorPerfil">
+          <Key>
+            <PropertyRef Name="IdPermiso" />
+          </Key>
+          <Property Name="IdPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMenu" Type="int" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuPublico">
+          <Key>
+            <PropertyRef Name="IdMenu" />
+          </Key>
+          <Property Name="IdMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdPadre" Type="int" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="IsPadre" Type="bit" />
+          <Property Name="Url" Type="varchar" MaxLength="100" />
+          <Property Name="TipoProducto" Type="int" />
+          <Property Name="SubTipo" Type="int" />
+        </EntityType>
+        <EntityType Name="Perfiles">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="UsuarioUltimaModificacion" Type="varchar" MaxLength="150" />
+          <Property Name="FechaUltimaModificacion" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_ImagenPorProducto_Imagenes">
+          <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="1" />
+          <End Role="ImagenPorProducto" Type="Self.ImagenPorProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imagenes">
+              <PropertyRef Name="IdImagen" />
+            </Principal>
+            <Dependent Role="ImagenPorProducto">
+              <PropertyRef Name="IdImagen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuPorPerfil_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="MenuPorPerfil" Type="Self.MenuPorPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="IdMenu" />
+            </Principal>
+            <Dependent Role="MenuPorPerfil">
+              <PropertyRef Name="IdMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="paEliminarProductoCarro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paInsertarImagen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Raiz" Type="varchar" Mode="In" />
+          <Parameter Name="Url" Type="varchar" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="IdImagen" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="paInsertarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasena" Type="varchar(max)" Mode="In" />
+          <Parameter Name="respuesta" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="paInsertarMenuPublico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipo" Type="int" Mode="In" />
+          <Parameter Name="IdSubTipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paInsertarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Moneda" Type="varchar" Mode="In" />
+          <Parameter Name="PrecioProducto" Type="decimal" Mode="In" />
+          <Parameter Name="TipoProducto" Type="int" Mode="In" />
+          <Parameter Name="SubTipo" Type="int" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="IdProducto" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="paInsertarProductoCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+          <Parameter Name="Respuesta" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="paInsertarRedSocial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Url" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Icono" Type="varchar" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="Color" Type="nvarchar" Mode="In" />
+          <Parameter Name="Respuesta" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="paInsertarRelacionImagenProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="IdImagen" Type="int" Mode="In" />
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+          <Parameter Name="IdRelacion" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="paInsertarRelacionTipoSubTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipo" Type="int" Mode="In" />
+          <Parameter Name="IdSubTipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paInsertarSubTipoProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="Respuesta" Type="int" Mode="InOut" />
+          <Parameter Name="IdSubTipo" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="paInsertarTipoProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="Respuesta" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="paInsertarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Identificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="int" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Genero" Type="bit" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="Respuesta" Type="int" Mode="InOut" />
+          <Parameter Name="IdUsuario" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="paObtenerCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerDetalleProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerIconos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerIconosRedes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerImagenesXTipoSubtipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoProducto" Type="int" Mode="In" />
+          <Parameter Name="IdSubTipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerInformacionEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerInfoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="paObtenerMenuPublicoActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerMenuXUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerProductoPorTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoProducto" Type="int" Mode="In" />
+          <Parameter Name="IdSubTipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerProductosRandom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerRedesSociales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerSubTipoProdActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerTipoProductoActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerTipoProductosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paValidarLogueo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasena" Type="varchar" Mode="In" />
+          <Parameter Name="Correcto" Type="bit" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="PaginaWebCatalogosModelStoreContainer">
+          <EntitySet Name="BitacoraCambios" EntityType="Self.BitacoraCambios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BitacoraErrores" EntityType="Self.BitacoraErrores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Imagenes" EntityType="Self.Imagenes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImagenPorProducto" EntityType="Self.ImagenPorProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuPorPerfil" EntityType="Self.MenuPorPerfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuPublico" EntityType="Self.MenuPublico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ImagenPorProducto_Imagenes" Association="Self.FK_ImagenPorProducto_Imagenes">
+            <End Role="Imagenes" EntitySet="Imagenes" />
+            <End Role="ImagenPorProducto" EntitySet="ImagenPorProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuPorPerfil_Menu" Association="Self.FK_MenuPorPerfil_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuPorPerfil" EntitySet="MenuPorPerfil" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PaginaWebCatalogosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PaginaWebCatalogosEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="paObtenerTipoProductosActivos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTipoProductosActivos_Result)" />
+          <FunctionImport Name="paObtenerMenuPublicoActivo" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerMenuPublicoActivo_Result)" />
+          <FunctionImport Name="paObtenerImagenesXTipoSubtipo" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerImagenesXTipoSubtipo_Result)">
+            <Parameter Name="IdTipoProducto" Mode="In" Type="Int32" />
+            <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerDetalleProducto" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerDetalleProducto_Result)">
+          <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerProductoPorTipo" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerProductoPorTipo_Result)">
+            <Parameter Name="IdTipoProducto" Mode="In" Type="Int32" />
+            <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerProductosRandom" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerProductosRandom_Result)" />
+          <FunctionImport Name="paObtenerInformacionEmpresa" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerInformacionEmpresa_Result)" />
+          <FunctionImport Name="paInsertarUsuario">
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Genero" Mode="In" Type="Boolean" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarLogin">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Contrasena" Mode="In" Type="String" />
+            <Parameter Name="respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paValidarLogueo">
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Contrasena" Mode="In" Type="String" />
+            <Parameter Name="Correcto" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerInfoUsuario" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerInfoUsuario_Result)">
+          <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarProductoCarrito">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerCarrito" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerCarrito_Result)">
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paEliminarProductoCarro">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerMenuXUsuario" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerMenuXUsuario_Result)">
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerIconos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerIconos_Result)" />
+          <FunctionImport Name="paObtenerIconosRedes" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerIconosRedes_Result)" />
+          <FunctionImport Name="paInsertarRedSocial">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Url" Mode="In" Type="String" />
+            <Parameter Name="Icono" Mode="In" Type="String" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="Color" Mode="In" Type="String" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerRedesSociales" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerRedesSociales_Result)" />
+          <FunctionImport Name="paInsertarTipoProducto">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerTipoProductoActivo" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTipoProductoActivo_Result)" />
+          <FunctionImport Name="paInsertarRelacionTipoSubTipo">
+            <Parameter Name="IdTipo" Mode="In" Type="Int32" />
+            <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarSubTipoProducto">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+            <Parameter Name="IdSubTipo" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarMenuPublico">
+            <Parameter Name="IdTipo" Mode="In" Type="Int32" />
+            <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerSubTipoProdActivo" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerSubTipoProdActivo_Result)" />
+          <FunctionImport Name="paInsertarImagen">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Raiz" Mode="In" Type="String" />
+            <Parameter Name="Url" Mode="In" Type="String" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="IdImagen" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarProducto">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Moneda" Mode="In" Type="String" />
+            <Parameter Name="PrecioProducto" Mode="In" Type="Decimal" />
+            <Parameter Name="TipoProducto" Mode="In" Type="Int32" />
+            <Parameter Name="SubTipo" Mode="In" Type="Int32" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="IdProducto" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarRelacionImagenProducto">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="IdImagen" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdRelacion" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="paObtenerTipoProductosActivos_Result">
+          <Property Type="Int32" Name="IdTipo" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="paObtenerMenuPublicoActivo_Result">
+          <Property Type="Int32" Name="IdMenu" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdPadre" Nullable="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="Boolean" Name="IsPadre" Nullable="true" />
+          <Property Type="String" Name="Url" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="TipoProducto" Nullable="true" />
+          <Property Type="Int32" Name="SubTipo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerImagenesXTipoSubtipo_Result">
+          <Property Type="Int32" Name="IdImagen" Nullable="false" />
+          <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="Boolean" Name="Estado" Nullable="true" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerDetalleProducto_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="IdImagen" Nullable="false" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="paObtenerProductoPorTipo_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="TipoProducto" Nullable="false" />
+          <Property Type="Int32" Name="SubTipo" Nullable="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="paObtenerProductosRandom_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerInformacionEmpresa_Result">
+          <Property Type="Int32" Name="IdRegistro" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Descripcion" Nullable="false" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Telefono" Nullable="false" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="NombreImagen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Direccion" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerInfoUsuario_Result">
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Telefono" Nullable="false" />
+          <Property Type="String" Name="Direccion" Nullable="true" />
+          <Property Type="Int32" Name="IdPerfil" Nullable="false" />
+          <Property Type="Boolean" Name="Genero" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="Boolean" Name="Temporal" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="paObtenerCarrito_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="IdTipo" Nullable="true" />
+          <Property Type="String" Name="NombreTipo" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="IdSubTipo" Nullable="true" />
+          <Property Type="String" Name="NombreSubTipo" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="CantTotal" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerMenuXUsuario_Result">
+          <Property Type="Int32" Name="IdMenu" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Icono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="IdPadre" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="IdHijo" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Nivel" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Orden" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="Int32" Name="IsPadre" Nullable="true" />
+          <Property Type="String" Name="Url" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="paObtenerIconos_Result">
+          <Property Type="Int32" Name="IdIcono" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="paObtenerIconosRedes_Result">
+          <Property Type="Int32" Name="IdIconoRedes" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="paObtenerRedesSociales_Result">
+          <Property Type="Int32" Name="IdRedSocial" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Url" Nullable="false" />
+          <Property Type="String" Name="Icono" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTipoProductoActivo_Result">
+          <Property Type="Int32" Name="IdTipo" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerSubTipoProdActivo_Result">
+          <Property Type="Int32" Name="IdSubTipo" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PaginaWebCatalogosModelStoreContainer" CdmEntityContainer="PaginaWebCatalogosEntities">
+          <FunctionImportMapping FunctionImportName="paObtenerTipoProductosActivos" FunctionName="PaginaWebCatalogosModel.Store.paObtenerTipoProductosActivos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerTipoProductosActivos_Result">
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerMenuPublicoActivo" FunctionName="PaginaWebCatalogosModel.Store.paObtenerMenuPublicoActivo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerMenuPublicoActivo_Result">
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdPadre" ColumnName="IdPadre" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IsPadre" ColumnName="IsPadre" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="TipoProducto" ColumnName="TipoProducto" />
+                <ScalarProperty Name="SubTipo" ColumnName="SubTipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerImagenesXTipoSubtipo" FunctionName="PaginaWebCatalogosModel.Store.paObtenerImagenesXTipoSubtipo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerImagenesXTipoSubtipo_Result">
+                <ScalarProperty Name="IdImagen" ColumnName="IdImagen" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerDetalleProducto" FunctionName="PaginaWebCatalogosModel.Store.paObtenerDetalleProducto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerDetalleProducto_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="IdImagen" ColumnName="IdImagen" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerProductoPorTipo" FunctionName="PaginaWebCatalogosModel.Store.paObtenerProductoPorTipo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerProductoPorTipo_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="TipoProducto" ColumnName="TipoProducto" />
+                <ScalarProperty Name="SubTipo" ColumnName="SubTipo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerProductosRandom" FunctionName="PaginaWebCatalogosModel.Store.paObtenerProductosRandom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerProductosRandom_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paObtenerInformacionEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerInformacionEmpresa_Result">
+                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="PaginaWebCatalogosModel.Store.paInsertarUsuario" />
+          <FunctionImportMapping FunctionImportName="paInsertarLogin" FunctionName="PaginaWebCatalogosModel.Store.paInsertarLogin" />
+          <FunctionImportMapping FunctionImportName="paValidarLogueo" FunctionName="PaginaWebCatalogosModel.Store.paValidarLogueo" />
+          <FunctionImportMapping FunctionImportName="paObtenerInfoUsuario" FunctionName="PaginaWebCatalogosModel.Store.paObtenerInfoUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerInfoUsuario_Result">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Temporal" ColumnName="Temporal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarProductoCarrito" FunctionName="PaginaWebCatalogosModel.Store.paInsertarProductoCarrito" />
+          <FunctionImportMapping FunctionImportName="paObtenerCarrito" FunctionName="PaginaWebCatalogosModel.Store.paObtenerCarrito">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerCarrito_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="NombreTipo" ColumnName="NombreTipo" />
+                <ScalarProperty Name="IdSubTipo" ColumnName="IdSubTipo" />
+                <ScalarProperty Name="NombreSubTipo" ColumnName="NombreSubTipo" />
+                <ScalarProperty Name="CantTotal" ColumnName="CantTotal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paEliminarProductoCarro" FunctionName="PaginaWebCatalogosModel.Store.paEliminarProductoCarro" />
+          <FunctionImportMapping FunctionImportName="paObtenerMenuXUsuario" FunctionName="PaginaWebCatalogosModel.Store.paObtenerMenuXUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerMenuXUsuario_Result">
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Icono" ColumnName="Icono" />
+                <ScalarProperty Name="IdPadre" ColumnName="IdPadre" />
+                <ScalarProperty Name="IdHijo" ColumnName="IdHijo" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IsPadre" ColumnName="IsPadre" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerIconos" FunctionName="PaginaWebCatalogosModel.Store.paObtenerIconos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerIconos_Result">
+                <ScalarProperty Name="IdIcono" ColumnName="IdIcono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerIconosRedes" FunctionName="PaginaWebCatalogosModel.Store.paObtenerIconosRedes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerIconosRedes_Result">
+                <ScalarProperty Name="IdIconoRedes" ColumnName="IdIconoRedes" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarRedSocial" FunctionName="PaginaWebCatalogosModel.Store.paInsertarRedSocial" />
+          <FunctionImportMapping FunctionImportName="paObtenerRedesSociales" FunctionName="PaginaWebCatalogosModel.Store.paObtenerRedesSociales">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerRedesSociales_Result">
+                <ScalarProperty Name="IdRedSocial" ColumnName="IdRedSocial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Icono" ColumnName="Icono" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarTipoProducto" FunctionName="PaginaWebCatalogosModel.Store.paInsertarTipoProducto" />
+          <FunctionImportMapping FunctionImportName="paObtenerTipoProductoActivo" FunctionName="PaginaWebCatalogosModel.Store.paObtenerTipoProductoActivo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerTipoProductoActivo_Result">
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarRelacionTipoSubTipo" FunctionName="PaginaWebCatalogosModel.Store.paInsertarRelacionTipoSubTipo" />
+          <FunctionImportMapping FunctionImportName="paInsertarSubTipoProducto" FunctionName="PaginaWebCatalogosModel.Store.paInsertarSubTipoProducto" />
+          <FunctionImportMapping FunctionImportName="paInsertarMenuPublico" FunctionName="PaginaWebCatalogosModel.Store.paInsertarMenuPublico" />
+          <FunctionImportMapping FunctionImportName="paObtenerSubTipoProdActivo" FunctionName="PaginaWebCatalogosModel.Store.paObtenerSubTipoProdActivo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerSubTipoProdActivo_Result">
+                <ScalarProperty Name="IdSubTipo" ColumnName="IdSubTipo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarImagen" FunctionName="PaginaWebCatalogosModel.Store.paInsertarImagen" />
+          <FunctionImportMapping FunctionImportName="paInsertarProducto" FunctionName="PaginaWebCatalogosModel.Store.paInsertarProducto" />
+          <FunctionImportMapping FunctionImportName="paInsertarRelacionImagenProducto" FunctionName="PaginaWebCatalogosModel.Store.paInsertarRelacionImagenProducto" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
