@@ -43,6 +43,6 @@ function ObtenerMenuPublico() {
 }
 
 $(document).ready(function () {
-    ObtenerMenuPublico();
+  //  ObtenerMenuPublico();
 
 });

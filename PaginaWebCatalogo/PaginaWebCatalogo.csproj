@@ -329,6 +329,10 @@
     <Content Include="Views\Mantenimientos\SubTipo.cshtml" />
     <Content Include="Views\Mantenimientos\RedesSociales.cshtml" />
     <Content Include="Views\Mantenimientos\Productos.cshtml" />
+    <Content Include="Views\Shared\_MenuPublico.cshtml" />
+    <Content Include="Views\Shared\_Encabezado.cshtml" />
+    <Content Include="Views\Shared\_RedesSociales.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

@@ -11,6 +11,8 @@ namespace Entidades
         public List<ImagenesProducto> ListaProductos = new List<ImagenesProducto>();
         public ImagenesProducto imagenesProducto = new ImagenesProducto();
         public Usuario usuario = new Usuario();
+        public List<RedesSociales> ListaRedesSociales = new List<RedesSociales>();
+        public Empresa Empresa = new Empresa();
         
     }
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Entidades.Empresa
+
+@{
     ViewBag.Title = "AcercaDe";
 }
 
@@ -7,17 +9,17 @@
         <div class="col-md-2" >
             <img style="max-height:150px;max-width:150px" src="~/Content/Logo.png" />
         </div>
-        <div class="col-md-9"><h1 style="text-align:left;" id="NombreAbout"></h1></div>
+        <div class="col-md-9"><h1 style="text-align:left;" id="NombreAbout">@Model.Nombre</h1></div>
     </div>
     
     <hr />
     <div class="col-md-12" style=" margin-bottom:80px;">
-        <div class="col-md-4"> <i class="fa fa-phone fa-2x fa-fw"></i><b><label style="color:#2FDAB8">Telefono:</label></b><br /><label style="margin-left:70px" id="TelefonoAbout"></label></div>
-        <div class="col-md-4"><i class="fa fa-envelope fa-2x fa-fw"></i><b><label style="color:#2FDAB8">Correo Electronico:</label><br /></b> <label style="margin-left:70px" id="CorreoAbout"></label></div>
-        <div class="col-md-4"><i class="fa fa-map-marker fa-2x fa-fw"></i><b><label style="color:#2FDAB8">Direccion:</label><br /></b> <label style="margin-left:70px" id="DireccionAbout"></label> </div>
+        <div class="col-md-4"> <i class="fa fa-phone fa-2x fa-fw"></i><b><label style="color:#2FDAB8">Telefono:</label></b><br /><label style="margin-left:70px" id="TelefonoAbout">@Model.Telefono</label></div>
+        <div class="col-md-4"><i class="fa fa-envelope fa-2x fa-fw"></i><b><label style="color:#2FDAB8">Correo Electronico:</label><br /></b> <label style="margin-left:70px" id="CorreoAbout">@Model.CorreoElectronico</label></div>
+        <div class="col-md-4"><i class="fa fa-map-marker fa-2x fa-fw"></i><b><label style="color:#2FDAB8">Direccion:</label><br /></b> <label style="margin-left:70px" id="DireccionAbout">@Model.Direccion</label> </div>
     </div>
     <p style="text-align:justify; margin-left:40px; margin-right:40px;" id="DescripcionAbout">
-
+        @Model.Descripcion
     </p>
 
 </div>

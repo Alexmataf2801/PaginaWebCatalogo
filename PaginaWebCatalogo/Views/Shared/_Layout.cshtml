@@ -24,33 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
     <!-- header -->
-    <div class="header" id="home">
-        <div>
-            <ul>
-                <li> <a href="#" data-toggle="modal" data-target="#ModalIngreso"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Ingresar </a></li>
-                <li> <a href="#" data-toggle="modal" data-target="#ModalRegistro"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Registrarse </a></li>
-                <li><i class="fa fa-phone" aria-hidden="true"></i> <a id="TelefonoEmpresa"></a></li>
-                <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a id="CorreoElectronicoEmpresa"></a></li>
-                <li id="Perfil" style="display:none"> <a href="#" data-toggle="modal" data-target="#ModalPerfil"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Perfil </a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- //header -->
-    <!-- header-bot -->
-    <div class="header-bot">
-        <div class="header-bot_inner_wthreeinfo_header_mid">
-            <div class="col-md-4 agileits-social top_content">
-            </div>
-            <div class="col-md-4 logo_agile">
-                <h1 @*id="NombreEmpresa"*@>Nombre de la Empresa S.A</h1>
-            </div>
-            <div class="col-md-4 agileits-social top_content">
-                <ul class="social-nav model-3d-0 footer-social w3_agile_social" id="RedesSociales"></ul>
-            </div>
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
+    @{Html.RenderAction("ObtenerInformacionEmpresa", "Home");}
     <!-- //header-bot -->
     <!-- banner -->
     <div class="ban-top">
@@ -69,21 +43,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav menu__list" id="MenuPublico"></ul>
+                            <ul class="nav navbar-nav menu__list" id="MenuPublico">
+                                @{Html.RenderAction("ObtenerMenuPublico", "Home");}
+                            </ul>
                         </div>
                     </div>
                 </nav>
             </div>
-            @*<div class="top_nav_right">
-                    <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                        <form action="#" method="post" class="last">
-                            <input type="hidden" name="cmd" value="_cart">
-                            <input type="hidden" name="display" value="1">
-                            <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-                        </form>
-
-                    </div>
-                </div>*@
             <div class="clearfix"></div>
         </div>
     </div>
@@ -92,93 +58,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     @RenderBody()
 
     <!-- footer -->
-    <div class="footer" style="margin-top:50px">
-        <div class="footer_agile_inner_info_w3l">
-            <div class="col-md-3 footer-left">
-                <h2 style="color:#ffffff; font-weight:bold" id="NombreEmpresaFooter2"></h2>
-                <p>
-                    Lorem ipsum quia dolor
-                    sit amet, consectetur, adipisci velit, sed quia non
-                    numquam eius modi tempora.
-                </p>
-                <ul class="social-nav model-3d-0 footer-social w3_agile_social two" id="RedesSocialesFooter"></ul>
-            </div>
-            <div class="col-md-9 footer-right">
-                <div class="sign-grds">
-                    @*<div class="col-md-4 sign-gd">
-                            <h4>Our <span>Information</span> </h4>
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="mens.html">Men's Wear</a></li>
-                                <li><a href="womens.html">Women's wear</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="typography.html">Short Codes</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div>*@
-
-                    <div class="col-md-5 sign-gd-two">
-                        <h4>Información de la empresa</h4>
-                        <div class="w3-address">
-                            <div class="w3-address-grid">
-                                <div class="w3-address-left">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                </div>
-                                <div class="w3-address-right">
-                                    <h6 style="color:#2FDAB8">Numero Telefonico:</h6>
-                                    <p style="color:#ffffff" id="TelefonoFooter"></p>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="w3-address-grid">
-                                <div class="w3-address-left">
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                </div>
-                                <div class="w3-address-right">
-                                    <h6 style="color:#2FDAB8">Correo Electronico:</h6>
-                                    <p style="color:#ffffff" id="CorreoElectronicoFooter"></p>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="w3-address-grid">
-                                <div class="w3-address-left">
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                </div>
-                                <div class="w3-address-right">
-                                    <h6 style="color:#2FDAB8">Direccion:</h6>
-                                    <p style="color:#ffffff" id="DireccionFooter">
-
-
-                                    </p>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 sign-gd flickr-post">
-                        <h4>Flickr <span>Posts</span></h4>
-                        <ul>
-                            <li><a href="single.html"><img src="~/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="~/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="~/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="~/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="~/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="~/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="~/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="~/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="~/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-
-
-            <p style="color:#ffffff" class="copy-right">&copy @DateTime.Now.Year <a id="NombreEmpresaFooter"></a>  | Todos los derechos reservados</p>
-        </div>
-    </div>
+    @{Html.RenderAction("ObtenerInfoFooter", "Home");}
     <!-- //footer -->
+
     <!--REGISTRO-->
     <div class="modal fade" id="ModalRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -239,7 +121,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--FIN REGISTRO-->
-    <!-- login -->
+
+    <!-- LOGIN -->
     <div class="modal fade" id="ModalIngreso" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -273,7 +156,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- //Modal content-->
         </div>
     </div>
-    <!-- //login -->
+    <!-- //LOGIN -->
+
     <!--INICIO MODAL CORRECTO-->
     <div class="modal fade" tabindex="-1" role="dialog" id="ModalCorrecto">
         <div class="modal-dialog" role="document">
@@ -291,6 +175,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--FIN MODAL CORRECTO-->
+
     <!--INICIO MODAL ERROR-->
     <div class="modal fade" tabindex="-1" role="dialog" id="ModalError">
         <div class="modal-dialog" role="document">
@@ -308,6 +193,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--FIN MODAL ERROR-->
+
     <!--INICIO MODAL INFORMACION-->
     <div class="modal fade" tabindex="-1" role="dialog" id="ModalInformacion">
         <div class="modal-dialog" role="document">
@@ -325,6 +211,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--FIN MODAL INFORMACION-->
+
     <!--INICIO MODAL PERFIL-->
     <div class="modal fade" tabindex="-1" id="ModalPerfil" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
@@ -339,7 +226,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button"  class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -350,7 +237,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:#0074D9;">
-                    <h5 style="color:#ffffff;text-align:center" class="modal-title" >Carrito</h5>
+                    <h5 style="color:#ffffff;text-align:center" class="modal-title">Carrito</h5>
                 </div>
                 <div class="modal-body">
                     <table style="width:100%; text-align:center" class="table table-bordered" id="DetalleCarrito">
@@ -370,7 +257,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <button type="button" class="btn btn-primary" id="btnPagar" data-dismiss="modal">Pagar</button>
                 </div>
                 <div class="modal-footer">
-                   
+
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -470,7 +357,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- //here ends scrolling icon -->
     <!-- for bootstrap working -->
-
     @*<script src="~/Js/jquery-2.1.4.min.js"></script>*@
     <script src="~/Js/jquery-ui.js"></script>
     <script src="~/Js/bootstrap.js"></script>

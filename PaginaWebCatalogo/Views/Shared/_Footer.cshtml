@@ -1,0 +1,80 @@
+﻿@model Entidades.Index
+
+<!-- footer -->
+<div class="footer" style="margin-top:50px">
+    <div class="footer_agile_inner_info_w3l">
+        <div class="col-md-3 footer-left">
+            <h2 style="color:#ffffff; font-weight:bold" id="NombreEmpresaFooter2">@Model.Empresa.Nombre</h2>
+            <p>
+                Lorem ipsum quia dolor
+                sit amet, consectetur, adipisci velit, sed quia non
+                numquam eius modi tempora.
+            </p>
+            <ul class="social-nav model-3d-0 footer-social w3_agile_social two" id="RedesSocialesFooter">
+                @foreach (var item in Model.ListaRedesSociales)
+                {
+                    <li><a style='background-color:@item.Color' target='_blank' href='@item.Url'><div class='front'><i class='@item.Icono' aria-hidden='true'></i></div><div class='back'><i aria-hidden='true'></i></div></a></li>
+                }
+            </ul>
+        </div>
+        <div class="col-md-9 footer-right">
+            <div class="sign-grds">
+                <div class="col-md-5 sign-gd-two">
+                    <h4>Información de la empresa</h4>
+                    <div class="w3-address">
+                        <div class="w3-address-grid">
+                            <div class="w3-address-left">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                            </div>
+                            <div class="w3-address-right">
+                                <h6 style="color:#2FDAB8">Numero Telefonico:</h6>
+                                <p style="color:#ffffff" id="TelefonoFooter">@Model.Empresa.Telefono</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="w3-address-grid">
+                            <div class="w3-address-left">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            <div class="w3-address-right">
+                                <h6 style="color:#2FDAB8">Correo Electronico:</h6>
+                                <p style="color:#ffffff" id="CorreoElectronicoFooter">@Model.Empresa.CorreoElectronico</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="w3-address-grid">
+                            <div class="w3-address-left">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </div>
+                            <div class="w3-address-right">
+                                <h6 style="color:#2FDAB8">Direccion:</h6>
+                                <p style="color:#ffffff" id="DireccionFooter">@Model.Empresa.Direccion</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 sign-gd flickr-post">
+                    <h4>Flickr <span>Posts</span></h4>
+                    <ul>
+                        <li><a href="single.html"><img src="~/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="~/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="~/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="~/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="~/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="~/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="~/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="~/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="~/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+
+        <p style="color:#ffffff" class="copy-right">&copy @DateTime.Now.Year <a id="NombreEmpresaFooter">@Model.Empresa.Nombre</a>  | Todos los derechos reservados</p>
+    </div>
+</div>
+<!-- //footer -->

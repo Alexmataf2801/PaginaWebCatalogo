@@ -1,0 +1,31 @@
+﻿@model Entidades.Empresa
+
+<div class="header" id="home">
+    <div>
+        <ul>
+            <li> <a href="#" data-toggle="modal" data-target="#ModalIngreso"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Ingresar </a></li>
+            <li> <a href="#" data-toggle="modal" data-target="#ModalRegistro"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Registrarse </a></li>
+            <li><i class="fa fa-phone" aria-hidden="true"></i> <a id="TelefonoEmpresa">@Model.Telefono</a></li>
+            <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a id="CorreoElectronicoEmpresa">@Model.CorreoElectronico</a></li>
+            <li id="Perfil" style="display:none"> <a href="#" data-toggle="modal" data-target="#ModalPerfil"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Perfil </a></li>
+        </ul>
+    </div>
+</div>
+<!-- //header -->
+<!-- header-bot -->
+<div class="header-bot">
+    <div class="header-bot_inner_wthreeinfo_header_mid">
+        <div class="col-md-4 agileits-social top_content">
+        </div>
+        <div class="col-md-4 logo_agile">
+            <h1 id="NombreEmpresa">@Model.Nombre</h1>
+        </div>
+        <div class="col-md-4 agileits-social top_content">
+            <ul class="social-nav model-3d-0 footer-social w3_agile_social" id="RedesSociales">
+                @{Html.RenderAction("ObtenerRedesSociales", "Home");}
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model List<Entidades.MenuPublico>
+
+@if (Model.Count > 0)
+{
+
+    foreach (var item in Model)
+    {
+        <li class="menu__item dropdown">
+
+            @if (item.IsPadre == true)
+            {
+                var Hijos = Model.Where(Model => Model.IdPadre == item.IdMenu);
+
+                if (Hijos.Count() > 0)
+                {
+                    <a class="menu__link dropdown-toggle" href="#" data-toggle="dropdown"> @item.Nombre <b class="caret"></b></a>
+                    <ul class="dropdown-menu agile_short_dropdown">
+
+                        @foreach (var item1 in Hijos)
+                        {
+                            string UrlFInal = @item1.Url + "?TipoProducto=" + @item1.TipoProducto + "&SubTipoProducto=" + item1.SubTipo;
+                            <li><a href="@UrlFInal">@item1.Nombre </a></li>
+                        }
+
+                    </ul>
+                }
+                else
+                {
+                    <a class="menu__link" href="@item.Url">@item.Nombre</a>
+                }
+
+            }
+        </li>
+    }
+
+
+}

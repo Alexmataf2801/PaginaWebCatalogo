@@ -1,0 +1,9 @@
+﻿@model List<Entidades.RedesSociales>
+
+<li class='share'>Redes Sociales: </li>
+
+@foreach (var item in Model)
+{
+    <li><a style='background-color:@item.Color' target='_blank' href='@item.Url'><div class='front'><i class='@item.Icono' aria-hidden='true'></i></div><div class='back'><i aria-hidden='true'></i></div></a></li>
+}
+

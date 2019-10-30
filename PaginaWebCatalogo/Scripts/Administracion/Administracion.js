@@ -179,8 +179,6 @@ function ValidarUsuario() {
 
 
 $(document).ready(function () {
-    ObtenerInformacionEmpresa();
-    ObtenerRedesSociales();
     Modal();
     if (sessionStorage.getItem("Nombre") !== null) {
         $("#NombrePerfil").html(sessionStorage.getItem("Nombre"));

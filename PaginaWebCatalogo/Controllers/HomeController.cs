@@ -27,7 +27,9 @@ namespace PaginaWebCatalogo.Controllers
 
         public ActionResult About()
         {
-            return View();
+            Empresa Empresa = LogicaNegocioAdministracion.ObtenerInformacionEmpresa();
+
+            return View("About", Empresa);
         }
 
         #region INSERT
@@ -44,30 +46,73 @@ namespace PaginaWebCatalogo.Controllers
 
         #region SELECT 
 
-        public JsonResult ObtenerMenuPublico()
+        //public JsonResult ObtenerMenuPublico()
+        //{
+
+        //    List<MenuPublico> ListaMenuPublico = LogicaNegocioMenu.ObtenerMenuPublico();
+
+        //    return Json(ListaMenuPublico, JsonRequestBehavior.AllowGet);
+
+        //}
+
+        public ActionResult ObtenerMenuPublico()
         {
+            List<MenuPublico> ListaMenuPublico = new List<MenuPublico>();
+            ListaMenuPublico = LogicaNegocioMenu.ObtenerMenuPublico();
+            //if (Session["MenuPublico"] == null)
+            //{
 
-            List<MenuPublico> ListaMenuPublico = LogicaNegocioMenu.ObtenerMenuPublico();
-
-            return Json(ListaMenuPublico, JsonRequestBehavior.AllowGet);
+            //    ListaMenuPublico = LogicaNegocioMenu.ObtenerMenuPublico();
+            //    Session["MenuPublico"] = ListaMenuPublico;
+            //}
+            //else {
+            //    ListaMenuPublico = (List<MenuPublico>)Session["MenuPublico"];
+            //}
+            
+            return PartialView("_MenuPublico", ListaMenuPublico);
 
         }
 
-        public JsonResult ObtenerRedesSociales()
-        {
+        public ActionResult ObtenerInfoFooter() {
 
+            Index index = new Index();
+            index.ListaRedesSociales = LogicaNegocioAdministracion.ObtenerRedesSociales();
+            index.Empresa = LogicaNegocioAdministracion.ObtenerInformacionEmpresa();
+
+            return PartialView("_Footer", index);
+        }
+
+        //public JsonResult ObtenerRedesSociales()
+        //{
+
+        //    List<RedesSociales> ListaRedesSociales = LogicaNegocioAdministracion.ObtenerRedesSociales();
+
+        //    return Json(ListaRedesSociales, JsonRequestBehavior.AllowGet);
+
+        //}
+
+        public ActionResult ObtenerRedesSociales()
+        {
             List<RedesSociales> ListaRedesSociales = LogicaNegocioAdministracion.ObtenerRedesSociales();
 
-            return Json(ListaRedesSociales, JsonRequestBehavior.AllowGet);
+            return PartialView("_RedesSociales", ListaRedesSociales);
 
         }
 
-        public JsonResult ObtenerInformacionEmpresa()
-        {
+        //public JsonResult ObtenerInformacionEmpresa()
+        //{
 
+        //    Empresa Empresa = LogicaNegocioAdministracion.ObtenerInformacionEmpresa();
+
+        //    return Json(Empresa, JsonRequestBehavior.AllowGet);
+
+        //}
+
+        public ActionResult ObtenerInformacionEmpresa()
+        {
             Empresa Empresa = LogicaNegocioAdministracion.ObtenerInformacionEmpresa();
 
-            return Json(Empresa, JsonRequestBehavior.AllowGet);
+            return PartialView("_Encabezado", Empresa);
 
         }
 
