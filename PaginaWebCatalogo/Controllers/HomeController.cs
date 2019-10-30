@@ -22,7 +22,12 @@ namespace PaginaWebCatalogo.Controllers
 
 
 
-            return View("Index",index);
+            return View("Index", index);
+        }
+
+        public ActionResult About()
+        {
+            return View();
         }
 
         #region INSERT
