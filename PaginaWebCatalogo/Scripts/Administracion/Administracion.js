@@ -24,8 +24,6 @@ function ObtenerRedesSociales() {
         }
     });
 }
-
-
 function ObtenerInformacionEmpresa() {
     $.ajax({
         type: "GET",
@@ -57,7 +55,6 @@ function ObtenerInformacionEmpresa() {
         }
     });
 }
-
 function GuardarUsuario(a) {
     var usuario = {
         Identificacion: $("#txtIdentificacion").val(),
@@ -114,7 +111,6 @@ function GuardarUsuario(a) {
 
 
 }
-
 function Modal() {
     $('.modal').on('show.bs.modal', function () {
         if ($(document).height() > $(window).height()) {
@@ -129,7 +125,6 @@ function Modal() {
         $('body').removeClass("modal-open-noscroll");
     });
 }
-
 function ValidarUsuario() {
 
     var login = {

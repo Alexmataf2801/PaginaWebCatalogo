@@ -19,7 +19,6 @@
 
     });
 }
-
 function ObtenerTipos() {
     var Opciones = '';
     $.ajax({
@@ -42,7 +41,6 @@ function ObtenerTipos() {
 
     });
 }
-
 function ObtenerSubTipos() {
     var Opciones = '';
     $.ajax({
@@ -64,8 +62,6 @@ function ObtenerSubTipos() {
 
     });
 }
-
-
 function GuardarRedSocial() {
 
     var redSocial = {
@@ -97,8 +93,6 @@ function GuardarRedSocial() {
 
 
 }
-
-
 function GuardarTipoProducto() {
 
     var tipo = {
@@ -128,7 +122,6 @@ function GuardarTipoProducto() {
 
 
 }
-
 function GuardarSubTipoProducto() {
 
     var subTipo = {
@@ -158,8 +151,6 @@ function GuardarSubTipoProducto() {
 
 
 }
-
-
 function GuardarProducto() {
 
     // Checking whether FormData is available in browser  
@@ -207,9 +198,6 @@ function GuardarProducto() {
     }  
 
 }
-
-
-
 
 $(document).ready(function () {
     ObtenerIconos();
