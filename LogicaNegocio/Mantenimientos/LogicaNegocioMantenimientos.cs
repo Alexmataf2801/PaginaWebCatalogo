@@ -107,6 +107,13 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.ObtenerTodosTiposProducto();
         }
 
+        public static List<SubTipoProducto> ObtenerTodosSubTiposProducto()
+        {
+
+            return AccesoDatosMantenimientos.ObtenerTodosSubTiposProducto();
+        }
+
+
         #endregion
 
         #region UPDATE 

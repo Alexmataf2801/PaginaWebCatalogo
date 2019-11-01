@@ -28,6 +28,7 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
+        [HttpGet]
         public ActionResult ListarRedes()
         {
 
@@ -36,12 +37,22 @@ namespace PaginaWebCatalogo.Controllers
             return View("ListaRedes");
         }
 
+        [HttpGet]
         public ActionResult ListaTipos()
         {
 
             Iniciarlizar();
 
             return View("ListaTipos");
+        }
+
+        [HttpGet]
+        public ActionResult ListaSubTipos()
+        {
+
+            Iniciarlizar();
+
+            return View("ListaSubTipos");
         }
 
         [HttpGet]
@@ -91,6 +102,7 @@ namespace PaginaWebCatalogo.Controllers
 
         #region INSERT
 
+        [HttpPost]
         public JsonResult InsertarSubTipoProducto(SubTipoProducto subTipo)
         {
             bool Correcto = false;
@@ -124,6 +136,7 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public JsonResult InsertarRedSocial(RedesSociales redSocial)
         {
             bool Correcto = false;
@@ -142,6 +155,7 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public JsonResult InsertarTipoProducto(TipoProducto tipo)
         {
             bool Correcto = false;
@@ -157,56 +171,6 @@ namespace PaginaWebCatalogo.Controllers
 
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
-
-
-        public JsonResult ObtenerRedSocial(int RedSocial)
-        {
-            RedesSociales redes = new RedesSociales();
-
-            if (Session["UsuarioLogueado"] != null)
-            {
-                Usuario usuario = new Usuario();
-                usuario = (Usuario)Session["UsuarioLogueado"];
-                redes = LogicaNegocioMantenimientos.ObtenerRedSocial(RedSocial);
-
-            }
-
-            return Json(redes, JsonRequestBehavior.AllowGet);
-        }
-
-     
-
-        public JsonResult ObtenerTodasRedesSociales()
-        {
-            List<RedesSociales> ListaRedesSociales = new List<RedesSociales>();
-
-            if (Session["UsuarioLogueado"] != null)
-            {
-                Usuario usuario = new Usuario();
-                usuario = (Usuario)Session["UsuarioLogueado"];
-                ListaRedesSociales = LogicaNegocioMantenimientos.ObtenerTodasRedesSociales();
-
-            }
-
-            return Json(ListaRedesSociales, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public JsonResult ObtenerTodosTipoProducto()
-        {
-            List<TipoProducto> ListaTipoProducto = new List<TipoProducto>();
-
-            if (Session["UsuarioLogueado"] != null)
-            {
-                Usuario usuario = new Usuario();
-                usuario = (Usuario)Session["UsuarioLogueado"];
-                ListaTipoProducto = LogicaNegocioMantenimientos.ObtenerTodosTiposProducto();
-
-            }
-
-            return Json(ListaTipoProducto, JsonRequestBehavior.AllowGet);
-        }
-
 
         [HttpPost]
         public ActionResult InsertarProducto()
@@ -304,16 +268,6 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
-        //public JsonResult InsertarProducto(dynamic file)
-        //{
-        //    var f = file;
-        //    bool Correcto = false;
-
-
-
-
-        //    return Json(Correcto, JsonRequestBehavior.AllowGet);
-        //}
 
         #endregion
 
@@ -459,6 +413,66 @@ namespace PaginaWebCatalogo.Controllers
 
             return menuArmado.ToString();
 
+        }
+
+        public JsonResult ObtenerRedSocial(int RedSocial)
+        {
+            RedesSociales redes = new RedesSociales();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                redes = LogicaNegocioMantenimientos.ObtenerRedSocial(RedSocial);
+
+            }
+
+            return Json(redes, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ObtenerTodasRedesSociales()
+        {
+            List<RedesSociales> ListaRedesSociales = new List<RedesSociales>();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                ListaRedesSociales = LogicaNegocioMantenimientos.ObtenerTodasRedesSociales();
+
+            }
+
+            return Json(ListaRedesSociales, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ObtenerTodosTipoProducto()
+        {
+            List<TipoProducto> ListaTipoProducto = new List<TipoProducto>();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                ListaTipoProducto = LogicaNegocioMantenimientos.ObtenerTodosTiposProducto();
+
+            }
+
+            return Json(ListaTipoProducto, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ObtenerTodosSubTiposProducto()
+        {
+            List<SubTipoProducto> ListaSubProducto = new List<SubTipoProducto>();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                ListaSubProducto = LogicaNegocioMantenimientos.ObtenerTodosSubTiposProducto();
+
+            }
+
+            return Json(ListaSubProducto, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
