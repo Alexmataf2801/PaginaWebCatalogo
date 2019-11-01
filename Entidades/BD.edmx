@@ -247,6 +247,7 @@
         <Function Name="paObtenerTipoProductoActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTipoProductosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTodasRedesSociales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerTodosProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTodosSubTipos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTodosTipos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paValidarLogueo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -410,6 +411,7 @@
           <FunctionImport Name="paObtenerTodasRedesSociales" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodasRedesSociales_Result)" />
           <FunctionImport Name="paObtenerTodosTipos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosTipos_Result)" />
           <FunctionImport Name="paObtenerTodosSubTipos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosSubTipos_Result)" />
+          <FunctionImport Name="paObtenerTodosProductos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosProductos_Result)" />
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -605,6 +607,21 @@
           <Property Type="String" Name="Codigo" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosProductos_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="TipoProducto" Nullable="false" />
+          <Property Type="Int32" Name="SubTipo" Nullable="true" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
           <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
           <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
@@ -899,6 +916,25 @@
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerTodosProductos" FunctionName="PaginaWebCatalogosModel.Store.paObtenerTodosProductos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerTodosProductos_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="TipoProducto" ColumnName="TipoProducto" />
+                <ScalarProperty Name="SubTipo" ColumnName="SubTipo" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />

@@ -56,6 +56,15 @@ namespace PaginaWebCatalogo.Controllers
         }
 
         [HttpGet]
+        public ActionResult ListaProductos()
+        {
+
+            Iniciarlizar();
+
+            return View("ListaProductos");
+        }
+
+        [HttpGet]
         public ActionResult Tipo()
         {
 
@@ -475,6 +484,20 @@ namespace PaginaWebCatalogo.Controllers
             return Json(ListaSubProducto, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ObtenerTodosProductos()
+        {
+            List<Productos> ListaProductos = new List<Productos>();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                ListaProductos = LogicaNegocioMantenimientos.ObtenerTodosProductos();
+
+            }
+
+            return Json(ListaProductos, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region UPDATE

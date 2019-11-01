@@ -494,6 +494,47 @@ namespace AccesoDatos.Mantenimientos
             return ListaSubTipos;
         }
 
+        public static List<Productos> ObtenerTodosProductos()
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<Productos> ListaProductos = new List<Productos>();
+
+            try
+            {
+                var productos = entities.paObtenerTodosProductos();
+
+                foreach (var item in productos)
+                {
+                    Productos producto = new Productos();
+                    producto.IdProducto = item.IdProducto;
+                    producto.Codigo = item.Codigo;
+                    producto.Nombre = item.Nombre;
+                    producto.Descripcion = item.Descripcion;
+                    producto.Moneda = item.Moneda;
+                    producto.PrecioProducto = item.PrecioProducto.ToString("###,###,###,###,###.##");
+                    producto.TipoProducto = item.TipoProducto;
+                    producto.SubTipoProducto = item.SubTipo;
+                    producto.Estado = item.Estado;
+                    producto.UsuarioCreacion = item.UsuarioCreacion;
+                    producto.FechaCreacion = item.FechaCreacion;
+                    producto.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    producto.FechaUltimaModificacion = item.FechaUltimaModificacion;
+
+
+                    ListaProductos.Add(producto);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaProductos;
+        }
 
         #endregion
 

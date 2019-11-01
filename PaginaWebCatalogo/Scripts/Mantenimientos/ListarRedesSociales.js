@@ -30,7 +30,6 @@
                             }
                         },
                         { data: 'Nombre' },
-                        { data: 'Descripcion' },
                         {
                             render: function (data, type, full) {
                                 if (full["Estado"]) {

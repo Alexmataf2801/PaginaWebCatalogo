@@ -128,6 +128,9 @@
     <Compile Include="paObtenerTodasRedesSociales_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerTodosProductos_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerTodosSubTipos_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>

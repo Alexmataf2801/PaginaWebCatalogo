@@ -1,17 +1,17 @@
-﻿function ObtenerTodosSubTipos() {
+﻿function ObtenerTodosProductos() {
 
     $.ajax({
         type: "POST",
         dataType: "JSON",
-        url: "/Mantenimientos/ObtenerTodosSubTiposProducto/",
+        url: "/Mantenimientos/ObtenerTodosProductos/",
         data: {},
         success: function (Info) {
             if (Info.length > 0) {
 
                 //var objeto = JSON.parse(Info);
 
-                $('#tbSubTipos').dataTable().fnDestroy();
-                $("#tbSubTipos").dataTable({
+                $('#tbProductos').dataTable().fnDestroy();
+                $("#tbProductos").dataTable({
 
                     autoWidth: false,
                     responsive: true,
@@ -26,7 +26,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-success fa fa-pencil' onclick='EditarSubTipo(" + data["IdSubTipo"] + ")'></button>";
+                                return "<button class='btn btn-success fa fa-pencil' onclick='EditarProducto(" + data["IdProducto"] + ")'></button>";
                             }
                         },
                         { data: 'Nombre' },
@@ -43,14 +43,14 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarSubTipo(" + data["IdSubTipo"] + ")'></button>";
+                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarProducto(" + data["IdProducto"] + ")'></button>";
                             }
                         },
                         {
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-danger fa fa-trash' onclick='EliminarSubTipo(" + data["IdSubTipo"] + ")'></button>";
+                                return "<button class='btn btn-danger fa fa-trash' onclick='EliminarProducto(" + data["IdProducto"] + ")'></button>";
                             }
                         }
 
@@ -68,5 +68,5 @@
 }
 
 $(document).ready(function () {
-    ObtenerTodosSubTipos();
+    ObtenerTodosProductos();
 });
