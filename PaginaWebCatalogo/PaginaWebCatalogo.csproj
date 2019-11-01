@@ -141,6 +141,7 @@
     <Content Include="Content\Administracion\font-awesome.min.css" />
     <Content Include="Content\Administracion\fontawesome-webfont.svg" />
     <Content Include="Content\Administracion\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Administracion\TablasMantenimientos.css" />
     <Content Include="Content\Administracion\_all-skins.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\datatables.min.css" />
@@ -255,6 +256,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\Administracion\Administracion.js" />
+    <Content Include="Scripts\Mantenimientos\ListarRedesSociales.js" />
     <Content Include="Scripts\Mantenimientos\Mantenimientos.js" />
     <Content Include="Scripts\Menu\MenuAdministracion.js" />
     <Content Include="Scripts\Menu\MenuPublico.js" />
@@ -321,6 +323,7 @@
     <Content Include="Views\Shared\_Encabezado.cshtml" />
     <Content Include="Views\Shared\_RedesSociales.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Mantenimientos\ListaRedes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

@@ -89,6 +89,18 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.ObtenerSubTipoProducto();
         }
 
+        public static RedesSociales ObtenerRedSocial(int IdRedSocial)
+        {
+
+            return AccesoDatosMantenimientos.ObtenerRedSocial(IdRedSocial);
+        }
+
+        public static List<RedesSociales> ObtenerTodasRedesSociales()
+        {
+
+            return AccesoDatosMantenimientos.ObtenerTodasRedesSociales();
+        }
+
         #endregion
 
         #region UPDATE 

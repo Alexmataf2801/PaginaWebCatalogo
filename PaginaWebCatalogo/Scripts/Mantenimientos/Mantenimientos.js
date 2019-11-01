@@ -93,6 +93,8 @@ function GuardarRedSocial() {
 
 
 }
+
+
 function GuardarTipoProducto() {
 
     var tipo = {
@@ -156,7 +158,7 @@ function GuardarProducto() {
     // Checking whether FormData is available in browser  
     if (window.FormData !== undefined) {
 
-   
+
         var fileUpload = $("#Imagenes").get(0);
 
         var files = fileUpload.files;
@@ -195,7 +197,7 @@ function GuardarProducto() {
         });
     } else {
         alert("FormData is not supported.");
-    }  
+    }
 
 }
 

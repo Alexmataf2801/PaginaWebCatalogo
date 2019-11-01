@@ -143,6 +143,44 @@ namespace PaginaWebCatalogo.Controllers
         }
 
 
+        public JsonResult ObtenerRedSocial(int RedSocial)
+        {
+            RedesSociales redes = new RedesSociales();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                redes = LogicaNegocioMantenimientos.ObtenerRedSocial(RedSocial);
+
+            }
+
+            return Json(redes, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ListarRedes() {
+
+            Iniciarlizar();
+
+            return View("ListaRedes");
+        }
+
+        public JsonResult ObtenerTodasRedesSociales()
+        {
+            List<RedesSociales> ListaRedesSociales = new List<RedesSociales>(); ;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                ListaRedesSociales = LogicaNegocioMantenimientos.ObtenerTodasRedesSociales();
+
+            }
+
+            return Json(ListaRedesSociales, JsonRequestBehavior.AllowGet);
+        }
+
+
         [HttpPost]
         public ActionResult InsertarProducto()
         {
@@ -177,7 +215,7 @@ namespace PaginaWebCatalogo.Controllers
                         productos.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
                         int IdProducto = LogicaNegocioMantenimientos.InsertarProducto(productos);
- 
+
                         HttpFileCollectionBase files = Request.Files;
                         for (int i = 0; i < files.Count; i++)
                         {

@@ -403,5 +403,52 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarRelacionImagenProducto", idProductoParameter, idImagenParameter, idUsuarioParameter, idRelacion);
         }
+    
+        public virtual int paActualizarRedSocial(Nullable<int> idRedSocial, string nombre, string descripcion, string url, string icono, string color, string usuarioUltimaModificacion)
+        {
+            var idRedSocialParameter = idRedSocial.HasValue ?
+                new ObjectParameter("IdRedSocial", idRedSocial) :
+                new ObjectParameter("IdRedSocial", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var urlParameter = url != null ?
+                new ObjectParameter("Url", url) :
+                new ObjectParameter("Url", typeof(string));
+    
+            var iconoParameter = icono != null ?
+                new ObjectParameter("Icono", icono) :
+                new ObjectParameter("Icono", typeof(string));
+    
+            var colorParameter = color != null ?
+                new ObjectParameter("Color", color) :
+                new ObjectParameter("Color", typeof(string));
+    
+            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
+                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
+                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarRedSocial", idRedSocialParameter, nombreParameter, descripcionParameter, urlParameter, iconoParameter, colorParameter, usuarioUltimaModificacionParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerRedSocial_Result> paObtenerRedSocial(Nullable<int> idRedSocial)
+        {
+            var idRedSocialParameter = idRedSocial.HasValue ?
+                new ObjectParameter("IdRedSocial", idRedSocial) :
+                new ObjectParameter("IdRedSocial", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerRedSocial_Result>("paObtenerRedSocial", idRedSocialParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerTodasRedesSociales_Result> paObtenerTodasRedesSociales()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodasRedesSociales_Result>("paObtenerTodasRedesSociales");
+        }
     }
 }

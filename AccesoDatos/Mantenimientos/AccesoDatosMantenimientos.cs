@@ -332,6 +332,102 @@ namespace AccesoDatos.Mantenimientos
             return ListaSubTipoProducto;
         }
 
+        public static bool ActualizarRedSocial(RedesSociales redSocial)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            bool Correcto = false;
+
+            try
+            {
+                entities.paActualizarRedSocial(redSocial.IdRedSocial,redSocial.Nombre, redSocial.Descripcion, redSocial.Url, redSocial.Icono, redSocial.Color,redSocial.UsuarioUltimaModificacion);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return Correcto;
+        }
+
+        public static RedesSociales ObtenerRedSocial(int IdRedSocial)
+        {
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            RedesSociales redesSociales = new RedesSociales();
+
+            try
+            {
+                var RedesSociales = entities.paObtenerRedSocial(IdRedSocial);
+
+                foreach (var item in RedesSociales)
+                {
+                   
+                    redesSociales.IdRedSocial = item.IdRedSocial;
+                    redesSociales.Nombre = item.Nombre;
+                    redesSociales.Descripcion = item.Descripcion;
+                    redesSociales.Url = item.Url;
+                    redesSociales.Icono = item.Icono;
+                    redesSociales.Color = item.Color;
+                    redesSociales.UsuarioCreacion = item.UsuarioCreacion;
+                    redesSociales.FechaCreacion = item.FechaCreacion;
+                    redesSociales.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    redesSociales.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    redesSociales.Estado = item.Estado;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+            return redesSociales;
+        }
+
+        public static List<RedesSociales> ObtenerTodasRedesSociales()
+        {
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<RedesSociales> ListaRedesSociales = new List<RedesSociales>();
+
+            try
+            {
+                var RedesSociales = entities.paObtenerTodasRedesSociales();
+
+                foreach (var item in RedesSociales)
+                {
+                    RedesSociales redesSociales = new RedesSociales();
+                    redesSociales.IdRedSocial = item.IdRedSocial;
+                    redesSociales.Nombre = item.Nombre;
+                    redesSociales.Descripcion = item.Descripcion;
+                    redesSociales.Url = item.Url;
+                    redesSociales.Icono = item.Icono;
+                    redesSociales.Color = item.Color;
+                    redesSociales.UsuarioCreacion = item.UsuarioCreacion;
+                    redesSociales.FechaCreacion = item.FechaCreacion;
+                    redesSociales.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    redesSociales.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    redesSociales.Estado = item.Estado;
+
+
+
+                    ListaRedesSociales.Add(redesSociales);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+            return ListaRedesSociales;
+        }
+
         #endregion
 
         #region UPDATE 

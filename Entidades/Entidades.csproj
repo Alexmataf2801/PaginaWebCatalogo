@@ -113,6 +113,9 @@
     <Compile Include="paObtenerRedesSociales_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerRedSocial_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerSubTipoProdActivo_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
@@ -120,6 +123,9 @@
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerTipoProductosActivos_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerTodasRedesSociales_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Productos.cs" />

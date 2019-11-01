@@ -1,0 +1,33 @@
+﻿@model List<Entidades.RedesSociales>
+@{
+    ViewBag.Title = "ListaRedes";
+    Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
+}
+
+<div class="container" style="margin: 0 auto; width: 90%">
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+            <div style="margin: 0 auto; width: 95%">
+                <div style="text-align: center; margin-bottom: 50px">
+                    <h3 id="lblTitulo" class="box-header"></h3>
+                    <hr />
+                </div>
+                <table id="tbRedes" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="TablasMantenimientos">Editar</th>
+                            <th class="TablasMantenimientos">Id</th>
+                            <th class="TablasMantenimientos">Nombre</th>
+                            <th class="TablasMantenimientos">Descripción</th>
+                            <th class="TablasMantenimientos">Estado</th>
+                            <th class="TablasMantenimientos">Desactivar</th>
+                            <th class="TablasMantenimientos">Eliminar</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Js/Administracion/jquery.min.js"></script>
+<script src="~/Scripts/Mantenimientos/ListarRedesSociales.js"></script>
