@@ -28,6 +28,22 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
+        public ActionResult ListarRedes()
+        {
+
+            Iniciarlizar();
+
+            return View("ListaRedes");
+        }
+
+        public ActionResult ListaTipos()
+        {
+
+            Iniciarlizar();
+
+            return View("ListaTipos");
+        }
+
         [HttpGet]
         public ActionResult Tipo()
         {
@@ -158,16 +174,11 @@ namespace PaginaWebCatalogo.Controllers
             return Json(redes, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult ListarRedes() {
-
-            Iniciarlizar();
-
-            return View("ListaRedes");
-        }
+     
 
         public JsonResult ObtenerTodasRedesSociales()
         {
-            List<RedesSociales> ListaRedesSociales = new List<RedesSociales>(); ;
+            List<RedesSociales> ListaRedesSociales = new List<RedesSociales>();
 
             if (Session["UsuarioLogueado"] != null)
             {
@@ -178,6 +189,22 @@ namespace PaginaWebCatalogo.Controllers
             }
 
             return Json(ListaRedesSociales, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult ObtenerTodosTipoProducto()
+        {
+            List<TipoProducto> ListaTipoProducto = new List<TipoProducto>();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                ListaTipoProducto = LogicaNegocioMantenimientos.ObtenerTodosTiposProducto();
+
+            }
+
+            return Json(ListaTipoProducto, JsonRequestBehavior.AllowGet);
         }
 
 

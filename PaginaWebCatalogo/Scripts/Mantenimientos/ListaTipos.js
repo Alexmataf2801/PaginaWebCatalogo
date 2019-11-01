@@ -1,17 +1,17 @@
-﻿function ObtenerTodasRedesSociales() {
+﻿function ObtenerTodosTipos() {
 
     $.ajax({
         type: "POST",
         dataType: "JSON",
-        url: "/Mantenimientos/ObtenerTodasRedesSociales/",
+        url: "/Mantenimientos/ObtenerTodosTipoProducto/",
         data: {},
         success: function (Info) {
             if (Info.length > 0) {
 
                 //var objeto = JSON.parse(Info);
 
-                $('#tbRedes').dataTable().fnDestroy();
-                $("#tbRedes").dataTable({
+                $('#tbTipos').dataTable().fnDestroy();
+                $("#tbTipos").dataTable({
 
                     autoWidth: false,
                     responsive: true,
@@ -26,7 +26,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-success fa fa-pencil' onclick='EditarRedSocial(" + data["IdRedSocial"] + ")'></button>";
+                                return "<button class='btn btn-success fa fa-pencil' onclick='EditarTipo(" + data["IdTipo"] + ")'></button>";
                             }
                         },
                         { data: 'Nombre' },
@@ -44,14 +44,14 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarRedSocial(" + data["IdRedSocial"] + ")'></button>";
+                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarTipo(" + data["IdTipo"] + ")'></button>";
                             }
                         },
                         {
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-danger fa fa-trash' onclick='EliminarRedSocial(" + data["IdRedSocial"] + ")'></button>";
+                                return "<button class='btn btn-danger fa fa-trash' onclick='EliminarTipo(" + data["IdTipo"] + ")'></button>";
                             }
                         }
 
@@ -69,5 +69,5 @@
 }
 
 $(document).ready(function () {
-    ObtenerTodasRedesSociales();
+    ObtenerTodosTipos();
 });

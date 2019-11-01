@@ -450,5 +450,10 @@ namespace Entidades
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodasRedesSociales_Result>("paObtenerTodasRedesSociales");
         }
+    
+        public virtual ObjectResult<paObtenerTodosTipos_Result> paObtenerTodosTipos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosTipos_Result>("paObtenerTodosTipos");
+        }
     }
 }

@@ -257,6 +257,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\Administracion\Administracion.js" />
     <Content Include="Scripts\Mantenimientos\ListarRedesSociales.js" />
+    <Content Include="Scripts\Mantenimientos\ListaTipos.js" />
     <Content Include="Scripts\Mantenimientos\Mantenimientos.js" />
     <Content Include="Scripts\Menu\MenuAdministracion.js" />
     <Content Include="Scripts\Menu\MenuPublico.js" />
@@ -324,6 +325,7 @@
     <Content Include="Views\Shared\_RedesSociales.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Mantenimientos\ListaRedes.cshtml" />
+    <Content Include="Views\Mantenimientos\ListaTipos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

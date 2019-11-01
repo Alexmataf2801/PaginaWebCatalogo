@@ -247,6 +247,7 @@
         <Function Name="paObtenerTipoProductoActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTipoProductosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTodasRedesSociales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerTodosTipos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paValidarLogueo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
           <Parameter Name="Contrasena" Type="varchar" Mode="In" />
@@ -406,6 +407,7 @@
           <Parameter Name="IdRedSocial" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerTodasRedesSociales" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodasRedesSociales_Result)" />
+          <FunctionImport Name="paObtenerTodosTipos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosTipos_Result)" />
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -584,6 +586,17 @@
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="Estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosTipos_Result">
+          <Property Type="Int32" Name="IdTipo" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -848,6 +861,21 @@
                 <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
                 <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerTodosTipos" FunctionName="PaginaWebCatalogosModel.Store.paObtenerTodosTipos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerTodosTipos_Result">
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

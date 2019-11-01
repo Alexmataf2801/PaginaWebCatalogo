@@ -1,18 +1,20 @@
-﻿@model List<Entidades.RedesSociales>
+﻿
+@model List<Entidades.TipoProducto>
 @{
-    ViewBag.Title = "ListaRedes";
+    ViewBag.Title = "Lista Tipos";
     Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
 }
+
 
 <div class="container" style="margin: 0 auto; width: 90%">
     <div class="panel panel-default" style="margin-top: 20px">
         <div class="panel-body">
             <div style="margin: 0 auto; width: 95%">
                 <div style="text-align: center; margin-bottom: 50px">
-                    <h3 id="lblTitulo" class="box-header">Listado de Redes Sociales</h3>
+                    <h3 id="lblTitulo" class="box-header"></h3>
                     <hr />
                 </div>
-                <table id="tbRedes" class="table table-bordered">
+                <table id="tbTipos" class="table table-bordered">
                     <thead>
                         <tr>
                             <th class="TablasMantenimientos">Editar</th>
@@ -29,4 +31,4 @@
     </div>
 </div>
 <script src="~/Js/Administracion/jquery.min.js"></script>
-<script src="~/Scripts/Mantenimientos/ListarRedesSociales.js"></script>
+<script src="~/Scripts/Mantenimientos/ListaTipos.js"></script>

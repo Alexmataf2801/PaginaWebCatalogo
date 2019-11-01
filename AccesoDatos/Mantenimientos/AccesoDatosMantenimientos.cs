@@ -428,6 +428,40 @@ namespace AccesoDatos.Mantenimientos
             return ListaRedesSociales;
         }
 
+        public static List<TipoProducto> ObtenerTodosTiposProducto()
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<TipoProducto> ListaTipoProducto = new List<TipoProducto>();
+
+            try
+            {
+                var TipoProd = entities.paObtenerTodosTipos();
+
+                foreach (var item in TipoProd)
+                {
+                    TipoProducto tipo = new TipoProducto();
+                    tipo.IdTipo = item.IdTipo;
+                    tipo.Codigo = item.Codigo;
+                    tipo.Nombre = item.Nombre;
+                    tipo.Descripcion = item.Descripcion;
+                    tipo.Estado = item.Estado;
+
+                    ListaTipoProducto.Add(tipo);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaTipoProducto;
+        }
+
+
         #endregion
 
         #region UPDATE 
