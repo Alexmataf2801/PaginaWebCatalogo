@@ -8,3 +8,21 @@
 tbody tr td {
     text-align: center !important;
 }
+
+.EstadoActivo {
+    background-color: #1F9E3C;
+    padding: 5px 15px 5px 15px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center
+}
+
+.EstadoInactivo {
+    background-color: #EE2626;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center
+}

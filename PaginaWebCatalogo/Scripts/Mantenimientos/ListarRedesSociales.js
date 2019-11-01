@@ -20,7 +20,6 @@
                     language: {
                         "url": "../Content/Spanish.json"
                     },
-
                     data: Info,
                     columns: [
                         {
@@ -36,14 +35,11 @@
                         {
                             render: function (data, type, full) {
                                 if (full["Estado"]) {
-                                    return "<span style='background-color: #1F9E3C; padding:5px 15px 5px 15px; border-radius: 5px; color : #ffffff; font-weight: bold; text-align:center' >Activo</span>";
+                                    return "<span class='EstadoActivo' >Activo</span>";
                                 } else {
-                                    return "<span style='background-color: #EE2626; padding:5px 10px 5px 10px; border-radius: 5px; color : #ffffff; font-weight: bold' >Inactivo</span>";
+                                    return "<span class='EstadoInactivo' >Inactivo</span>";
                                 }
-
-                            
                             }
-
                         },
                         {
                             data: null,
@@ -61,9 +57,6 @@
                         }
 
                     ]
-
-
-
                 });
             }
         },
