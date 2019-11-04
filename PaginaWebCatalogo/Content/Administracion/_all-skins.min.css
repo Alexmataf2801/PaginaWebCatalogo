@@ -63,7 +63,7 @@
 .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
     background-color: #222d32;
     /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
-    height:810px
+    height:800px
 
 }
 
@@ -327,6 +327,7 @@
     .skin-blue-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
         border-left: 1px solid #d2d6de
     }
+
 }
 
 .skin-blue-light .main-footer {
@@ -429,7 +430,7 @@
 .skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side {
     background-color: #222d32;
     /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
-    height: 810px
+    height:800px
 }
 
 .skin-black .user-panel > .info, .skin-black .user-panel > .info > a {
@@ -711,6 +712,7 @@
     .skin-black-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
         border-left: 1px solid #d2d6de
     }
+
 }
 
 .skin-green .main-header .navbar {
@@ -778,7 +780,7 @@
 .skin-green .wrapper, .skin-green .main-sidebar, .skin-green .left-side {
     background-color: #222d32;
     /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
-    height: 810px
+    height:800px
 }
 
 .skin-green .user-panel > .info, .skin-green .user-panel > .info > a {
@@ -1031,6 +1033,7 @@
     .skin-green-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
         border-left: 1px solid #d2d6de
     }
+
 }
 
 .skin-red .main-header .navbar {
@@ -1098,7 +1101,7 @@
 .skin-red .wrapper, .skin-red .main-sidebar, .skin-red .left-side {
     background-color: #222d32;
     /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
-    height: 810px
+    height:800px
 }
 
 .skin-red .user-panel > .info, .skin-red .user-panel > .info > a {
@@ -1351,6 +1354,7 @@
     .skin-red-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
         border-left: 1px solid #d2d6de
     }
+
 }
 
 .skin-yellow .main-header .navbar {
@@ -1418,7 +1422,7 @@
 .skin-yellow .wrapper, .skin-yellow .main-sidebar, .skin-yellow .left-side {
     background-color: #222d32;
     /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
-    height: 810px
+    height:800px
 }
 
 .skin-yellow .user-panel > .info, .skin-yellow .user-panel > .info > a {
@@ -1671,6 +1675,7 @@
     .skin-yellow-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
         border-left: 1px solid #d2d6de
     }
+
 }
 
 .skin-purple .main-header .navbar {
@@ -1738,7 +1743,7 @@
 .skin-purple .wrapper, .skin-purple .main-sidebar, .skin-purple .left-side {
     background-color: #222d32;
     /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
-    height: 810px
+    height:800px
 }
 
 .skin-purple .user-panel > .info, .skin-purple .user-panel > .info > a {
@@ -1992,3 +1997,4 @@
         border-left: 1px solid #d2d6de
     }
 }
+
