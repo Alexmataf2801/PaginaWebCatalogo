@@ -59,7 +59,8 @@
             }
         },
         error: function () {
-            alert("Error");
+            $("#msjError").html("Error al obtener las redes sociales");
+            $('#ModalError').modal('show');
         }
 
 

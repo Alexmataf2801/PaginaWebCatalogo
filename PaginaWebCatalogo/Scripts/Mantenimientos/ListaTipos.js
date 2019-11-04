@@ -59,7 +59,8 @@
             }
         },
         error: function () {
-            alert("Error");
+            $("#msjError").html("Error al obtener los Tipos");
+            $('#ModalError').modal('show');
         }
 
 

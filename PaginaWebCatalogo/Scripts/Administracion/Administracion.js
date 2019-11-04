@@ -165,7 +165,8 @@ function ValidarUsuario() {
             
         },
         error: function (Error) {
-            alert(Error);
+            $("#msjError").html("Error al obtener validar su usuario");
+            $('#ModalError').modal('show');
         }
 
 

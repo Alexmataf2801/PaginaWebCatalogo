@@ -14,7 +14,8 @@
             $("#Iconos").html(Opciones);
         },
         error: function (Error) {
-            alert("Error");
+            $("#msjError").html("Error al obtener los Iconos");
+            $('#ModalError').modal('show');
         }
 
     });
@@ -36,7 +37,8 @@ function ObtenerTipos() {
             $("#ddlTipoProdMant").html(Opciones);
         },
         error: function (Error) {
-            alert("Error");
+            $("#msjError").html("Error al obtener los tipos");
+            $('#ModalError').modal('show');
         }
 
     });
@@ -57,11 +59,14 @@ function ObtenerSubTipos() {
             $("#ddlSubTipoProdMant").html(Opciones);
         },
         error: function (Error) {
-            alert("Error");
+            $("#msjError").html("Error al obtener los subtipos");
+            $('#ModalError').modal('show');
         }
 
     });
 }
+
+
 function GuardarRedSocial() {
 
     var redSocial = {
@@ -81,20 +86,20 @@ function GuardarRedSocial() {
         success: function (Info) {
 
             if (Info) {
-                alert("Correcto");
+                $("#msjCorrecto").html("Red Social agregada con exito");
+                $('#ModalCorrecto').modal('show');
             }
 
         },
         error: function (Error) {
-            alert("Error");
+            $("#msjError").html("Error al guardar red social");
+            $('#ModalError').modal('show');
         }
 
     });
 
 
 }
-
-
 function GuardarTipoProducto() {
 
     var tipo = {
@@ -112,12 +117,14 @@ function GuardarTipoProducto() {
         success: function (Info) {
 
             if (Info) {
-                alert("Correcto");
+                $("#msjCorrecto").html("Tipo agregado con exito");
+                $('#ModalCorrecto').modal('show');
             }
 
         },
         error: function (Error) {
-            alert("Error");
+            $("#msjError").html("Error al guardar el tipo de producto");
+            $('#ModalError').modal('show');
         }
 
     });
@@ -141,12 +148,14 @@ function GuardarSubTipoProducto() {
         success: function (Info) {
 
             if (Info) {
-                alert("Correcto");
+                $("#msjCorrecto").html("SubTipo agregado con exito");
+                $('#ModalCorrecto').modal('show');
             }
 
         },
         error: function (Error) {
-            alert("Error");
+            $("#msjError").html("Error al guardar el subtipo de producto");
+            $('#ModalError').modal('show');
         }
 
     });
@@ -188,15 +197,22 @@ function GuardarProducto() {
             contentType: false, // Not to set any content header  
             processData: false, // Not to process data  
             data: fileData,
-            success: function (result) {
-                alert(result);
+            success: function (Info) {
+
+                if (Info) {
+                    $("#msjCorrecto").html("Producto agregado con exito");
+                    $('#ModalCorrecto').modal('show');
+                }
+
             },
-            error: function (err) {
-                alert(err.statusText);
+            error: function (Error) {
+                $("#msjError").html("Error al guardar producto");
+                $('#ModalError').modal('show');
             }
         });
     } else {
-        alert("FormData is not supported.");
+        $("#msjError").html("Error al ejecutar la accion solicitada");
+        $('#ModalError').modal('show');
     }
 
 }

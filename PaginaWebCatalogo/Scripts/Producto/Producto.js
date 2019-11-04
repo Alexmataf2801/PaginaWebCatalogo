@@ -43,56 +43,12 @@ function ObtenerCarrito(a) {
         url: '/Producto/ObtenerProductosCarrito/',
         data: {},
         success: function (info) {
-            //var objeto = JSON.parse(info);
-
-            // $('#DetalleCarrito').dataTable().fnDestroy();
-            // $("#DetalleCarrito").dataTable({
-            //    autoWidth: false,
-            //    responsive: true,
-            //    //dom: 'Bfrtip', // Descomentar para habilitar botones de acciones
-            //     lengthChange: false, // Habilita combo de opciones para mostrar
-            //     language: {
-            //         "url": "../Content/Spanish.json"
-            //     },
-
-            //    data: info,
-            //    columns: [
-            //        { data: 'Codigo'},
-            //        { data: 'CantidadTotal'},
-            //        { data: 'NombreProducto'},
-            //        { data: 'PrecioProducto'},
-            //        {
-            //            data: null,
-            //            sortable: false,
-            //            render: function (data, type, full) {
-            //                return "<button class='btn btn-danger fa fa-trash' onclick='EliminarProductoCarrito(" + data["IdProducto"] + ")'></button>";
-            //            }
-            //        }
-
-            //    ]
-
-
-            // });
-
-            //if (info.length > 0) {
-
-            //    $.each(info, function (key, value) {
-            //        total = total + parseFloat(info[key].PrecioProducto);
-            //    });
-
-            //    $("#Total").css("display", "block");
-            //} else {
-            //    $("#Total").css("display", "none");
-            //}
-
-            //$('#Carrito').modal('show');
 
             if (info.length > 0) {
 
                 Detalle = Detalle + ("<tr ><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Cantidad</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Nombre</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Precio</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Accion</th></tr>");
 
                 $.each(info, function (key, value) {
-                    //Detalle = Detalle + "<tr  style='border: 1px solid #ddd'><td>" + info[key].Codigo + "</td>";
                     Detalle = Detalle + "<td>" + info[key].CantidadTotal + "</td>";
                     Detalle = Detalle + "<td>" + info[key].NombreProducto + "</td>";
                     Detalle = Detalle + "<td>" + info[key].Moneda + currencyFormat(parseFloat(info[key].PrecioProducto)) + "</td>";
@@ -119,7 +75,8 @@ function ObtenerCarrito(a) {
 
         },
         error: function (error) {
-            alert("Error!");
+            $("#msjError").html("Error al obtener el carrito");
+            $('#ModalError').modal('show');
         }
 
 
@@ -154,7 +111,8 @@ function AgregarAlCarro(IdProducto) {
 
         },
         error: function (error) {
-            alert("Error!");
+            $("#msjError").html("Error al agregar producto al carrito");
+            $('#ModalError').modal('show');
         }
     });
 
@@ -183,7 +141,8 @@ function EliminarProductoCarrito(IdProducto) {
 
         },
         error: function (error) {
-            alert("Error!");
+            $("#msjError").html("Error al eliminar un producto del carrito");
+            $('#ModalError').modal('show');
         }
     });
 
