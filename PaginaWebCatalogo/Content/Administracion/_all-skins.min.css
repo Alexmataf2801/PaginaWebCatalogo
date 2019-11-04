@@ -61,7 +61,9 @@
 }
 
 .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
-    background-color: #222d32
+    background-color: #222d32;
+    /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
+    height: 1000px;
 }
 
 .skin-blue .user-panel > .info, .skin-blue .user-panel > .info > a {
@@ -424,7 +426,9 @@
 }
 
 .skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side {
-    background-color: #222d32
+    background-color: #222d32;
+    /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
+    height: 1000px;
 }
 
 .skin-black .user-panel > .info, .skin-black .user-panel > .info > a {
@@ -771,7 +775,9 @@
 }
 
 .skin-green .wrapper, .skin-green .main-sidebar, .skin-green .left-side {
-    background-color: #222d32
+    background-color: #222d32;
+    /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
+    height: 1000px;
 }
 
 .skin-green .user-panel > .info, .skin-green .user-panel > .info > a {
@@ -1089,7 +1095,9 @@
 }
 
 .skin-red .wrapper, .skin-red .main-sidebar, .skin-red .left-side {
-    background-color: #222d32
+    background-color: #222d32;
+    /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
+    height: 1000px;
 }
 
 .skin-red .user-panel > .info, .skin-red .user-panel > .info > a {
@@ -1407,7 +1415,9 @@
 }
 
 .skin-yellow .wrapper, .skin-yellow .main-sidebar, .skin-yellow .left-side {
-    background-color: #222d32
+    background-color: #222d32;
+    /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
+    height: 1000px;
 }
 
 .skin-yellow .user-panel > .info, .skin-yellow .user-panel > .info > a {
@@ -1725,7 +1735,9 @@
 }
 
 .skin-purple .wrapper, .skin-purple .main-sidebar, .skin-purple .left-side {
-    background-color: #222d32
+    background-color: #222d32;
+    /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
+    height: 1000px;
 }
 
 .skin-purple .user-panel > .info, .skin-purple .user-panel > .info > a {

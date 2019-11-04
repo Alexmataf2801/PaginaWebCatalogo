@@ -109,6 +109,7 @@ namespace PaginaWebCatalogo.Controllers
 
             }
 
+
             return PartialView("_MenuAdministracion", ListaMenuPublico);
 
         }
