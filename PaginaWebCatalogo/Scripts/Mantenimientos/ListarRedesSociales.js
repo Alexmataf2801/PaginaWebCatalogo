@@ -10,7 +10,7 @@
 
                 //var objeto = JSON.parse(Info);
 
-                $('#tbRedes').dataTable().fnDestroy();
+               // $('#tbRedes').dataTable().fnDestroy();
                 $("#tbRedes").dataTable({
 
                     autoWidth: false,
@@ -82,12 +82,15 @@ function DesactivarActivarRedSocial(IdRedSocial, Estado) {
         dataType: "JSON",
         data: { IdRedSocial, Estado },
         url: "/Mantenimientos/DesactivarActivarRedSocial/",
-        success: function () {
-            ObtenerTodasRedesSociales();
-            alert("Correcto");
+        success: function (v) {
+            if (Info) {
+                ObtenerTodasRedesSociales();
+            }
+
         },
         error: function (Error) {
-            alert("Fallo");
+            $("#msjError").html("Error al cambiar el estado");
+            $('#ModalError').modal('show');
         }
 
 

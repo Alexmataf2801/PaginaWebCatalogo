@@ -77,7 +77,8 @@
                     </div>
 
                     <div runat="server" id="Menu">
-                        @Html.Raw(@ViewBag.Menu)
+                        @*@Html.Raw(@ViewBag.Menu)*@
+                        @{Html.RenderAction("ObtenerMenuAdministrativo", "Mantenimientos");}
                     </div>
 
 

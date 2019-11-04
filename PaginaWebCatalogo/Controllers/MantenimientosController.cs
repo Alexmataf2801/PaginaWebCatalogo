@@ -96,6 +96,22 @@ namespace PaginaWebCatalogo.Controllers
             return View();
         }
 
+        public ActionResult ObtenerMenuAdministrativo()
+        {
+            List<MenuAdministracion> ListaMenuPublico = new List<MenuAdministracion>();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                ListaMenuPublico = LogicaNegocioMenu.ObtenerMenuAdministracion(usuario.IdUsuario);
+
+            }
+
+            return PartialView("_MenuAdministracion", ListaMenuPublico);
+
+        }
 
         public void Iniciarlizar()
         {
@@ -105,7 +121,6 @@ namespace PaginaWebCatalogo.Controllers
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
                 ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                ViewBag.Menu = ObtenerMenuAdministrativo();
             }
         }
 
@@ -310,119 +325,119 @@ namespace PaginaWebCatalogo.Controllers
             return Json(ListaTipo, JsonRequestBehavior.AllowGet);
         }
 
-        public string ObtenerMenuAdministrativo()
-        {
-            List<MenuAdministracion> ListaMenuAdministrativo = new List<MenuAdministracion>();
-            StringBuilder menuArmado = new StringBuilder();
+        //public string ObtenerMenuAdministrativo1()
+        //{
+        //    List<MenuAdministracion> ListaMenuAdministrativo = new List<MenuAdministracion>();
+        //    StringBuilder menuArmado = new StringBuilder();
 
-            if (Session["UsuarioLogueado"] != null)
-            {
-                Usuario usuario = new Usuario();
-                usuario = (Usuario)Session["UsuarioLogueado"];
+        //    if (Session["UsuarioLogueado"] != null)
+        //    {
+        //        Usuario usuario = new Usuario();
+        //        usuario = (Usuario)Session["UsuarioLogueado"];
 
-                ListaMenuAdministrativo = LogicaNegocioMenu.ObtenerMenuAdministracion(usuario.IdUsuario);
-
-
-                menuArmado.Append("<ul class='sidebar-menu' data-widget='tree'>");
-                menuArmado.Append("<li class='header'>MENU DE NAVEGACIÓN</li>");
-
-                var listaPadres = ListaMenuAdministrativo.Where(p => p.IsPadre == "0").ToList();
-
-                for (int j = 0; j < listaPadres.Count; j++)
-                {
-                    menuArmado.Append("<li class='treeview'>");
-                    menuArmado.Append("<a href='" + listaPadres[j].Url + "'>");
-                    menuArmado.Append("<i class='" + listaPadres[j].Icono + "'></i><span>" + listaPadres[j].Nombre + "</span>");
-                    menuArmado.Append("<span class='pull-right-container'>");
-                    menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
-                    menuArmado.Append("</span>");
-                    menuArmado.Append("</a>");
-
-                    var SegundoNivel = ListaMenuAdministrativo.Where(p => p.IdPadre == listaPadres[j].IdMenu).ToList();
-
-                    if (SegundoNivel.Count > 0)
-                    {
-                        menuArmado.Append("<ul class='treeview-menu'>");
-                    }
-
-                    for (int k = 0; k < SegundoNivel.Count; k++)
-                    {
-                        var TercerNivel = ListaMenuAdministrativo.Where(p => p.IdPadre == SegundoNivel[k].IdMenu).ToList();
-
-                        if (TercerNivel.Count > 0)
-                        {
-                            menuArmado.Append("<li class='treeview'>");
-                            menuArmado.Append("<a href='" + SegundoNivel[k].Url + "'>");
-                            menuArmado.Append("<i class='" + SegundoNivel[k].Icono + "'></i><span>" + SegundoNivel[k].Nombre + "</span>");
-                        }
-                        else
-                        {
-                            menuArmado.Append("<li>");
-                            menuArmado.Append("<a href='" + SegundoNivel[k].Url + "'>");
-                            menuArmado.Append("<i class='" + SegundoNivel[k].Icono + "'></i><span>" + SegundoNivel[k].Nombre + "</span>");
-                        }
-
-                        if (TercerNivel.Count > 0)
-                        {
-                            menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
-                            menuArmado.Append("</a>");
-                            menuArmado.Append("<ul class='treeview-menu'>");
-                        }
-
-                        for (int a = 0; a < TercerNivel.Count; a++)
-                        {
-                            var CuartoNivel = ListaMenuAdministrativo.Where(p => p.IdPadre == TercerNivel[a].IdMenu).ToList();
-
-                            if (CuartoNivel.Count > 0)
-                            {
-                                menuArmado.Append("<li class='treeview'>");
-                                menuArmado.Append("<a href='" + TercerNivel[a].Url + "'>");
-                                menuArmado.Append("<i class='" + TercerNivel[a].Icono + "'></i><span>" + TercerNivel[a].Nombre + "</span>");
-                                menuArmado.Append("<span class='pull-right-container'>");
-                                menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
-                                menuArmado.Append("</span>");
-                                menuArmado.Append("</a>");
-                                menuArmado.Append("<ul class='treeview-menu'>");
-
-                                for (int i = 0; i < CuartoNivel.Count; i++)
-                                {
-                                    menuArmado.Append("<li>");
-                                    menuArmado.Append("<a href='" + CuartoNivel[i].Url + "'><i class='" + CuartoNivel[i].Icono + "'>");
-                                    menuArmado.Append("</i>" + CuartoNivel[i].Nombre + "</a>");
-                                }
-
-                                menuArmado.Append("</ul></li>");
-                            }
-                            else
-                            {
-                                menuArmado.Append("<li><a href='" + TercerNivel[a].Url + "'><i class='" + TercerNivel[a].Icono + "'></i>" + TercerNivel[a].Nombre);
-                                menuArmado.Append("</a>");
-                            }
-
-                        }
-
-                        if (TercerNivel.Count > 0)
-                        {
-                            menuArmado.Append("</ul></li>");
-                        }
-                        else
-                        {
-                            menuArmado.Append("</a>");
-                            menuArmado.Append("</li>");
-                        }
-
-                    }
-                    menuArmado.Append("</ul></li>");
-
-                }
-                menuArmado.Append("</ul>");
+        //        ListaMenuAdministrativo = LogicaNegocioMenu.ObtenerMenuAdministracion(usuario.IdUsuario);
 
 
-            }
+        //        menuArmado.Append("<ul class='sidebar-menu' data-widget='tree'>");
+        //        menuArmado.Append("<li class='header'>MENU DE NAVEGACIÓN</li>");
 
-            return menuArmado.ToString();
+        //        var listaPadres = ListaMenuAdministrativo.Where(p => p.IsPadre == "0").ToList();
 
-        }
+        //        for (int j = 0; j < listaPadres.Count; j++)
+        //        {
+        //            menuArmado.Append("<li class='treeview'>");
+        //            menuArmado.Append("<a href='" + listaPadres[j].Url + "'>");
+        //            menuArmado.Append("<i class='" + listaPadres[j].Icono + "'></i><span>" + listaPadres[j].Nombre + "</span>");
+        //            menuArmado.Append("<span class='pull-right-container'>");
+        //            menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
+        //            menuArmado.Append("</span>");
+        //            menuArmado.Append("</a>");
+
+        //            var SegundoNivel = ListaMenuAdministrativo.Where(p => p.IdPadre == listaPadres[j].IdMenu).ToList();
+
+        //            if (SegundoNivel.Count > 0)
+        //            {
+        //                menuArmado.Append("<ul class='treeview-menu'>");
+        //            }
+
+        //            for (int k = 0; k < SegundoNivel.Count; k++)
+        //            {
+        //                var TercerNivel = ListaMenuAdministrativo.Where(p => p.IdPadre == SegundoNivel[k].IdMenu).ToList();
+
+        //                if (TercerNivel.Count > 0)
+        //                {
+        //                    menuArmado.Append("<li class='treeview'>");
+        //                    menuArmado.Append("<a href='" + SegundoNivel[k].Url + "'>");
+        //                    menuArmado.Append("<i class='" + SegundoNivel[k].Icono + "'></i><span>" + SegundoNivel[k].Nombre + "</span>");
+        //                }
+        //                else
+        //                {
+        //                    menuArmado.Append("<li>");
+        //                    menuArmado.Append("<a href='" + SegundoNivel[k].Url + "'>");
+        //                    menuArmado.Append("<i class='" + SegundoNivel[k].Icono + "'></i><span>" + SegundoNivel[k].Nombre + "</span>");
+        //                }
+
+        //                if (TercerNivel.Count > 0)
+        //                {
+        //                    menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
+        //                    menuArmado.Append("</a>");
+        //                    menuArmado.Append("<ul class='treeview-menu'>");
+        //                }
+
+        //                for (int a = 0; a < TercerNivel.Count; a++)
+        //                {
+        //                    var CuartoNivel = ListaMenuAdministrativo.Where(p => p.IdPadre == TercerNivel[a].IdMenu).ToList();
+
+        //                    if (CuartoNivel.Count > 0)
+        //                    {
+        //                        menuArmado.Append("<li class='treeview'>");
+        //                        menuArmado.Append("<a href='" + TercerNivel[a].Url + "'>");
+        //                        menuArmado.Append("<i class='" + TercerNivel[a].Icono + "'></i><span>" + TercerNivel[a].Nombre + "</span>");
+        //                        menuArmado.Append("<span class='pull-right-container'>");
+        //                        menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
+        //                        menuArmado.Append("</span>");
+        //                        menuArmado.Append("</a>");
+        //                        menuArmado.Append("<ul class='treeview-menu'>");
+
+        //                        for (int i = 0; i < CuartoNivel.Count; i++)
+        //                        {
+        //                            menuArmado.Append("<li>");
+        //                            menuArmado.Append("<a href='" + CuartoNivel[i].Url + "'><i class='" + CuartoNivel[i].Icono + "'>");
+        //                            menuArmado.Append("</i>" + CuartoNivel[i].Nombre + "</a>");
+        //                        }
+
+        //                        menuArmado.Append("</ul></li>");
+        //                    }
+        //                    else
+        //                    {
+        //                        menuArmado.Append("<li><a href='" + TercerNivel[a].Url + "'><i class='" + TercerNivel[a].Icono + "'></i>" + TercerNivel[a].Nombre);
+        //                        menuArmado.Append("</a>");
+        //                    }
+
+        //                }
+
+        //                if (TercerNivel.Count > 0)
+        //                {
+        //                    menuArmado.Append("</ul></li>");
+        //                }
+        //                else
+        //                {
+        //                    menuArmado.Append("</a>");
+        //                    menuArmado.Append("</li>");
+        //                }
+
+        //            }
+        //            menuArmado.Append("</ul></li>");
+
+        //        }
+        //        menuArmado.Append("</ul>");
+
+
+        //    }
+
+        //    return menuArmado.ToString();
+
+        //}
 
         public JsonResult ObtenerRedSocial(int RedSocial)
         {

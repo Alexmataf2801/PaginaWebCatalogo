@@ -1,0 +1,95 @@
+﻿@model List<Entidades.MenuAdministracion>
+
+<ul class='sidebar-menu' data-widget='tree'>
+    <li class='header'>MENU DE NAVEGACIÓN</li>
+    @{
+        var listaPadres = Model.Where(p => p.IsPadre == "0").ToList();
+        for (int j = 0; j < listaPadres.Count; j++)
+        {
+            <li class='treeview'>
+                <a href='@listaPadres[j].Url'><i class='@listaPadres[j].Icono'></i><span>@listaPadres[j].Nombre</span>
+                    <span class='pull-right-container'>
+                        <i class='fa fa-angle-left pull-right'></i>
+                    </span>
+                </a>
+
+                @{
+                    var SegundoNivel = Model.Where(p => p.IdPadre == listaPadres[j].IdMenu).ToList();
+
+                    if (SegundoNivel.Count > 0)
+                    {
+                        <ul class='treeview-menu'>
+                            @{
+                                for (int k = 0; k < SegundoNivel.Count; k++)
+                                {
+                                    var TercerNivel = Model.Where(p => p.IdPadre == SegundoNivel[k].IdMenu).ToList();
+
+                                    if (TercerNivel.Count > 0)
+                                    {
+                                        <li class='treeview'>
+                                            <a href='@SegundoNivel[k].Url'>
+                                                <i class='@SegundoNivel[k].Icono'></i><span>@SegundoNivel[k].Nombre</span>
+                                                <i class='fa fa-angle-left pull-right'></i>
+                                            </a>
+                                            <ul class='treeview-menu'>
+                                                @{
+                                                    for (int a = 0; a < TercerNivel.Count; a++)
+                                                    {
+                                                        var CuartoNivel = Model.Where(p => p.IdPadre == TercerNivel[a].IdMenu).ToList();
+
+                                                        if (CuartoNivel.Count > 0)
+                                                        {
+                                                            <li class='treeview'>
+                                                                <a href='@TercerNivel[a].Url'>
+                                                                    <i class='@TercerNivel[a].Icono'></i><span>@TercerNivel[a].Nombre</span>
+                                                                    <span class='pull-right-container'><i class='fa fa-angle-left pull-right'></i></span>
+                                                                </a>
+                                                                <ul class='treeview-menu'>
+                                                                    @{
+                                                                        for (int i = 0; i < CuartoNivel.Count; i++)
+                                                                        {
+                                                                            <li>
+                                                                                <a href='@CuartoNivel[i].Url'><i class='@CuartoNivel[i].Icono'></i>@CuartoNivel[i].Nombre</a>
+                                                                            </li>
+                                                                        }
+                                                                    }
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li>
+                                                                <a href='@TercerNivel[a].Url'>
+                                                                    <i class='@TercerNivel[a].Icono'></i><span>@TercerNivel[a].Nombre</span>
+
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href='@SegundoNivel[k].Url'>
+                                                <i class='@SegundoNivel[k].Icono'></i><span>@SegundoNivel[k].Nombre</span>
+                                            </a>
+
+                                        </li>
+
+                                    }
+                                }
+                            }
+
+                        </ul>
+                    }
+                }
+            </li>
+        }
+    }
+
+
+</ul>
+

@@ -330,6 +330,7 @@
     <Content Include="Views\Mantenimientos\ListaTipos.cshtml" />
     <Content Include="Views\Mantenimientos\ListaSubTipos.cshtml" />
     <Content Include="Views\Mantenimientos\ListaProductos.cshtml" />
+    <Content Include="Views\Shared\_MenuAdministracion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
