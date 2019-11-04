@@ -501,6 +501,22 @@ namespace PaginaWebCatalogo.Controllers
         #endregion
 
         #region UPDATE
+
+        public JsonResult DesactivarActivarRedSocial(int IdRedSocial, bool Estado)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.DesactivarActivarRedSocial(IdRedSocial, Estado);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region DELETE

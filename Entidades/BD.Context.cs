@@ -465,5 +465,18 @@ namespace Entidades
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosProductos_Result>("paObtenerTodosProductos");
         }
+    
+        public virtual int paDesactivarActivarRedSocial(Nullable<int> idRedSocial, Nullable<bool> idEstado)
+        {
+            var idRedSocialParameter = idRedSocial.HasValue ?
+                new ObjectParameter("IdRedSocial", idRedSocial) :
+                new ObjectParameter("IdRedSocial", typeof(int));
+    
+            var idEstadoParameter = idEstado.HasValue ?
+                new ObjectParameter("IdEstado", idEstado) :
+                new ObjectParameter("IdEstado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarRedSocial", idRedSocialParameter, idEstadoParameter);
+        }
     }
 }

@@ -122,6 +122,13 @@ namespace LogicaNegocio.Mantenimientos
         #endregion
 
         #region UPDATE 
+
+        public static bool DesactivarActivarRedSocial(int IdRedSocial, bool Estado)
+        {
+
+            return AccesoDatosMantenimientos.DesactivarActivarRedSocial(IdRedSocial, Estado);
+        }
+
         #endregion
 
         #region DELETE 

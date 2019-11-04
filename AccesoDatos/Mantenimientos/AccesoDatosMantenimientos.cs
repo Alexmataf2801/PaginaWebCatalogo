@@ -539,6 +539,28 @@ namespace AccesoDatos.Mantenimientos
         #endregion
 
         #region UPDATE 
+
+        public static bool DesactivarActivarRedSocial(int IdRedSocial, bool Estado)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paDesactivarActivarRedSocial(IdRedSocial, Estado);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
+
         #endregion
 
         #region DELETE

@@ -43,7 +43,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarRedSocial(" + data["IdRedSocial"] + ")'></button>";
+                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarRedSocial(" + data["IdRedSocial"] + "," + data["Estado"] + " )'></button>";
                             }
                         },
                         {
@@ -66,6 +66,36 @@
 
 
     });
+}
+
+
+function DesactivarActivarRedSocial(IdRedSocial, Estado) {
+
+    if (Estado) {
+        Estado = false;
+    } else {
+        Estado = true;
+    }
+
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        data: { IdRedSocial, Estado },
+        url: "/Mantenimientos/DesactivarActivarRedSocial/",
+        success: function () {
+            ObtenerTodasRedesSociales();
+            alert("Correcto");
+        },
+        error: function (Error) {
+            alert("Fallo");
+        }
+
+
+
+
+    });
+
+
 }
 
 $(document).ready(function () {

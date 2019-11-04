@@ -130,6 +130,10 @@
           <Parameter Name="Color" Type="nvarchar" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="paDesactivarActivarRedSocial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdRedSocial" Type="int" Mode="In" />
+          <Parameter Name="IdEstado" Type="bit" Mode="In" />
+        </Function>
         <Function Name="paEliminarProductoCarro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdProducto" Type="int" Mode="In" />
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
@@ -412,6 +416,10 @@
           <FunctionImport Name="paObtenerTodosTipos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosTipos_Result)" />
           <FunctionImport Name="paObtenerTodosSubTipos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosSubTipos_Result)" />
           <FunctionImport Name="paObtenerTodosProductos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosProductos_Result)" />
+          <FunctionImport Name="paDesactivarActivarRedSocial">
+            <Parameter Name="IdRedSocial" Mode="In" Type="Int32" />
+            <Parameter Name="IdEstado" Mode="In" Type="Boolean" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -943,6 +951,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paDesactivarActivarRedSocial" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarRedSocial" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
