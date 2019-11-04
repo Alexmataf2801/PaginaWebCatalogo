@@ -440,7 +440,7 @@ a {
     top: 0;
     left: 0;
     padding-top: 50px;
-    min-height: 1000PX;
+    min-height: 100%;
     width: 270px; /*Para hacer el menu principal mas grande o pequeno  ALEX*/
     z-index: 810;
     -webkit-transition: -webkit-transform .3s ease-in-out,width .3s ease-in-out;
@@ -712,7 +712,7 @@ a {
 
 .sidebar-menu, .main-sidebar .user-panel, .sidebar-menu > li.header {
     white-space: nowrap;
-    /*overflow: hidden*/
+    overflow: hidden
 }
 
     .sidebar-menu:hover {
@@ -776,7 +776,7 @@ a {
 
 @media (min-width:768px) {
     .control-sidebar-open .content-wrapper, .control-sidebar-open .right-side, .control-sidebar-open .main-footer {
-        margin-right: 230px
+        /*margin-right: 230px*/
     }
 }
 
