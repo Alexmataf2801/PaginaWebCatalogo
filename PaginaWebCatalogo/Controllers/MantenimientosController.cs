@@ -423,6 +423,23 @@ namespace PaginaWebCatalogo.Controllers
         #endregion
 
         #region DELETE
+
+        public JsonResult EliminarRedSocial(int IdRedSocial)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.EliminarRedSocial(IdRedSocial);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
+
         #endregion
 
 

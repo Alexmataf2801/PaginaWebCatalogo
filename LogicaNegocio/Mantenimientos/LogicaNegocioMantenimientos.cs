@@ -132,6 +132,13 @@ namespace LogicaNegocio.Mantenimientos
         #endregion
 
         #region DELETE 
+
+        public static bool EliminarRedSocial(int IdRedSocial)
+        {
+
+            return AccesoDatosMantenimientos.EliminarRedSocial(IdRedSocial);
+        }
+
         #endregion
 
 

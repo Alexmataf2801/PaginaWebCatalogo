@@ -564,6 +564,27 @@ namespace AccesoDatos.Mantenimientos
         #endregion
 
         #region DELETE
+
+        public static bool EliminarRedSocial(int IdRedSocial)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paEliminarRedSocial(IdRedSocial);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
         #endregion
 
 

@@ -138,6 +138,9 @@
           <Parameter Name="IdProducto" Type="int" Mode="In" />
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
+        <Function Name="paEliminarRedSocial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdRedSocial" Type="int" Mode="In" />
+        </Function>
         <Function Name="paInsertarImagen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Raiz" Type="varchar" Mode="In" />
@@ -419,6 +422,9 @@
           <FunctionImport Name="paDesactivarActivarRedSocial">
             <Parameter Name="IdRedSocial" Mode="In" Type="Int32" />
             <Parameter Name="IdEstado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="paEliminarRedSocial">
+            <Parameter Name="IdRedSocial" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -952,6 +958,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paDesactivarActivarRedSocial" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarRedSocial" />
+          <FunctionImportMapping FunctionImportName="paEliminarRedSocial" FunctionName="PaginaWebCatalogosModel.Store.paEliminarRedSocial" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

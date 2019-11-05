@@ -1,4 +1,5 @@
-﻿function ObtenerTodasRedesSociales() {
+﻿
+function ObtenerTodasRedesSociales() {
 
     $.ajax({
         type: "POST",
@@ -50,12 +51,14 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-danger fa fa-trash' onclick='EliminarRedSocial(" + data["IdRedSocial"] + ")'></button>";
+                                return "<button class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarRedSocial(" + data["IdRedSocial"] + ")'></button>";
                             }
                         }
 
                     ]
                 });
+
+                sessionStorage.setItem("TablaCargada", true);
             }
         },
         error: function () {
@@ -68,6 +71,9 @@
     });
 }
 
+$("#CerrarEliminarRed").click(function () {
+    sessionStorage.setItem("RedSocialAEliminar", null);
+});
 
 function DesactivarActivarRedSocial(IdRedSocial, Estado) {
 
@@ -92,15 +98,50 @@ function DesactivarActivarRedSocial(IdRedSocial, Estado) {
             $("#msjError").html("Error al cambiar el estado");
             $('#ModalError').modal('show');
         }
-
-
-
-
     });
 
 
 }
 
-$(document).ready(function () {
+function ConfirmarEliminarRedSocial(idRedSocial) {
+    sessionStorage.setItem("RedSocialAEliminar", idRedSocial);
+    $("#msjConf").html("¿Desea eliminar este registro?");
+    $('#ModalConfirmacion').modal('show');
+}
+
+
+
+function EliminarRedSocial() {
+
+    if (sessionStorage.getItem("RedSocialAEliminar") !== null) {
+        var IdRedSocial = sessionStorage.getItem("RedSocialAEliminar");
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Mantenimientos/EliminarRedSocial/",
+            data: { IdRedSocial },
+            success: function () {
+                //ObtenerTodasRedesSociales();
+                $("#msjCorrecto").html("Red Social eliminada correctamente");
+                $('#ModalCorrecto').modal('show');
+            },
+            error: function () {
+                $("#msjError").html("Error al eliminar la red social");
+                $('#ModalError').modal('show');
+            }
+        });
+
+    }
+
+
+}
+
+
+
+//$(document).ready(function () {
+//       ObtenerTodasRedesSociales();
+//});
+
+window.onload = function () {
     ObtenerTodasRedesSociales();
-});
+};
