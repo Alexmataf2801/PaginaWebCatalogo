@@ -487,5 +487,34 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarRedSocial", idRedSocialParameter);
         }
+    
+        public virtual int paActualizarInformacionEmpresa(Nullable<int> idEmpresa, string nombreEmpresa, string descripcion, string correo, Nullable<int> telefono, string direccion)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var nombreEmpresaParameter = nombreEmpresa != null ?
+                new ObjectParameter("NombreEmpresa", nombreEmpresa) :
+                new ObjectParameter("NombreEmpresa", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var telefonoParameter = telefono.HasValue ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(int));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarInformacionEmpresa", idEmpresaParameter, nombreEmpresaParameter, descripcionParameter, correoParameter, telefonoParameter, direccionParameter);
+        }
     }
 }

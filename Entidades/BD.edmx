@@ -121,6 +121,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="paActualizarInformacionEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="NombreEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="int" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar(max)" Mode="In" />
+        </Function>
         <Function Name="paActualizarRedSocial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdRedSocial" Type="int" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -424,7 +432,15 @@
             <Parameter Name="IdEstado" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="paEliminarRedSocial">
-            <Parameter Name="IdRedSocial" Mode="In" Type="Int32" />
+          <Parameter Name="IdRedSocial" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarInformacionEmpresa">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="NombreEmpresa" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -959,6 +975,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paDesactivarActivarRedSocial" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarRedSocial" />
           <FunctionImportMapping FunctionImportName="paEliminarRedSocial" FunctionName="PaginaWebCatalogosModel.Store.paEliminarRedSocial" />
+          <FunctionImportMapping FunctionImportName="paActualizarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paActualizarInformacionEmpresa" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using LogicaNegocio.Administracion;
 using LogicaNegocio.Mantenimientos;
 using LogicaNegocio.Menu;
 using System;
@@ -326,6 +327,21 @@ namespace PaginaWebCatalogo.Controllers
             return Json(ListaTipo, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult ObtenerInformacionEmpresa()
+        {
+            Empresa empresa = new Empresa();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                empresa = LogicaNegocioAdministracion.ObtenerInformacionEmpresa();
+
+            }
+
+            return View("ActualizarDatosEmpresa", empresa);
+
+        }
 
         public JsonResult ObtenerRedSocial(int RedSocial)
         {
@@ -342,6 +358,7 @@ namespace PaginaWebCatalogo.Controllers
             return Json(redes, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
         public JsonResult ObtenerTodasRedesSociales()
         {
             List<RedesSociales> ListaRedesSociales = new List<RedesSociales>();
@@ -419,6 +436,23 @@ namespace PaginaWebCatalogo.Controllers
 
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult ActualizarInfoEmpresa(Empresa empresa)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.ActualizarInfoEmpresa(empresa);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         #endregion
 

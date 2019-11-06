@@ -129,6 +129,13 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.DesactivarActivarRedSocial(IdRedSocial, Estado);
         }
 
+        public static bool ActualizarInfoEmpresa(Empresa empresa)
+        {
+
+            return AccesoDatosMantenimientos.ActualizarInfoEmpresa(empresa);
+        }
+
+
         #endregion
 
         #region DELETE 

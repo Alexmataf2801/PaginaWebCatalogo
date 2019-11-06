@@ -2,14 +2,12 @@
 function ObtenerTodasRedesSociales() {
 
     $.ajax({
-        type: "POST",
+        type: "GET",
         dataType: "JSON",
         url: "/Mantenimientos/ObtenerTodasRedesSociales/",
         data: {},
         success: function (Info) {
             if (Info.length > 0) {
-
-                //var objeto = JSON.parse(Info);
 
                 $('#tbRedes').dataTable().fnDestroy();
                 $("#tbRedes").dataTable({
@@ -57,8 +55,6 @@ function ObtenerTodasRedesSociales() {
 
                     ]
                 });
-
-                sessionStorage.setItem("TablaCargada", true);
             }
         },
         error: function () {
@@ -104,7 +100,8 @@ function DesactivarActivarRedSocial(IdRedSocial, Estado) {
 }
 
 function ConfirmarEliminarRedSocial(idRedSocial) {
-    sessionStorage.setItem("RedSocialAEliminar", idRedSocial);
+    $("#IdRedSeleccionada").val(idRedSocial);
+    //sessionStorage.setItem("RedSocialAEliminar", idRedSocial);
     $("#msjConf").html("¿Desea eliminar este registro?");
     $('#ModalConfirmacion').modal('show');
 }
@@ -112,14 +109,14 @@ function ConfirmarEliminarRedSocial(idRedSocial) {
 
 
 function EliminarRedSocial() {
-
-    if (sessionStorage.getItem("RedSocialAEliminar") !== null) {
-        var IdRedSocial = sessionStorage.getItem("RedSocialAEliminar");
+    var Id = $("#IdRedSeleccionada").val();
+    if (Id !== null || Id !== undefined) {
+        //var IdRedSocial = sessionStorage.getItem("RedSocialAEliminar");
         $.ajax({
             type: "POST",
             dataType: "JSON",
             url: "/Mantenimientos/EliminarRedSocial/",
-            data: { IdRedSocial },
+            data: { Id },
             success: function () {
                 //ObtenerTodasRedesSociales();
                 $("#msjCorrecto").html("Red Social eliminada correctamente");
@@ -132,16 +129,11 @@ function EliminarRedSocial() {
         });
 
     }
-
-
 }
 
 
 
-//$(document).ready(function () {
-//       ObtenerTodasRedesSociales();
-//});
+$(document).ready(function () {
+       ObtenerTodasRedesSociales();
+});
 
-window.onload = function () {
-    ObtenerTodasRedesSociales();
-};

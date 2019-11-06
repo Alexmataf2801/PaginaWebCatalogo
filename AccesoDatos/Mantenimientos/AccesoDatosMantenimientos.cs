@@ -560,6 +560,26 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
+        public static bool ActualizarInfoEmpresa(Empresa empresa)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paActualizarInformacionEmpresa(empresa.IdRegistro , empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
 
         #endregion
 
