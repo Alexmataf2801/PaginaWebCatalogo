@@ -138,9 +138,17 @@
           <Parameter Name="Color" Type="nvarchar" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="paDesactivarActivarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+        </Function>
         <Function Name="paDesactivarActivarRedSocial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdRedSocial" Type="int" Mode="In" />
           <Parameter Name="IdEstado" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="paDesactivarActivarSubTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdSubTipo" Type="int" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
         <Function Name="paEliminarProductoCarro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdProducto" Type="int" Mode="In" />
@@ -441,6 +449,14 @@
             <Parameter Name="Correo" Mode="In" Type="String" />
             <Parameter Name="Telefono" Mode="In" Type="Int32" />
             <Parameter Name="Direccion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paDesactivarActivarProducto">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="paDesactivarActivarSubTipo">
+            <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -976,6 +992,8 @@
           <FunctionImportMapping FunctionImportName="paDesactivarActivarRedSocial" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarRedSocial" />
           <FunctionImportMapping FunctionImportName="paEliminarRedSocial" FunctionName="PaginaWebCatalogosModel.Store.paEliminarRedSocial" />
           <FunctionImportMapping FunctionImportName="paActualizarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paActualizarInformacionEmpresa" />
+          <FunctionImportMapping FunctionImportName="paDesactivarActivarProducto" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarProducto" />
+          <FunctionImportMapping FunctionImportName="paDesactivarActivarSubTipo" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarSubTipo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

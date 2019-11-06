@@ -129,6 +129,18 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.DesactivarActivarRedSocial(IdRedSocial, Estado);
         }
 
+        public static bool DesactivarActivarProducto(int IdProducto, bool Estado)
+        {
+
+            return AccesoDatosMantenimientos.DesactivarActivarProducto(IdProducto, Estado);
+        }
+
+        public static bool DesactivarActivarSubTipo(int IdSubTipo, bool Estado)
+        {
+
+            return AccesoDatosMantenimientos.DesactivarActivarSubTipo(IdSubTipo, Estado);
+        }
+
         public static bool ActualizarInfoEmpresa(Empresa empresa)
         {
 

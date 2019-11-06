@@ -437,6 +437,36 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult DesactivarActivarProducto(int IdProducto, bool Estado)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.DesactivarActivarProducto(IdProducto, Estado);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DesactivarActivarSubTipo(int IdSubTipo, bool Estado)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.DesactivarActivarSubTipo(IdSubTipo, Estado);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult ActualizarInfoEmpresa(Empresa empresa)
         {
             bool Correcto = false;

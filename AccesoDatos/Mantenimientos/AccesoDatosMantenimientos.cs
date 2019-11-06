@@ -560,6 +560,46 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
+        public static bool DesactivarActivarProducto(int IdProducto, bool Estado)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paDesactivarActivarProducto(IdProducto, Estado);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
+        public static bool DesactivarActivarSubTipo(int IdSubTipo, bool Estado)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paDesactivarActivarSubTipo(IdSubTipo, Estado);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
         public static bool ActualizarInfoEmpresa(Empresa empresa)
         {
             bool Correcto = false;

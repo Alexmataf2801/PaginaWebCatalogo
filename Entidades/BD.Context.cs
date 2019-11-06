@@ -516,5 +516,31 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarInformacionEmpresa", idEmpresaParameter, nombreEmpresaParameter, descripcionParameter, correoParameter, telefonoParameter, direccionParameter);
         }
+    
+        public virtual int paDesactivarActivarProducto(Nullable<int> idProducto, Nullable<bool> estado)
+        {
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarProducto", idProductoParameter, estadoParameter);
+        }
+    
+        public virtual int paDesactivarActivarSubTipo(Nullable<int> idSubTipo, Nullable<bool> estado)
+        {
+            var idSubTipoParameter = idSubTipo.HasValue ?
+                new ObjectParameter("IdSubTipo", idSubTipo) :
+                new ObjectParameter("IdSubTipo", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarSubTipo", idSubTipoParameter, estadoParameter);
+        }
     }
 }
