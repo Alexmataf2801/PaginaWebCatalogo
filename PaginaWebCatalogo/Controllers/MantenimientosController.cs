@@ -336,6 +336,7 @@ namespace PaginaWebCatalogo.Controllers
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
                 empresa = LogicaNegocioAdministracion.ObtenerInformacionEmpresa();
+                ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
             }
 
@@ -467,15 +468,17 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ActualizarInfoEmpresa(Empresa empresa)
+        [HttpPost]
+        public JsonResult ActualizarInfoEmpresa(Empresa DatosEmpresa)
         {
+            
             bool Correcto = false;
 
             if (Session["UsuarioLogueado"] != null)
             {
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
-                Correcto = LogicaNegocioMantenimientos.ActualizarInfoEmpresa(empresa);
+                Correcto = LogicaNegocioMantenimientos.ActualizarInfoEmpresa(DatosEmpresa);
 
             }
 

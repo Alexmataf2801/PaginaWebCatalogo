@@ -22,6 +22,7 @@
 //}
 
 function ActualizarDatosEmpresa(IdEmpresa) {
+
     var empresa = {
         IdRegistro: IdEmpresa,
         Nombre: $("#txtActNombreEmpresa").val(),
@@ -33,21 +34,16 @@ function ActualizarDatosEmpresa(IdEmpresa) {
 
     $.ajax({
         type: "POST",
-        url: "/Mantenimientos/ActualizarInfoEmpresa",
-        data: { empresa },
         dataType: "JSON",
+        url: "/Mantenimientos/ActualizarInfoEmpresa",
+        data: { DatosEmpresa: empresa },
         success: function (data) {
-            alert(data);
             $("#msjCorrecto").html("Información actualizada correctamente");
             $('#ModalCorrecto').modal('show');
 
         },
-        error: function (xhr, status, error) {
-            console.log(xhr);
-            var err = eval("(" + xhr.responseText + ")");
-            console.log(err);
-            console.log(err.Message);
-            alert(err.Message);
+        error: function (error) {
+           alert("Error")
         }
     });
 
