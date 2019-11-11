@@ -141,6 +141,12 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.DesactivarActivarSubTipo(IdSubTipo, Estado);
         }
 
+        public static bool DesactivarActivarTipo(int IdTipo, bool Estado)
+        {
+
+            return AccesoDatosMantenimientos.DesactivarActivarTipo(IdTipo, Estado);
+        }
+
         public static bool ActualizarInfoEmpresa(Empresa empresa)
         {
 

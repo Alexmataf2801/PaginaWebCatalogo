@@ -43,7 +43,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarTipo(" + data["IdTipo"] + ")'></button>";
+                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarTipo(" + data["IdTipo"] + "," + data["Estado"] + " )'></button>";
                             }
                         },
                         {
@@ -67,6 +67,35 @@
 
     });
 }
+
+function DesactivarActivarTipo(IdTipo, Estado) {
+
+    if (Estado) {
+        Estado = false;
+    } else {
+        Estado = true;
+    }
+
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        data: { IdTipo, Estado },
+        url: "/Mantenimientos/DesactivarActivarTipo/",
+        success: function (Info) {
+            if (Info) {
+                // ObtenerTodosSubTipos();
+            }
+
+        },
+        error: function (Error) {
+            $("#msjError").html("Error al cambiar el estado");
+            $('#ModalError').modal('show');
+        }
+    });
+
+
+}
+
 
 $(document).ready(function () {
     ObtenerTodosTipos();

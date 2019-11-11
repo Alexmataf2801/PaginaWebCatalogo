@@ -453,6 +453,21 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult DesactivarActivarTipo(int IdTipo, bool Estado)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.DesactivarActivarTipo(IdTipo, Estado);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult DesactivarActivarSubTipo(int IdSubTipo, bool Estado)
         {
             bool Correcto = false;

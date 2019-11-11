@@ -150,6 +150,10 @@
           <Parameter Name="IdSubTipo" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
+        <Function Name="paDesactivarActivarTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipo" Type="int" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+        </Function>
         <Function Name="paEliminarProductoCarro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdProducto" Type="int" Mode="In" />
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
@@ -456,6 +460,10 @@
           </FunctionImport>
           <FunctionImport Name="paDesactivarActivarSubTipo">
             <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="paDesactivarActivarTipo">
+            <Parameter Name="IdTipo" Mode="In" Type="Int32" />
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
@@ -994,6 +1002,7 @@
           <FunctionImportMapping FunctionImportName="paActualizarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paActualizarInformacionEmpresa" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarProducto" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarProducto" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarSubTipo" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarSubTipo" />
+          <FunctionImportMapping FunctionImportName="paDesactivarActivarTipo" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarTipo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

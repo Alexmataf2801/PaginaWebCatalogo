@@ -600,6 +600,27 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
+        public static bool DesactivarActivarTipo(int IdTipo, bool Estado)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paDesactivarActivarTipo(IdTipo, Estado);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
+
         public static bool ActualizarInfoEmpresa(Empresa empresa)
         {
             bool Correcto = false;

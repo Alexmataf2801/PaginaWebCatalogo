@@ -542,5 +542,18 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarSubTipo", idSubTipoParameter, estadoParameter);
         }
+    
+        public virtual int paDesactivarActivarTipo(Nullable<int> idTipo, Nullable<bool> estado)
+        {
+            var idTipoParameter = idTipo.HasValue ?
+                new ObjectParameter("IdTipo", idTipo) :
+                new ObjectParameter("IdTipo", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarTipo", idTipoParameter, estadoParameter);
+        }
     }
 }
