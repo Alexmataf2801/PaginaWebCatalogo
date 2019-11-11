@@ -555,5 +555,39 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarTipo", idTipoParameter, estadoParameter);
         }
+    
+        public virtual int paActualizarTipo(Nullable<int> idTipo, string codigo, string nombre, string descripcion, string usuarioUltimaModificacion)
+        {
+            var idTipoParameter = idTipo.HasValue ?
+                new ObjectParameter("IdTipo", idTipo) :
+                new ObjectParameter("IdTipo", typeof(int));
+    
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
+                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
+                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarTipo", idTipoParameter, codigoParameter, nombreParameter, descripcionParameter, usuarioUltimaModificacionParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerTipoXId_Result> paObtenerTipoXId(Nullable<int> idTipo)
+        {
+            var idTipoParameter = idTipo.HasValue ?
+                new ObjectParameter("IdTipo", idTipo) :
+                new ObjectParameter("IdTipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTipoXId_Result>("paObtenerTipoXId", idTipoParameter);
+        }
     }
 }

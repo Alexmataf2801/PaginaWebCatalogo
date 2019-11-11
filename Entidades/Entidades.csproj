@@ -125,6 +125,9 @@
     <Compile Include="paObtenerTipoProductosActivos_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerTipoXId_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerTodasRedesSociales_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>

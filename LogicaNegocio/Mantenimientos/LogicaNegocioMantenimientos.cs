@@ -119,6 +119,12 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.ObtenerTodosProductos();
         }
 
+        public static TipoProducto ObtenerTipoXId(int IdTipo)
+        {
+
+            return AccesoDatosMantenimientos.ObtenerTipoXId(IdTipo);
+        }
+
         #endregion
 
         #region UPDATE 
@@ -151,6 +157,12 @@ namespace LogicaNegocio.Mantenimientos
         {
 
             return AccesoDatosMantenimientos.ActualizarInfoEmpresa(empresa);
+        }
+
+        public static bool ActualizarTipo(TipoProducto tipo)
+        {
+
+            return AccesoDatosMantenimientos.ActualizarTipo(tipo);
         }
 
 

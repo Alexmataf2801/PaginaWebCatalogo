@@ -101,9 +101,9 @@ function DesactivarActivarRedSocial(IdRedSocial, Estado) {
 
 function ConfirmarEliminarRedSocial(idRedSocial) {
     $("#IdRedSeleccionada").val(idRedSocial);
-    //sessionStorage.setItem("RedSocialAEliminar", idRedSocial);
     $("#msjConf").html("¿Desea eliminar este registro?");
     $('#ModalConfirmacion').modal('show');
+
 }
 
 
@@ -111,14 +111,12 @@ function ConfirmarEliminarRedSocial(idRedSocial) {
 function EliminarRedSocial() {
     var Id = $("#IdRedSeleccionada").val();
     if (Id !== null || Id !== undefined) {
-        //var IdRedSocial = sessionStorage.getItem("RedSocialAEliminar");
         $.ajax({
             type: "POST",
             dataType: "JSON",
             url: "/Mantenimientos/EliminarRedSocial/",
             data: { Id },
             success: function () {
-                //ObtenerTodasRedesSociales();
                 $("#msjCorrecto").html("Red Social eliminada correctamente");
                 $('#ModalCorrecto').modal('show');
             },
@@ -130,7 +128,6 @@ function EliminarRedSocial() {
 
     }
 }
-
 
 
 $(document).ready(function () {

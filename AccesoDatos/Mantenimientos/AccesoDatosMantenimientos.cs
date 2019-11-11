@@ -535,6 +535,33 @@ namespace AccesoDatos.Mantenimientos
 
             return ListaProductos;
         }
+        public static TipoProducto ObtenerTipoXId(int IdTipo)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            TipoProducto tipo = new TipoProducto();
+
+            try
+            {
+                var productos = entities.paObtenerTipoXId(IdTipo);
+
+                foreach (var item in productos)
+                {
+                    tipo.Codigo = item.Codigo;
+                    tipo.Nombre = item.Nombre;
+                    tipo.Descripcion = item.Descripcion;
+                    tipo.Estado = item.Estado;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return tipo;
+        }
 
         #endregion
 
@@ -620,7 +647,6 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
-
         public static bool ActualizarInfoEmpresa(Empresa empresa)
         {
             bool Correcto = false;
@@ -629,6 +655,26 @@ namespace AccesoDatos.Mantenimientos
             try
             {
                 entities.paActualizarInformacionEmpresa(empresa.IdRegistro , empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
+        public static bool ActualizarTipo(TipoProducto tipo)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paActualizarTipo(tipo.IdTipo,tipo.Codigo,tipo.Nombre, tipo.Descripcion, tipo.UsuarioUltimaModificacion);
                 Correcto = true;
 
             }

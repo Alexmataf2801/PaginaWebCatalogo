@@ -257,6 +257,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\Administracion\Administracion.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarDatosEmpresa.js" />
+    <Content Include="Scripts\Mantenimientos\ActualizarTipo.js" />
     <Content Include="Scripts\Mantenimientos\ListaProductos.js" />
     <Content Include="Scripts\Mantenimientos\ListarRedesSociales.js" />
     <Content Include="Scripts\Mantenimientos\ListaSubTipos.js" />
@@ -333,6 +334,7 @@
     <Content Include="Views\Mantenimientos\ListaProductos.cshtml" />
     <Content Include="Views\Shared\_MenuAdministracion.cshtml" />
     <Content Include="Views\Mantenimientos\ActualizarDatosEmpresa.cshtml" />
+    <Content Include="Views\Mantenimientos\ActualizarDatosTipo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

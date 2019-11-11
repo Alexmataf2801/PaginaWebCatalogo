@@ -500,6 +500,23 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult ActualizarTipo(TipoProducto Tipo)
+        {
+
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.ActualizarTipo(Tipo);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
 
 
         #endregion

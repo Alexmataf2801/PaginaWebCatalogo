@@ -138,6 +138,13 @@
           <Parameter Name="Color" Type="nvarchar" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="paActualizarTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipo" Type="int" Mode="In" />
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="paDesactivarActivarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdProducto" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
@@ -273,6 +280,9 @@
         <Function Name="paObtenerSubTipoProdActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTipoProductoActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTipoProductosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerTipoXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipo" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerTodasRedesSociales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTodosProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTodosSubTipos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -465,6 +475,16 @@
           <FunctionImport Name="paDesactivarActivarTipo">
             <Parameter Name="IdTipo" Mode="In" Type="Int32" />
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarTipo">
+            <Parameter Name="IdTipo" Mode="In" Type="Int32" />
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerTipoXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTipoXId_Result)">
+            <Parameter Name="IdTipo" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -681,6 +701,12 @@
           <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTipoXId_Result">
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1003,6 +1029,17 @@
           <FunctionImportMapping FunctionImportName="paDesactivarActivarProducto" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarProducto" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarSubTipo" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarSubTipo" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarTipo" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarTipo" />
+          <FunctionImportMapping FunctionImportName="paActualizarTipo" FunctionName="PaginaWebCatalogosModel.Store.paActualizarTipo" />
+          <FunctionImportMapping FunctionImportName="paObtenerTipoXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerTipoXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerTipoXId_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
