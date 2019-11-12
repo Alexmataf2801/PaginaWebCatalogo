@@ -26,7 +26,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-success fa fa-pencil' onclick='EditarTipo(" + data["IdTipo"] + ")'></button>";
+                                return "<button class='btn btn-success fa fa-pencil' onclick='ObtenerInfoTipoXId(" + data["IdTipo"] + ")'></button>";
                             }
                         },
                         { data: 'Nombre' },
@@ -94,6 +94,27 @@ function DesactivarActivarTipo(IdTipo, Estado) {
     });
 
 
+}
+
+function ObtenerInfoTipoXId(IdTipo) {
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        data: { IdTipo },
+        url: "/Mantenimientos/ObtenerInfoTipo/",
+        success: function (Info) {
+            if (Info) {
+                $("#txtActCodigoTipo").val();
+                $("#txtActNombreTipo").val();
+                $("#txtActDescripcionTIpo").val();
+            }
+
+        },
+        error: function (Error) {
+            $("#msjError").html("Error al cambiar el estado");
+            $('#ModalError').modal('show');
+        }
+    });
 }
 
 
