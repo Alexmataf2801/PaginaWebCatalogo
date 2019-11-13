@@ -356,7 +356,7 @@ namespace PaginaWebCatalogo.Controllers
         //        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
         //    }
-
+        //
         //    return Json(tipo, JsonRequestBehavior.AllowGet);
 
         //}
