@@ -6,7 +6,7 @@
         url: "/Mantenimientos/ObtenerTodosTipoProducto/",
         data: {},
         success: function (Info) {
-            if (Info.length > 0) {
+
 
                 //var objeto = JSON.parse(Info);
 
@@ -26,7 +26,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-success fa fa-pencil' onclick='ObtenerInfoTipoXId(" + data["IdTipo"] + ")'></button>";
+                                return "<a type='button' class='btn btn-success fa fa-pencil' onclick='ObtenerInfoTipoXId(" + data["IdTipo"] + ")'></a>";
                             }
                         },
                         { data: 'Nombre' },
@@ -50,13 +50,13 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-danger fa fa-trash' onclick='EliminarTipo(" + data["IdTipo"] + ")'></button>";
+                                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='EliminarTipo(" + data["IdTipo"] + ")'></a>";
                             }
                         }
 
                     ]
                 });
-            }
+            
         },
         error: function () {
             $("#msjError").html("Error al obtener los Tipos");
@@ -83,7 +83,7 @@ function DesactivarActivarTipo(IdTipo, Estado) {
         url: "/Mantenimientos/DesactivarActivarTipo/",
         success: function (Info) {
             if (Info) {
-                // ObtenerTodosSubTipos();
+                //ObtenerTodosTipos();
             }
 
         },
@@ -97,19 +97,19 @@ function DesactivarActivarTipo(IdTipo, Estado) {
 }
 
 function ObtenerInfoTipoXId(IdTipo) {
-    ///location.href = '@Url.Action("ObtenerInfoTipo","Mantenimientos", new { IdTipo = ' + IdTipo   + ' })';
-    $.ajax({
-        type: "POST",
-        dataType: "JSON",
-        data: { IdTipoSeleccionado: IdTipo },
-        url: "/Mantenimientos/ObtenerInfoTipo/",
-        success: function (Info) {
-        },
-        error: function (Error) {
-            $("#msjError").html("Error al cambiar el estado");
-            $('#ModalError').modal('show');
-        }
-    });
+    location.href = '/Mantenimientos/ObtenerInfoTipo?IdTipoSeleccionado=' + IdTipo;
+    //$.ajax({
+    //    type: "POST",
+    //    dataType: "JSON",
+    //    data: { IdTipoSeleccionado: IdTipo },
+    //    url: "/Mantenimientos/ObtenerInfoTipo/",
+    //    success: function (Info) {
+    //    },
+    //    error: function (Error) {
+    //        $("#msjError").html("Error obtener la informacion del tipo");
+    //        $('#ModalError').modal('show');
+    //    }
+    //});
 }
 
 

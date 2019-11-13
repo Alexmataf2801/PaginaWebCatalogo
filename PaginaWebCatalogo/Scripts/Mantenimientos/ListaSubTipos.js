@@ -6,7 +6,7 @@
         url: "/Mantenimientos/ObtenerTodosSubTiposProducto/",
         data: {},
         success: function (Info) {
-            if (Info.length > 0) {
+
 
                 //var objeto = JSON.parse(Info);
 
@@ -56,7 +56,7 @@
 
                     ]
                 });
-            }
+            
         },
         error: function () {
             $("#msjError").html("Error al obtener los SubTipos");

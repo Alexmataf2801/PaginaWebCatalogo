@@ -370,6 +370,7 @@ namespace PaginaWebCatalogo.Controllers
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
                 tipo = LogicaNegocioMantenimientos.ObtenerTipoXId(IdTipoSeleccionado);
+                tipo.IdTipo = IdTipoSeleccionado;
                 ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
             }
@@ -535,7 +536,7 @@ namespace PaginaWebCatalogo.Controllers
         }
 
         [HttpPost]
-        public JsonResult ActualizarTipo(TipoProducto Tipo)
+        public JsonResult ActualizarTipo(TipoProducto InfoTipo)
         {
 
             bool Correcto = false;
@@ -544,7 +545,8 @@ namespace PaginaWebCatalogo.Controllers
             {
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
-                Correcto = LogicaNegocioMantenimientos.ActualizarTipo(Tipo);
+                InfoTipo.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                Correcto = LogicaNegocioMantenimientos.ActualizarTipo(InfoTipo);
 
             }
 

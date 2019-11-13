@@ -121,6 +121,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="paActualizarDatosTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipo" Type="int" Mode="In" />
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+        </Function>
         <Function Name="paActualizarInformacionEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
           <Parameter Name="NombreEmpresa" Type="varchar" Mode="In" />
@@ -484,7 +490,13 @@
             <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="paObtenerTipoXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTipoXId_Result)">
+          <Parameter Name="IdTipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarDatosTipo">
             <Parameter Name="IdTipo" Mode="In" Type="Int32" />
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -1040,6 +1052,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paActualizarDatosTipo" FunctionName="PaginaWebCatalogosModel.Store.paActualizarDatosTipo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

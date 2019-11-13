@@ -7,8 +7,7 @@ function ObtenerTodasRedesSociales() {
         url: "/Mantenimientos/ObtenerTodasRedesSociales/",
         data: {},
         success: function (Info) {
-            if (Info.length > 0) {
-
+    
                 $('#tbRedes').dataTable().fnDestroy();
                 $("#tbRedes").dataTable({
 
@@ -49,13 +48,13 @@ function ObtenerTodasRedesSociales() {
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarRedSocial(" + data["IdRedSocial"] + ")'></button>";
+                                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarRedSocial(" + data["IdRedSocial"] + ")'></a>";
                             }
                         }
 
                     ]
                 });
-            }
+            
         },
         error: function () {
             $("#msjError").html("Error al obtener las redes sociales");
@@ -110,15 +109,17 @@ function ConfirmarEliminarRedSocial(idRedSocial) {
 
 function EliminarRedSocial() {
     var Id = $("#IdRedSeleccionada").val();
+    $('#ModalConfirmacion').modal('hide');
     if (Id !== null || Id !== undefined) {
         $.ajax({
             type: "POST",
             dataType: "JSON",
             url: "/Mantenimientos/EliminarRedSocial/",
-            data: { Id },
+            data: { IdRedSocial: Id },
             success: function () {
                 $("#msjCorrecto").html("Red Social eliminada correctamente");
                 $('#ModalCorrecto').modal('show');
+                ObtenerTodasRedesSociales();
             },
             error: function () {
                 $("#msjError").html("Error al eliminar la red social");
