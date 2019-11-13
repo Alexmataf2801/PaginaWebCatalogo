@@ -344,7 +344,24 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
-        public JsonResult ObtenerInfoTipo(int IdTipo)
+        //public JsonResult ObtenerInfoTipo(int IdTipo)
+        //{
+        //    TipoProducto tipo = new TipoProducto();
+
+        //    if (Session["UsuarioLogueado"] != null)
+        //    {
+        //        Usuario usuario = new Usuario();
+        //        usuario = (Usuario)Session["UsuarioLogueado"];
+        //        tipo = LogicaNegocioMantenimientos.ObtenerTipoXId(IdTipo);
+        //        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+        //    }
+
+        //    return Json(tipo, JsonRequestBehavior.AllowGet);
+
+        //}
+
+        public ActionResult ObtenerInfoTipo(int IdTipoSeleccionado)
         {
             TipoProducto tipo = new TipoProducto();
 
@@ -352,12 +369,12 @@ namespace PaginaWebCatalogo.Controllers
             {
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
-                tipo = LogicaNegocioMantenimientos.ObtenerTipoXId(IdTipo);
+                tipo = LogicaNegocioMantenimientos.ObtenerTipoXId(IdTipoSeleccionado);
                 ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
             }
 
-            return Json(tipo, JsonRequestBehavior.AllowGet);
+            return View("ActualizarDatosTipo", tipo);
 
         }
 

@@ -97,18 +97,13 @@ function DesactivarActivarTipo(IdTipo, Estado) {
 }
 
 function ObtenerInfoTipoXId(IdTipo) {
+    ///location.href = '@Url.Action("ObtenerInfoTipo","Mantenimientos", new { IdTipo = ' + IdTipo   + ' })';
     $.ajax({
-        type: "GET",
+        type: "POST",
         dataType: "JSON",
-        data: { IdTipo },
+        data: { IdTipoSeleccionado: IdTipo },
         url: "/Mantenimientos/ObtenerInfoTipo/",
         success: function (Info) {
-            if (Info) {
-                $("#txtActCodigoTipo").val();
-                $("#txtActNombreTipo").val();
-                $("#txtActDescripcionTIpo").val();
-            }
-
         },
         error: function (Error) {
             $("#msjError").html("Error al cambiar el estado");
