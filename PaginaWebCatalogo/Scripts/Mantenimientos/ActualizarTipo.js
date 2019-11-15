@@ -5,7 +5,6 @@
         Nombre: $("#txtActNombreTipo").val(),
         Descripcion: $("#txtActDescripcionTIpo").val()
     };
-    console.log(Tipo);
     $.ajax({
         type: "POST",
         datatype: "JSON",
