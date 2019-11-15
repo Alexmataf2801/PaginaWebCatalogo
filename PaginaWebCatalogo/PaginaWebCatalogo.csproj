@@ -335,6 +335,7 @@
     <Content Include="Views\Shared\_MenuAdministracion.cshtml" />
     <Content Include="Views\Mantenimientos\ActualizarDatosEmpresa.cshtml" />
     <Content Include="Views\Mantenimientos\ActualizarDatosTipo.cshtml" />
+    <Content Include="Views\Mantenimientos\ActualizarDatosSubTipo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

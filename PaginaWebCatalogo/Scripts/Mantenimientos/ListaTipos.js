@@ -97,7 +97,7 @@ function DesactivarActivarTipo(IdTipo, Estado) {
 }
 
 function ConfirmarEliminarTipo(IdTipo) {
-    $("#IdRedSeleccionada").val(IdTipo);
+    $("#IdTipoSeleccionado").val(IdTipo);
     $("#msjConf").html("¿Desea eliminar este registro?");
     $('#ModalConfirmacion').modal('show');
 
@@ -105,21 +105,21 @@ function ConfirmarEliminarTipo(IdTipo) {
 
 
 function EliminarTipo() {
-    var Id = $("#IdRedSeleccionada").val();
+    var Id = $("#IdTipoSeleccionado").val();
     $('#ModalConfirmacion').modal('hide');
     if (Id !== null || Id !== undefined) {
         $.ajax({
             type: "POST",
             dataType: "JSON",
-            url: "/Mantenimientos/EliminarRedSocial/",
+            url: "/Mantenimientos/EliminarTipo/",
             data: { IdRedSocial: Id },
             success: function () {
-                $("#msjCorrecto").html("Red Social eliminada correctamente");
+                $("#msjCorrecto").html("Tipo Eliminado correctamente");
                 $('#ModalCorrecto').modal('show');
                 ObtenerTodasRedesSociales();
             },
             error: function () {
-                $("#msjError").html("Error al eliminar la red social");
+                $("#msjError").html("Error al eliminar el tipo");
                 $('#ModalError').modal('show');
             }
         });

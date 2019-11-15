@@ -85,7 +85,7 @@ function GuardarRedSocial() {
         data: { redSocial },
         success: function (Info) {
             if (Info) {
-                Limpiar();
+                LimpiarRedSocial();
                 $("#msjCorrecto").html("Red Social agregada con exito");
                 $('#ModalCorrecto').modal('show');
             }
@@ -101,12 +101,18 @@ function GuardarRedSocial() {
 
 }
 
-function Limpiar() {
+function LimpiarRedSocial() {
     $("#txtNombreRed").val("");
     $("#txtDescripcionRed").val("");
     $("#txtUrlRed").val("");
     $("#txtColor").val("");
 
+}
+
+function LimpiarTipo() {
+    $("#txtCodigoTipo").val("");
+    $("#txtNombreTipo").val("");
+    $("#txtDescripcionTIpo").val("");
 }
 
 function GuardarTipoProducto() {
@@ -126,6 +132,7 @@ function GuardarTipoProducto() {
         success: function (Info) {
 
             if (Info) {
+                LimpiarTipo();
                 $("#msjCorrecto").html("Tipo agregado con exito");
                 $('#ModalCorrecto').modal('show');
             }
@@ -140,6 +147,8 @@ function GuardarTipoProducto() {
 
 
 }
+
+
 function GuardarSubTipoProducto() {
 
     var subTipo = {

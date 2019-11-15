@@ -563,6 +563,34 @@ namespace AccesoDatos.Mantenimientos
             return tipo;
         }
 
+        public static SubTipoProducto ObtenerSubTipoXId(int IdSubTipo)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            SubTipoProducto subTipo = new SubTipoProducto();
+
+            try
+            {
+                var subTipoInfo = entities.paObtenerSubTipoXId(IdSubTipo);
+
+                foreach (var item in subTipoInfo)
+                {
+                    subTipo.Codigo = item.Codigo;
+                    subTipo.Nombre = item.Nombre;
+                    subTipo.Descripcion = item.Descripcion;
+                    subTipo.Estado = item.Estado;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return subTipo;
+        }
+
         #endregion
 
         #region UPDATE 

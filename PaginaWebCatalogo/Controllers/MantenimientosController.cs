@@ -379,6 +379,24 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
+        public ActionResult ObtenerSubTipoXId(int IdSubTipo)
+        {
+            SubTipoProducto subtipo = new SubTipoProducto();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                subtipo = LogicaNegocioMantenimientos.ObtenerSubTipoXId(IdSubTipo);
+                subtipo.IdSubTipo = IdSubTipo;
+                ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+            }
+
+            return View("ActualizarDatosSubTipo", subtipo);
+
+        }
+
         public JsonResult ObtenerRedSocial(int RedSocial)
         {
             RedesSociales redes = new RedesSociales();
