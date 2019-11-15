@@ -176,6 +176,12 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.EliminarRedSocial(IdRedSocial);
         }
 
+        public static bool EliminarTipo(int IdTipo)
+        {
+
+            return AccesoDatosMantenimientos.EliminarTipo(IdTipo);
+        }
+
         #endregion
 
 

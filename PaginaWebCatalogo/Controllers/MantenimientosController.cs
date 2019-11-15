@@ -574,6 +574,21 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult EliminarTipo(int IdTipo)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.EliminarTipo(IdTipo);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
 
         #endregion
 

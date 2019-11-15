@@ -712,6 +712,26 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
+        public static bool EliminarTipo(int IdTipo)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paEliminarTipo(IdTipo);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
         #endregion
 
 

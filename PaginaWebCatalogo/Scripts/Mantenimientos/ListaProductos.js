@@ -25,7 +25,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-success fa fa-pencil' onclick='EditarProducto(" + data["IdProducto"] + ")'></button>";
+                                return "<a type='button' class='btn btn-success fa fa-pencil' onclick='EditarProducto(" + data["IdProducto"] + ")'></a>";
                             }
                         },
                         { data: 'Nombre' },
@@ -42,14 +42,14 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarProducto(" + data["IdProducto"] + "," + data["Estado"] + " )'></button>";
+                                return "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarProducto(" + data["IdProducto"] + "," + data["Estado"] + " )'></a>";
                             }
                         },
                         {
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-danger fa fa-trash' onclick='EliminarProducto(" + data["IdProducto"] + ")'></button>";
+                                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='EliminarProducto(" + data["IdProducto"] + ")'></a>";
                             }
                         }
 

@@ -43,7 +43,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarTipo(" + data["IdTipo"] + "," + data["Estado"] + " )'></button>";
+                                return "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarTipo(" + data["IdTipo"] + "," + data["Estado"] + " )'></a>";
                             }
                         },
                         {

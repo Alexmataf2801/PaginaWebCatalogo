@@ -84,8 +84,8 @@ function GuardarRedSocial() {
         url: "/Mantenimientos/InsertarRedSocial/",
         data: { redSocial },
         success: function (Info) {
-
             if (Info) {
+                Limpiar();
                 $("#msjCorrecto").html("Red Social agregada con exito");
                 $('#ModalCorrecto').modal('show');
             }
@@ -100,6 +100,15 @@ function GuardarRedSocial() {
 
 
 }
+
+function Limpiar() {
+    $("#txtNombreRed").val("");
+    $("#txtDescripcionRed").val("");
+    $("#txtUrlRed").val("");
+    $("#txtColor").val("");
+
+}
+
 function GuardarTipoProducto() {
 
     var tipo = {

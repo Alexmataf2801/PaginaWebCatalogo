@@ -26,7 +26,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-success fa fa-pencil' onclick='EditarSubTipo(" + data["IdSubTipo"] + ")'></button>";
+                                return "<a type='button' class='btn btn-success fa fa-pencil' onclick='EditarSubTipo(" + data["IdSubTipo"] + ")'></a>";
                             }
                         },
                         { data: 'Nombre' },
@@ -43,14 +43,14 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarSubTipo(" + data["IdSubTipo"] + "," + data["Estado"] + " )'></button>";
+                                return "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarSubTipo(" + data["IdSubTipo"] + "," + data["Estado"] + " )'></a>";
                             }
                         },
                         {
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-danger fa fa-trash' onclick='EliminarSubTipo(" + data["IdSubTipo"] + ")'></button>";
+                                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='EliminarSubTipo(" + data["IdSubTipo"] + ")'></a>";
                             }
                         }
 

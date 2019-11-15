@@ -24,7 +24,7 @@ function ObtenerTodasRedesSociales() {
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-success fa fa-pencil' onclick='EditarRedSocial(" + data["IdRedSocial"] + ")'></button>";
+                                return "<a type='button' class='btn btn-success fa fa-pencil' onclick='EditarRedSocial(" + data["IdRedSocial"] + ")'></a>";
                             }
                         },
                         { data: 'Nombre' },
@@ -41,7 +41,7 @@ function ObtenerTodasRedesSociales() {
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<button class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarRedSocial(" + data["IdRedSocial"] + "," + data["Estado"] + " )'></button>";
+                                return "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarRedSocial(" + data["IdRedSocial"] + "," + data["Estado"] + " )'></a>";
                             }
                         },
                         {
@@ -67,7 +67,7 @@ function ObtenerTodasRedesSociales() {
 }
 
 $("#CerrarEliminarRed").click(function () {
-    sessionStorage.setItem("RedSocialAEliminar", null);
+    $("#IdRedSeleccionada").val(0);
 });
 
 function DesactivarActivarRedSocial(IdRedSocial, Estado) {
@@ -85,7 +85,7 @@ function DesactivarActivarRedSocial(IdRedSocial, Estado) {
         url: "/Mantenimientos/DesactivarActivarRedSocial/",
         success: function (Info) {
             if (Info) {
-               // ObtenerTodasRedesSociales();
+                ObtenerTodasRedesSociales();
             }
 
         },
