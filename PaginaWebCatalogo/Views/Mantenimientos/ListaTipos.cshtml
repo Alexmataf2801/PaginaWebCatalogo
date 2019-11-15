@@ -29,5 +29,27 @@
         </div>
     </div>
 </div>
+
+<!--INICIO MODAL INFORMACION-->
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalConfirmacion">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#0074D9;">
+                <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="IdTipoSeleccionado" />
+                <p id="msjConf" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnConfirmarEliminacion" onclick="EliminarTipo();" class="btn btn-primary">Si</button>
+                <button type="button" class="btn btn-primary" id="CerrarEliminarRed" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL INFORMACION-->
+
+
 <script src="~/Js/Administracion/jquery.min.js"></script>
 <script src="~/Scripts/Mantenimientos/ListaTipos.js"></script>

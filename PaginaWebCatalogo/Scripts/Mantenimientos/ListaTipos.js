@@ -50,7 +50,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='EliminarTipo(" + data["IdTipo"] + ")'></a>";
+                                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarTipo(" + data["IdTipo"] + ")'></a>";
                             }
                         }
 
@@ -83,7 +83,7 @@ function DesactivarActivarTipo(IdTipo, Estado) {
         url: "/Mantenimientos/DesactivarActivarTipo/",
         success: function (Info) {
             if (Info) {
-                //ObtenerTodosTipos();
+                ObtenerTodosTipos();
             }
 
         },
@@ -96,20 +96,39 @@ function DesactivarActivarTipo(IdTipo, Estado) {
 
 }
 
+function ConfirmarEliminarTipo(IdTipo) {
+    $("#IdRedSeleccionada").val(IdTipo);
+    $("#msjConf").html("¿Desea eliminar este registro?");
+    $('#ModalConfirmacion').modal('show');
+
+}
+
+
+function EliminarTipo() {
+    var Id = $("#IdRedSeleccionada").val();
+    $('#ModalConfirmacion').modal('hide');
+    if (Id !== null || Id !== undefined) {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Mantenimientos/EliminarRedSocial/",
+            data: { IdRedSocial: Id },
+            success: function () {
+                $("#msjCorrecto").html("Red Social eliminada correctamente");
+                $('#ModalCorrecto').modal('show');
+                ObtenerTodasRedesSociales();
+            },
+            error: function () {
+                $("#msjError").html("Error al eliminar la red social");
+                $('#ModalError').modal('show');
+            }
+        });
+
+    }
+}
+
 function ObtenerInfoTipoXId(IdTipo) {
     location.href = '/Mantenimientos/ObtenerInfoTipo?IdTipoSeleccionado=' + IdTipo;
-    //$.ajax({
-    //    type: "POST",
-    //    dataType: "JSON",
-    //    data: { IdTipoSeleccionado: IdTipo },
-    //    url: "/Mantenimientos/ObtenerInfoTipo/",
-    //    success: function (Info) {
-    //    },
-    //    error: function (Error) {
-    //        $("#msjError").html("Error obtener la informacion del tipo");
-    //        $('#ModalError').modal('show');
-    //    }
-    //});
 }
 
 
