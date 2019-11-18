@@ -12,9 +12,10 @@
         data: { InfoTipo : Tipo },
         success: function (Info) {
             if (Info) {
-                $("#msjCorrecto").html("Tipo actualizado con exito");
-                $('#ModalCorrecto').modal('show');
+                $("#msjCorrectoActTipo").html("Tipo actualizado con exito");
+                $('#ModalCorrectoActTipo').modal('show');
                 LimpiarCampos();
+                
             }
         },
         error: function (Error) {
@@ -24,6 +25,9 @@
 
     });
 
+}
+function RedireccionarTipos() {
+    location.href = '/Mantenimientos/ListaTipos/';
 }
 
 function LimpiarCampos() {

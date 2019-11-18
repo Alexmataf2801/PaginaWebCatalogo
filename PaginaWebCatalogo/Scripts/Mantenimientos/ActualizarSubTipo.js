@@ -13,8 +13,8 @@
         data: { InfoSubTipo: SubTipo },
         success: function (Info) {
             if (Info) {
-                $("#msjCorrecto").html("SubTipo actualizado con exito");
-                $('#ModalCorrecto').modal('show');
+                $("#msjCorrectoActSubTipo").html("SubTipo actualizado con exito");
+                $('#ModalCorrectoActSubTipo').modal('show');
                 LimpiarCampos();
             }
         },
@@ -25,6 +25,10 @@
 
     });
 
+}
+
+function RedireccionarSubTipos() {
+    location.href = '/Mantenimientos/ListaSubTipos/';
 }
 
 function LimpiarCampos() {

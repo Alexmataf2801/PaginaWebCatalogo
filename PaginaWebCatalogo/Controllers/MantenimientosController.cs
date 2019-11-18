@@ -278,19 +278,19 @@ namespace PaginaWebCatalogo.Controllers
                             }
                         }
 
-                        return Json("File Uploaded Successfully!");
+                        return Json(true, JsonRequestBehavior.AllowGet);
                     }
                     catch (Exception ex)
                     {
-                        return Json("Error occurred. Error details: " + ex.Message);
+                        return Json(false, JsonRequestBehavior.AllowGet);
                     }
                 }
                 else
                 {
-                    return Json("No files selected.");
+                    return Json(false, JsonRequestBehavior.AllowGet);
                 }
             }
-            return Json("No se proceso la peticion");
+            return Json(false, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -343,23 +343,6 @@ namespace PaginaWebCatalogo.Controllers
             return View("ActualizarDatosEmpresa", empresa);
 
         }
-
-        //public JsonResult ObtenerInfoTipo(int IdTipo)
-        //{
-        //    TipoProducto tipo = new TipoProducto();
-
-        //    if (Session["UsuarioLogueado"] != null)
-        //    {
-        //        Usuario usuario = new Usuario();
-        //        usuario = (Usuario)Session["UsuarioLogueado"];
-        //        tipo = LogicaNegocioMantenimientos.ObtenerTipoXId(IdTipo);
-        //        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-
-        //    }
-        //
-        //    return Json(tipo, JsonRequestBehavior.AllowGet);
-
-        //}
 
         public ActionResult ObtenerInfoTipo(int IdTipoSeleccionado)
         {
@@ -626,7 +609,21 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult EliminarProducto(int IdProducto)
+        {
+            bool Correcto = false;
 
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.EliminarProducto(IdProducto);
+
+            }
+
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
 

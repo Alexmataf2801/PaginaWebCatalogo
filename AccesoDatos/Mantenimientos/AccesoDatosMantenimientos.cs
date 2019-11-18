@@ -780,6 +780,26 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
+        public static bool EliminarProducto(int IdProducto)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paEliminarProducto(IdProducto);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
         #endregion
 
 

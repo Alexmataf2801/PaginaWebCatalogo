@@ -18,7 +18,7 @@
                     //dom: 'Bfrtip', // Descomentar para habilitar botones de acciones
                     lengthChange: true, // Habilita combo de opciones para mostrar
                     language: {
-                        "url": "../Content/Spanish.json"
+                        "url": "../../Content/Spanish.json"
                     },
                     data: Info,
                     columns: [
@@ -29,6 +29,7 @@
                                 return "<a type='button' class='btn btn-success fa fa-pencil' onclick='ObtenerInfoSubTipoXId(" + data["IdSubTipo"] + ")'></a>";
                             }
                         },
+                        { data: 'Codigo' },
                         { data: 'Nombre' },
                         {
                             render: function (data, type, full) {
@@ -83,7 +84,7 @@ function DesactivarActivarSubTipo(IdSubTipo, Estado) {
         url: "/Mantenimientos/DesactivarActivarSubTipo/",
         success: function (Info) {
             if (Info) {
-                // ObtenerTodosSubTipos();
+                 ObtenerTodosSubTipos();
             }
 
         },

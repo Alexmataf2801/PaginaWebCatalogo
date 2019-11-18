@@ -191,12 +191,18 @@
 <!-- /new_arrivals -->
 <div class="new_arrivals_agile_w3ls_info">
     <div class="container" @*style="margin-bottom:50px"*@>
-        <h3 class="wthree_text_info">Nuevos Productos</h3>
+
         @if (Model != null)
         {
+            if (Model.ListaProductos.Count > 0)
+            {
+                <h3 class="wthree_text_info">Nuevos Productos</h3>
+            }
 
             for (int j = 0; j < Model.ListaProductos.Count; j++)
             {
+
+
                 <div class="col-md-3 product-men" @*style="width:250px; height:350px; margin-bottom:50px"*@>
                     <div class="men-pro-item simpleCart_shelfItem">
                         <div class="men-thumb-item">
@@ -236,7 +242,7 @@
                                         <input type="hidden" name="item_name" value="@Model.ListaProductos[j].NombreProducto" />
                                         <input type="hidden" name="amount" value="@Model.ListaProductos[j].Moneda@Model.ListaProductos[j].PrecioUnitario" />
                                         <input type="hidden" name="cancel_return" value=" " />
-                                        <input type="button"  onclick="AgregarAlCarro(@Model.ListaProductos[j].IdProducto)" value="Agregar al Carrito" class="button" />
+                                        <input type="button" onclick="AgregarAlCarro(@Model.ListaProductos[j].IdProducto)" value="Agregar al Carrito" class="button" />
                                     </fieldset>
                                 </form>
                             </div>

@@ -16,7 +16,7 @@ function ObtenerTodasRedesSociales() {
                     //dom: 'Bfrtip', // Descomentar para habilitar botones de acciones
                     lengthChange: true, // Habilita combo de opciones para mostrar
                     language: {
-                        "url": "../Content/Spanish.json"
+                        "url": "../../Content/Spanish.json"
                     },
                     data: Info,
                     columns: [

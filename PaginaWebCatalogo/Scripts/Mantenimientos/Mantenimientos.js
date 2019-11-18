@@ -218,8 +218,11 @@ function GuardarProducto() {
             success: function (Info) {
 
                 if (Info) {
-                    $("#msjCorrecto").html("Producto agregado con exito");
-                    $('#ModalCorrecto').modal('show');
+                    $("#msjCorrectoAgrProd").html("Producto agregado con exito");
+                    $('#ModalCorrectoAgrProd').modal('show');
+                } else {
+                    $("#msjError").html("No se pudo insertar el producto o no adjunto ninguna imagen.");
+                    $('#ModalError').modal('show');
                 }
 
             },
@@ -233,6 +236,9 @@ function GuardarProducto() {
         $('#ModalError').modal('show');
     }
 
+}
+function RedireccionarProd() {
+    location.href = '/Mantenimientos/ListaProductos/';
 }
 
 $(document).ready(function () {

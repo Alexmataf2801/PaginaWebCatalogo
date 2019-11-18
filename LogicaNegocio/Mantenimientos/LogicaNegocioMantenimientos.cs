@@ -193,6 +193,12 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.EliminarTipo(IdTipo);
         }
 
+        public static bool EliminarProducto(int IdProducto)
+        {
+
+            return AccesoDatosMantenimientos.EliminarProducto(IdProducto);
+        }
+
         #endregion
 
 
