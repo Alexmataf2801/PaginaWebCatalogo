@@ -620,6 +620,31 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarTipo", idTipoParameter);
         }
     
+        public virtual int paActualizarSubTipo(Nullable<int> idSubTipo, string codigo, string nombre, string descripcion, string usuarioUltimaModificacion)
+        {
+            var idSubTipoParameter = idSubTipo.HasValue ?
+                new ObjectParameter("IdSubTipo", idSubTipo) :
+                new ObjectParameter("IdSubTipo", typeof(int));
+    
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
+                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
+                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarSubTipo", idSubTipoParameter, codigoParameter, nombreParameter, descripcionParameter, usuarioUltimaModificacionParameter);
+        }
+    
         public virtual ObjectResult<paObtenerSubTipoXId_Result> paObtenerSubTipoXId(Nullable<int> idSubTipo)
         {
             var idSubTipoParameter = idSubTipo.HasValue ?

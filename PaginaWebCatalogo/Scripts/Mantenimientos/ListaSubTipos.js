@@ -26,7 +26,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<a type='button' class='btn btn-success fa fa-pencil' onclick='EditarSubTipo(" + data["IdSubTipo"] + ")'></a>";
+                                return "<a type='button' class='btn btn-success fa fa-pencil' onclick='ObtenerInfoSubTipoXId(" + data["IdSubTipo"] + ")'></a>";
                             }
                         },
                         { data: 'Nombre' },
@@ -95,6 +95,11 @@ function DesactivarActivarSubTipo(IdSubTipo, Estado) {
 
 
 }
+
+function ObtenerInfoSubTipoXId(IdSubTipo) {
+    location.href = '/Mantenimientos/ObtenerSubTipoXId?IdSubTipoSeleccionado=' + IdSubTipo;
+}
+
 
 $(document).ready(function () {
     ObtenerTodosSubTipos();

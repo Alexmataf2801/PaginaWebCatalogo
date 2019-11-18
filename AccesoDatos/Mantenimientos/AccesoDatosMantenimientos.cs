@@ -579,6 +579,7 @@ namespace AccesoDatos.Mantenimientos
                     subTipo.Nombre = item.Nombre;
                     subTipo.Descripcion = item.Descripcion;
                     subTipo.Estado = item.Estado;
+                    subTipo.IdTipo = item.IdTipoProducto;
                 }
 
             }
@@ -715,6 +716,25 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
+        public static bool ActualizarSubTipo(SubTipoProducto SubTipo)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paActualizarSubTipo(SubTipo.IdSubTipo, SubTipo.Codigo, SubTipo.Nombre, SubTipo.Descripcion, SubTipo.UsuarioUltimaModificacion);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
 
         #endregion
 

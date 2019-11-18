@@ -144,6 +144,13 @@
           <Parameter Name="Color" Type="nvarchar" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="paActualizarSubTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdSubTipo" Type="int" Mode="In" />
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="paActualizarTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipo" Type="int" Mode="In" />
           <Parameter Name="Codigo" Type="varchar" Mode="In" />
@@ -507,6 +514,13 @@
           <FunctionImport Name="paEliminarTipo">
           <Parameter Name="IdTipo" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paActualizarSubTipo">
+            <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="paObtenerSubTipoXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerSubTipoXId_Result)">
             <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -737,6 +751,7 @@
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="Descripcion" Nullable="true" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="Int32" Name="IdTipoProducto" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1072,6 +1087,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarDatosTipo" FunctionName="PaginaWebCatalogosModel.Store.paActualizarDatosTipo" />
           <FunctionImportMapping FunctionImportName="paEliminarTipo" FunctionName="PaginaWebCatalogosModel.Store.paEliminarTipo" />
+          <FunctionImportMapping FunctionImportName="paActualizarSubTipo" FunctionName="PaginaWebCatalogosModel.Store.paActualizarSubTipo" />
           <FunctionImportMapping FunctionImportName="paObtenerSubTipoXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerSubTipoXId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerSubTipoXId_Result">
@@ -1079,6 +1095,7 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdTipoProducto" ColumnName="IdTipoProducto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

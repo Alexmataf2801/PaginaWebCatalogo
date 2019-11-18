@@ -171,6 +171,11 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.ActualizarTipo(tipo);
         }
 
+        public static bool ActualizarSubTipo(SubTipoProducto SubTipo)
+        {
+
+            return AccesoDatosMantenimientos.ActualizarSubTipo(SubTipo);
+        }
 
         #endregion
 

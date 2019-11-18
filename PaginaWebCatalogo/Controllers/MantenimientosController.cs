@@ -379,7 +379,7 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
-        public ActionResult ObtenerSubTipoXId(int IdSubTipo)
+        public ActionResult ObtenerSubTipoXId(int IdSubTipoSeleccionado)
         {
             SubTipoProducto subtipo = new SubTipoProducto();
 
@@ -387,10 +387,10 @@ namespace PaginaWebCatalogo.Controllers
             {
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
-                subtipo = LogicaNegocioMantenimientos.ObtenerSubTipoXId(IdSubTipo);
-                subtipo.IdSubTipo = IdSubTipo;
+                subtipo = LogicaNegocioMantenimientos.ObtenerSubTipoXId(IdSubTipoSeleccionado);
+                subtipo.IdSubTipo = IdSubTipoSeleccionado;
                 ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-
+                     
             }
 
             return View("ActualizarDatosSubTipo", subtipo);
@@ -565,6 +565,24 @@ namespace PaginaWebCatalogo.Controllers
                 usuario = (Usuario)Session["UsuarioLogueado"];
                 InfoTipo.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
                 Correcto = LogicaNegocioMantenimientos.ActualizarTipo(InfoTipo);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult ActualizarSubTipo(SubTipoProducto InfoSubTipo)
+        {
+
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                InfoSubTipo.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                Correcto = LogicaNegocioMantenimientos.ActualizarSubTipo(InfoSubTipo);
 
             }
 
