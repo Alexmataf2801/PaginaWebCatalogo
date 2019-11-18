@@ -498,13 +498,6 @@
             <Parameter Name="IdTipo" Mode="In" Type="Int32" />
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="paActualizarTipo">
-            <Parameter Name="IdTipo" Mode="In" Type="Int32" />
-            <Parameter Name="Codigo" Mode="In" Type="String" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="paObtenerTipoXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTipoXId_Result)">
           <Parameter Name="IdTipo" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -528,7 +521,14 @@
           <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paEliminarProducto">
-            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarTipo">
+            <Parameter Name="IdTipo" Mode="In" Type="Int32" />
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -1080,7 +1080,6 @@
           <FunctionImportMapping FunctionImportName="paDesactivarActivarProducto" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarProducto" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarSubTipo" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarSubTipo" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarTipo" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarTipo" />
-          <FunctionImportMapping FunctionImportName="paActualizarTipo" FunctionName="PaginaWebCatalogosModel.Store.paActualizarTipo" />
           <FunctionImportMapping FunctionImportName="paObtenerTipoXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerTipoXId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerTipoXId_Result">
@@ -1106,6 +1105,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paEliminarProducto" FunctionName="PaginaWebCatalogosModel.Store.paEliminarProducto" />
+          <FunctionImportMapping FunctionImportName="paActualizarTipo" FunctionName="PaginaWebCatalogosModel.Store.paActualizarTipo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

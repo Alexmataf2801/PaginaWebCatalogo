@@ -133,8 +133,8 @@ function GuardarTipoProducto() {
 
             if (Info) {
                 LimpiarTipo();
-                $("#msjCorrecto").html("Tipo agregado con exito");
-                $('#ModalCorrecto').modal('show');
+                $("#msjCorrectoAgrTip").html("Tipo agregado con exito");
+                $('#ModalCorrectoAgrTip').modal('show');
             }
 
         },
@@ -220,6 +220,7 @@ function GuardarProducto() {
                 if (Info) {
                     $("#msjCorrectoAgrProd").html("Producto agregado con exito");
                     $('#ModalCorrectoAgrProd').modal('show');
+                        
                 } else {
                     $("#msjError").html("No se pudo insertar el producto o no adjunto ninguna imagen.");
                     $('#ModalError').modal('show');
@@ -239,6 +240,10 @@ function GuardarProducto() {
 }
 function RedireccionarProd() {
     location.href = '/Mantenimientos/ListaProductos/';
+}
+
+function RedireccionarTip() {
+    location.href = '/Mantenimientos/ListaTipos/';
 }
 
 $(document).ready(function () {

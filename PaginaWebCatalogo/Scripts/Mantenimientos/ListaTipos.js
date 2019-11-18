@@ -99,25 +99,25 @@ function DesactivarActivarTipo(IdTipo, Estado) {
 
 function ConfirmarEliminarTipo(IdTipo) {
     $("#IdTipoSeleccionado").val(IdTipo);
-    $("#msjConf").html("¿Desea eliminar este registro?");
-    $('#ModalConfirmacion').modal('show');
+    $("#msjConfTipo").html("¿Desea eliminar este registro?");
+    $('#ModalConfirmacionTipo').modal('show');
 
 }
 
 
 function EliminarTipo() {
     var Id = $("#IdTipoSeleccionado").val();
-    $('#ModalConfirmacion').modal('hide');
+    $('#ModalConfirmacionTipo').modal('hide');
     if (Id !== null || Id !== undefined) {
         $.ajax({
             type: "POST",
             dataType: "JSON",
             url: "/Mantenimientos/EliminarTipo/",
-            data: { IdRedSocial: Id },
+            data: { IdTipo: Id },
             success: function () {
                 $("#msjCorrecto").html("Tipo Eliminado correctamente");
                 $('#ModalCorrecto').modal('show');
-                ObtenerTodasRedesSociales();
+                ObtenerTodosTipos();
             },
             error: function () {
                 $("#msjError").html("Error al eliminar el tipo");
