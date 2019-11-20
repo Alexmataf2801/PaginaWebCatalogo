@@ -1,30 +1,37 @@
-﻿function ActualizarDatosTipo(IdSubTipo) {
-    var SubTipo = {
-        IdSubTipo: IdSubTipo,
-        Codigo: $("#txtCodigoSubTipoAct").val(),
-        Nombre: $("#txtNombreSubTipoAct").val(),
-        Descripcion: $("#txtDescripcionSubTipoAct").val(),
+﻿function GuardarSubTipoProducto() {
+
+    var subTipo = {
+        Codigo: $("#txtCodigoSubTipo").val(),
+        Nombre: $("#txtNombreSubTipo").val(),
+        Descripcion: $("#txtDescripcionSubTipo").val(),
         IdTipo: $("#ddlTipoProd").val()
     };
+
     $.ajax({
         type: "POST",
-        datatype: "JSON",
-        url: "/Mantenimientos/ActualizarSubTipo/",
-        data: { InfoSubTipo: SubTipo },
+        dataType: "JSON",
+        url: "/Mantenimientos/InsertarSubTipoProducto/",
+        data: { subTipo },
         success: function (Info) {
+
             if (Info) {
-                $("#msjCorrectoActSubTipo").html("SubTipo actualizado con exito");
-                $('#ModalCorrectoActSubTipo').modal('show');
-                LimpiarCampos();
+                $("#msjCorrectoAgrSubTip").html("SubTipo agregado con exito");
+                $('#ModalCorrectoAgrSubTip').modal('show');
             }
+
         },
         error: function (Error) {
-            $("#msjError").html("Error al actualizar el SubTipo");
+            $("#msjError").html("Error al guardar el subtipo de producto");
             $('#ModalError').modal('show');
         }
 
     });
 
+
+}
+
+function RedireccionarSubTip() {
+    location.href = '/Mantenimientos/ListaSubTipos/';
 }
 
 function ObtenerTipos() {
@@ -49,16 +56,6 @@ function ObtenerTipos() {
 
     });
 
-}
-
-function RedireccionarSubTipos() {
-    location.href = '/Mantenimientos/ListaSubTipos/';
-}
-
-function LimpiarCampos() {
-    $("#txtCodigoSubTipoAct").val("");
-    $("#txtNombreSubTipoAct").val("");
-    $("#txtDescripcionSubTipoAct").val("");
 }
 
 $(document).ready(function () {

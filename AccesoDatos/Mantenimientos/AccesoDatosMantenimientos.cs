@@ -332,6 +332,37 @@ namespace AccesoDatos.Mantenimientos
             return ListaSubTipoProducto;
         }
 
+        public static List<SubTipoProducto> ObtenerSubTipoProductoXTipo(int IdTipo)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<SubTipoProducto> ListaSubTipoProducto = new List<SubTipoProducto>();
+
+            try
+            {
+                var SubTipoProd = entities.paObtenerSubTiposXIdTipo(IdTipo);
+
+                foreach (var item in SubTipoProd)
+                {
+                    SubTipoProducto subTipo = new SubTipoProducto();
+                    subTipo.IdSubTipo = item.IdSubTipo;
+                    subTipo.Codigo = item.Codigo;
+                    subTipo.Nombre = item.Nombre;
+                    subTipo.Descripcion = item.Descripcion;
+
+                    ListaSubTipoProducto.Add(subTipo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaSubTipoProducto;
+        }
+
         public static bool ActualizarRedSocial(RedesSociales redSocial)
         {
 

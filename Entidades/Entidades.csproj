@@ -119,6 +119,9 @@
     <Compile Include="paObtenerSubTipoProdActivo_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerSubTiposXIdTipo_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerSubTipoXId_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>

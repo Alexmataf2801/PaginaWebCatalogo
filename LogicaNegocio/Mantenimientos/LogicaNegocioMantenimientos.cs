@@ -88,6 +88,11 @@ namespace LogicaNegocio.Mantenimientos
 
             return AccesoDatosMantenimientos.ObtenerSubTipoProducto();
         }
+        public static List<SubTipoProducto> ObtenerSubTipoProductoXTipo(int IdTipo)
+        {
+
+            return AccesoDatosMantenimientos.ObtenerSubTipoProductoXTipo(IdTipo);
+        }
 
         public static RedesSociales ObtenerRedSocial(int IdRedSocial)
         {
