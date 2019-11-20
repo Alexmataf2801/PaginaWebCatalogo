@@ -39,7 +39,7 @@
                 <div style="text-align: center; margin-bottom: 20px">
                     <div class="col-md-12">
                         <div class="row" style="margin: 15px">
-                            <a style="margin:0 auto" id="btnGuardarDatosSubTipo"  onclick="GuardarSubTipoProducto();" class="btn btn-success">Guardar</a>
+                            <a style="margin:0 auto" id="btnGuardarDatosSubTipo" onclick="GuardarSubTipoProducto();" class="btn btn-success">Guardar</a>
                         </div>
                     </div>
                 </div>
@@ -48,4 +48,20 @@
         </div>
     </div>
 </div>
-
+<!--INICIO MODAL CORRECTO-->
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalCorrectoAgrSubTip">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#5CB85C;">
+                <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
+            </div>
+            <div class="modal-body">
+                <p id="msjCorrectoAgrSubTip" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <a type="button" style="margin:0 auto" onclick="RedireccionarSubTip()" class="btn btn-success" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL CORRECTO-->

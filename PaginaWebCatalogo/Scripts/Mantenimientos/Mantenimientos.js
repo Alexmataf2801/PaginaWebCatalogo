@@ -166,8 +166,8 @@ function GuardarSubTipoProducto() {
         success: function (Info) {
 
             if (Info) {
-                $("#msjCorrecto").html("SubTipo agregado con exito");
-                $('#ModalCorrecto').modal('show');
+                $("#msjCorrectoAgrSubTip").html("SubTipo agregado con exito");
+                $('#ModalCorrectoAgrSubTip').modal('show');
             }
 
         },
@@ -244,6 +244,10 @@ function RedireccionarProd() {
 
 function RedireccionarTip() {
     location.href = '/Mantenimientos/ListaTipos/';
+}
+
+function RedireccionarSubTip() {
+    location.href = '/Mantenimientos/ListaSubTipos/';
 }
 
 $(document).ready(function () {

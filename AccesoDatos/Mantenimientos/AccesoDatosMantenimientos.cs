@@ -780,6 +780,27 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
+        public static bool EliminarSubTipo(int IdSubTipo)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paEliminarSubTipo(IdSubTipo);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
+
         public static bool EliminarProducto(int IdProducto)
         {
             bool Correcto = false;

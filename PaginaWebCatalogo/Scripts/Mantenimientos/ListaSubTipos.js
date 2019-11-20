@@ -51,7 +51,7 @@
                             data: null,
                             sortable: false,
                             render: function (data, type, full) {
-                                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='EliminarSubTipo(" + data["IdSubTipo"] + ")'></a>";
+                                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarSubTipo(" + data["IdSubTipo"] + ")'></a>";
                             }
                         }
 
@@ -95,6 +95,36 @@ function DesactivarActivarSubTipo(IdSubTipo, Estado) {
     });
 
 
+}
+
+function ConfirmarEliminarSubTipo(IdSubTipo) {
+    $("#IdSubTipoSeleccionado").val(IdSubTipo);
+    $("#msjConfSubTipo").html("¿Desea eliminar este registro?");
+    $('#ModalConfirmacionSubTipo').modal('show');
+
+}
+
+function EliminarSubTipo() {
+    var Id = $("#IdSubTipoSeleccionado").val();
+    $('#ModalConfirmacionSubTipo').modal('hide');
+    if (Id !== null || Id !== undefined) {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Mantenimientos/EliminarSubTipo/",
+            data: { IdSubTipo: Id },
+            success: function () {
+                $("#msjCorrecto").html("SubTipo Eliminado correctamente");
+                $('#ModalCorrecto').modal('show');
+                ObtenerTodosSubTipos();
+            },
+            error: function () {
+                $("#msjError").html("Error al eliminar el Subtipo");
+                $('#ModalError').modal('show');
+            }
+        });
+
+    }
 }
 
 function ObtenerInfoSubTipoXId(IdSubTipo) {

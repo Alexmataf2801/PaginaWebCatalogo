@@ -184,6 +184,9 @@
         <Function Name="paEliminarRedSocial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdRedSocial" Type="int" Mode="In" />
         </Function>
+        <Function Name="paEliminarSubTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdSubTipo" Type="int" Mode="In" />
+        </Function>
         <Function Name="paEliminarTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipo" Type="int" Mode="In" />
         </Function>
@@ -529,6 +532,9 @@
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paEliminarSubTipo">
+            <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -1106,6 +1112,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paEliminarProducto" FunctionName="PaginaWebCatalogosModel.Store.paEliminarProducto" />
           <FunctionImportMapping FunctionImportName="paActualizarTipo" FunctionName="PaginaWebCatalogosModel.Store.paActualizarTipo" />
+          <FunctionImportMapping FunctionImportName="paEliminarSubTipo" FunctionName="PaginaWebCatalogosModel.Store.paEliminarSubTipo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

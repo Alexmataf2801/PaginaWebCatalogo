@@ -662,5 +662,14 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarTipo", idTipoParameter, codigoParameter, nombreParameter, descripcionParameter, usuarioUltimaModificacionParameter);
         }
+    
+        public virtual int paEliminarSubTipo(Nullable<int> idSubTipo)
+        {
+            var idSubTipoParameter = idSubTipo.HasValue ?
+                new ObjectParameter("IdSubTipo", idSubTipo) :
+                new ObjectParameter("IdSubTipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarSubTipo", idSubTipoParameter);
+        }
     }
 }

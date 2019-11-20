@@ -69,7 +69,7 @@ namespace PaginaWebCatalogo.Controllers
         public ActionResult ObtenerRedesSociales()
         {
             List<RedesSociales> ListaRedesSociales = LogicaNegocioAdministracion.ObtenerRedesSociales();
-
+            
             return PartialView("_RedesSociales", ListaRedesSociales);
 
         }

@@ -609,6 +609,22 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult EliminarSubTipo(int IdSubTipo)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.EliminarSubTipo(IdSubTipo);
+
+            }
+
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult EliminarProducto(int IdProducto)
         {
             bool Correcto = false;

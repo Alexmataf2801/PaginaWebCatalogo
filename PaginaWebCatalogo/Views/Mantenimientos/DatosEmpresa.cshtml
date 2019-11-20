@@ -3,8 +3,16 @@
     ViewBag.Title = "Datos Empresa";
     Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
 }
+<style>
+ .container .panel .panel-body .nombre{
+     padding-top:30px
+ }
+    
 
-<div class="container" style="margin: 0 auto; width: 90%">
+</style>
+
+
+<div id="qw" class="container" style="margin: 0 auto; width: 90%">
     <div class="panel panel-default" style="margin-top: 20px">
         <div class="panel-body">
             <div style="margin: 0 auto; width: 95%">
@@ -13,32 +21,32 @@
                     <hr />
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2">Nombre Empresa</label>
+                    <label style="padding-top:5px" class="col-sm-2">Nombre Empresa</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtNombreEmpresa" maxlength="150" />
+                        <input type="text" placeholder="Nombre de empresa" class="form-control" style="border-radius:4px" autocomplete="off" id="txtNombreEmpresa" maxlength="150" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2">Descripcion Empresa</label>
+                    <label style="padding-top:5px" class="col-sm-2">Descripcion Empresa</label>
                     <div class="col-sm-10">
                         @*<input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtDescripcion" maxlength="150" />*@
                         <textarea cols="5" rows="10" type="text" class="form-control" value="" style="border-radius:4px" autocomplete="off" id="txtDescripcion" maxlength="150"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2">Correo Empresa</label>
+                    <label style="padding-top:5px" class="col-sm-2">Correo Empresa</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtCorreo" maxlength="150" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2">Telefono Empresa</label>
+                    <label style="padding-top:5px" class="col-sm-2">Telefono Empresa</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtTelefono" maxlength="150" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2">Direccion Empresa</label>
+                    <label style="padding-top:5px" class="col-sm-2">Direccion Empresa</label>
                     <div class="col-sm-10">
                         @*<input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtDireccion" maxlength="150" />*@
                         <textarea cols="5" rows="10" type="text" class="form-control" value="" style="border-radius:4px" autocomplete="off" id="txtDireccion" maxlength="150"></textarea>
@@ -51,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </div>

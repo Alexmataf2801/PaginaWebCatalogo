@@ -193,6 +193,13 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.EliminarTipo(IdTipo);
         }
 
+        public static bool EliminarSubTipo(int IdSubTipo)
+        {
+
+            return AccesoDatosMantenimientos.EliminarSubTipo(IdSubTipo);
+        }
+
+
         public static bool EliminarProducto(int IdProducto)
         {
 
