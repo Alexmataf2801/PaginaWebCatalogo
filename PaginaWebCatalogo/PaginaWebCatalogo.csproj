@@ -263,7 +263,6 @@
     <Content Include="Scripts\Mantenimientos\ListarRedesSociales.js" />
     <Content Include="Scripts\Mantenimientos\ListaSubTipos.js" />
     <Content Include="Scripts\Mantenimientos\ListaTipos.js" />
-    <Content Include="Scripts\Mantenimientos\Mantenimientos.js" />
     <Content Include="Scripts\Mantenimientos\Producto.js" />
     <Content Include="Scripts\Mantenimientos\RedSocial.js" />
     <Content Include="Scripts\Mantenimientos\SubTipo.js" />

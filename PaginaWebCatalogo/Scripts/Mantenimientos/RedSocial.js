@@ -40,8 +40,8 @@ function GuardarRedSocial() {
         success: function (Info) {
             if (Info) {
                 LimpiarRedSocial();
-                $("#msjCorrecto").html("Red Social agregada con exito");
-                $('#ModalCorrecto').modal('show');
+                $("#msjCorrectoRed").html("Red Social agregada con exito");
+                $('#ModalCorrectoRed').modal('show');
             }
 
         },
@@ -53,6 +53,10 @@ function GuardarRedSocial() {
     });
 
 
+}
+
+function RedireccionarRedes() {
+    location.href = '/Mantenimientos/ListarRedes';
 }
 
 function LimpiarRedSocial() {
