@@ -5,8 +5,6 @@ using LogicaNegocio.Menu;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -373,7 +371,7 @@ namespace PaginaWebCatalogo.Controllers
                 subtipo = LogicaNegocioMantenimientos.ObtenerSubTipoXId(IdSubTipoSeleccionado);
                 subtipo.IdSubTipo = IdSubTipoSeleccionado;
                 ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                     
+
             }
 
             return View("ActualizarDatosSubTipo", subtipo);
@@ -470,6 +468,21 @@ namespace PaginaWebCatalogo.Controllers
 
             return Json(ListaProductos, JsonRequestBehavior.AllowGet);
         }
+
+        public List<ImagenesProducto> ObtenerImagenesXIdProducto(int IdProducto)
+        {
+            List<ImagenesProducto> ListaImagenes = new List<ImagenesProducto>();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                ListaImagenes = LogicaNegocioMantenimientos.ObtenerImagenesXIdProducto(IdProducto);
+
+            }
+
+            return ListaImagenes;
+        }
         #endregion
 
         #region UPDATE
@@ -537,7 +550,7 @@ namespace PaginaWebCatalogo.Controllers
         [HttpPost]
         public JsonResult ActualizarInfoEmpresa(Empresa DatosEmpresa)
         {
-            
+
             bool Correcto = false;
 
             if (Session["UsuarioLogueado"] != null)
@@ -643,12 +656,47 @@ namespace PaginaWebCatalogo.Controllers
         public JsonResult EliminarProducto(int IdProducto)
         {
             bool Correcto = false;
+            string rutaCompleta = string.Empty;
 
             if (Session["UsuarioLogueado"] != null)
             {
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
+
+                var Imagenes = ObtenerImagenesXIdProducto(IdProducto);
+
                 Correcto = LogicaNegocioMantenimientos.EliminarProducto(IdProducto);
+
+                if (Correcto)
+                {
+                    if (Imagenes.Count > 0)
+                    {
+                        var RutaBase = AppDomain.CurrentDomain.BaseDirectory;
+                        for (int i = 0; i < Imagenes.Count; i++)
+                        {
+                            rutaCompleta = RutaBase + Imagenes[i].Url.ToString().Split('~')[1];
+                            var Archivo = rutaCompleta + Imagenes[i].NombreImagen + Imagenes[i].Raiz;
+
+                            if (System.IO.File.Exists(Archivo))
+                            {
+                                System.IO.File.Delete(Archivo);
+                            }
+
+                        }
+
+                        if (Directory.Exists(rutaCompleta))
+                        {
+                            string[] files = System.IO.Directory.GetFiles(rutaCompleta);
+
+                            if (files.Length <= 0)
+                            {
+                                Directory.Delete(rutaCompleta, true);
+                            }
+                        }
+
+                    }
+
+                }
 
             }
 

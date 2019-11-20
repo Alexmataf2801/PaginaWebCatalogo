@@ -680,5 +680,14 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerSubTiposXIdTipo_Result>("paObtenerSubTiposXIdTipo", idTipoParameter);
         }
+    
+        public virtual ObjectResult<paObtenerImagenesXIdProducto_Result> paObtenerImagenesXIdProducto(Nullable<int> idProducto)
+        {
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerImagenesXIdProducto_Result>("paObtenerImagenesXIdProducto", idProductoParameter);
+        }
     }
 }

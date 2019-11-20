@@ -136,6 +136,12 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.ObtenerSubTipoXId(IdSubTipo);
         }
 
+        public static List<ImagenesProducto> ObtenerImagenesXIdProducto(int IdProducto)
+        {
+
+            return AccesoDatosMantenimientos.ObtenerImagenesXIdProducto(IdProducto);
+        }
+
         #endregion
 
         #region UPDATE 

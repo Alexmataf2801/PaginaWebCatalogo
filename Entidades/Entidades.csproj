@@ -89,6 +89,9 @@
     <Compile Include="paObtenerIconos_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerImagenesXIdProducto_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerImagenesXTipoSubtipo_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>

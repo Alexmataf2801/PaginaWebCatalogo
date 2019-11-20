@@ -205,6 +205,7 @@ namespace AccesoDatos.Mantenimientos
 
         #endregion
 
+
         #region SELECT 
 
         public static List<Icono> ObtenerIconos()
@@ -623,7 +624,40 @@ namespace AccesoDatos.Mantenimientos
             return subTipo;
         }
 
+        public static List<ImagenesProducto> ObtenerImagenesXIdProducto(int IdProducto)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<ImagenesProducto> ListaImagenes = new List<ImagenesProducto>();
+
+            try
+            {
+                var Imagenes = entities.paObtenerImagenesXIdProducto(IdProducto);
+
+                foreach (var item in Imagenes)
+                {
+                    ImagenesProducto img = new ImagenesProducto();
+                    img.IdImagen = item.IdImagen;
+                    img.NombreImagen = item.Nombre;
+                    img.Raiz = item.Raiz;
+                    img.Url = item.Url;
+                    img.Estado = item.Estado;
+
+                    ListaImagenes.Add(img);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaImagenes;
+        }
+
         #endregion
+
 
         #region UPDATE 
 
@@ -768,6 +802,7 @@ namespace AccesoDatos.Mantenimientos
         }
 
         #endregion
+
 
         #region DELETE
 
