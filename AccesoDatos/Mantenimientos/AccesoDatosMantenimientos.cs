@@ -823,6 +823,26 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
+        public static bool ActualizarProducto(Productos productos)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paActualizarProducto(productos.IdProducto, productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto), productos.TipoProducto, productos.SubTipoProducto, productos.UsuarioUltimaModificacion);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
         #endregion
 
 

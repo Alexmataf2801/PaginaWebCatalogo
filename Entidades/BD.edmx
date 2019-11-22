@@ -135,6 +135,17 @@
           <Parameter Name="Telefono" Type="int" Mode="In" />
           <Parameter Name="Direccion" Type="varchar(max)" Mode="In" />
         </Function>
+        <Function Name="paActualizarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Moneda" Type="varchar" Mode="In" />
+          <Parameter Name="PrecioUnitario" Type="decimal" Mode="In" />
+          <Parameter Name="TipoProducto" Type="int" Mode="In" />
+          <Parameter Name="SubTipo" Type="int" Mode="In" />
+          <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="paActualizarRedSocial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdRedSocial" Type="int" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -565,6 +576,17 @@
             <Parameter Name="Direccion" Mode="In" Type="String" />
             <Parameter Name="Raiz" Mode="In" Type="String" />
             <Parameter Name="Resultado" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarProducto">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Moneda" Mode="In" Type="String" />
+            <Parameter Name="PrecioUnitario" Mode="In" Type="Decimal" />
+            <Parameter Name="TipoProducto" Mode="In" Type="Int32" />
+            <Parameter Name="SubTipo" Mode="In" Type="Int32" />
+            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -1180,6 +1202,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paInsertarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paInsertarInformacionEmpresa" />
+          <FunctionImportMapping FunctionImportName="paActualizarProducto" FunctionName="PaginaWebCatalogosModel.Store.paActualizarProducto" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

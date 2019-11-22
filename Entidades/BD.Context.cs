@@ -718,5 +718,46 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarInformacionEmpresa", nombreParameter, descripcionParameter, correoElectronicoParameter, telefonoParameter, direccionParameter, raizParameter, resultado);
         }
+    
+        public virtual int paActualizarProducto(Nullable<int> idProducto, string codigo, string nombre, string descripcion, string moneda, Nullable<decimal> precioUnitario, Nullable<int> tipoProducto, Nullable<int> subTipo, string usuarioUltimaModificacion)
+        {
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var monedaParameter = moneda != null ?
+                new ObjectParameter("Moneda", moneda) :
+                new ObjectParameter("Moneda", typeof(string));
+    
+            var precioUnitarioParameter = precioUnitario.HasValue ?
+                new ObjectParameter("PrecioUnitario", precioUnitario) :
+                new ObjectParameter("PrecioUnitario", typeof(decimal));
+    
+            var tipoProductoParameter = tipoProducto.HasValue ?
+                new ObjectParameter("TipoProducto", tipoProducto) :
+                new ObjectParameter("TipoProducto", typeof(int));
+    
+            var subTipoParameter = subTipo.HasValue ?
+                new ObjectParameter("SubTipo", subTipo) :
+                new ObjectParameter("SubTipo", typeof(int));
+    
+            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
+                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
+                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarProducto", idProductoParameter, codigoParameter, nombreParameter, descripcionParameter, monedaParameter, precioUnitarioParameter, tipoProductoParameter, subTipoParameter, usuarioUltimaModificacionParameter);
+        }
     }
 }

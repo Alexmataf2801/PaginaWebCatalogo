@@ -341,6 +341,7 @@
     <Content Include="Views\Mantenimientos\ActualizarDatosEmpresa.cshtml" />
     <Content Include="Views\Mantenimientos\ActualizarDatosTipo.cshtml" />
     <Content Include="Views\Mantenimientos\ActualizarDatosSubTipo.cshtml" />
+    <Content Include="Views\Mantenimientos\ActualizarDatosProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
