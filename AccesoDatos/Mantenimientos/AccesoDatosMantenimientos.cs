@@ -203,6 +203,28 @@ namespace AccesoDatos.Mantenimientos
             return IdRelacion;
         }
 
+        public static int InsertarEmpresa(Empresa empresa, string Raiz)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ObjectParameter respuesta;
+            int Resultado = 0;
+            try
+            {
+                respuesta = new ObjectParameter("Resultado", typeof(int));
+                entities.paInsertarInformacionEmpresa(empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion,Raiz, respuesta);
+                Resultado = Convert.ToInt32(respuesta.Value.ToString());
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return Resultado;
+        }
+
         #endregion
 
 

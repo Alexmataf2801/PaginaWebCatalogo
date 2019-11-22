@@ -33,7 +33,6 @@ function ObtenerSubTiposProd() {
         data: { IdTipoSeleccionado: Id },
         url: "/Mantenimientos/ObtenerSubTipoXTipo/",
         success: function (Info) {
-
             $.each(Info, function (key, value) {
                 Opciones = Opciones + "<option value='" + value.IdSubTipo + "'>" + value.Nombre + "</option>";
             });
@@ -47,27 +46,6 @@ function ObtenerSubTiposProd() {
 
     });
 
-
-    //var Opciones = '';
-    //$.ajax({
-    //    type: "GET",
-    //    dataType: "JSON",
-    //    data: {},
-    //    url: "/Mantenimientos/ObtenerSubTipoProducto/",
-    //    success: function (Info) {
-
-    //        $.each(Info, function (key, value) {
-    //            Opciones = Opciones + "<option value='" + value.IdSubTipo + "'>" + value.Nombre + "</option>";
-    //        });
-
-    //        $("#ddlSubTipoProdMant").html(Opciones);
-    //    },
-    //    error: function (Error) {
-    //        $("#msjError").html("Error al obtener los subtipos");
-    //        $('#ModalError').modal('show');
-    //    }
-
-    //});
 }
 function GuardarProducto() {
 

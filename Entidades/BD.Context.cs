@@ -689,5 +689,34 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerImagenesXIdProducto_Result>("paObtenerImagenesXIdProducto", idProductoParameter);
         }
+    
+        public virtual int paInsertarInformacionEmpresa(string nombre, string descripcion, string correoElectronico, Nullable<int> telefono, string direccion, string raiz, ObjectParameter resultado)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var telefonoParameter = telefono.HasValue ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(int));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var raizParameter = raiz != null ?
+                new ObjectParameter("Raiz", raiz) :
+                new ObjectParameter("Raiz", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarInformacionEmpresa", nombreParameter, descripcionParameter, correoElectronicoParameter, telefonoParameter, direccionParameter, raizParameter, resultado);
+        }
     }
 }

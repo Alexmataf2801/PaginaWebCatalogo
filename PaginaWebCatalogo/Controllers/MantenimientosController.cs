@@ -292,6 +292,69 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult InsertarEmpresa()
+        {
+            string Ruta = string.Empty;
+            string fname = string.Empty;
+            int ValorRespuesta = 0;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+
+                if (Request.Files.Count > 0)
+                {
+                    try
+                    {
+                        Empresa empresa = new Empresa();
+                        empresa.Nombre = Request.Form["Nombre"];
+                        empresa.Descripcion = Request.Form["Descripcion"];
+                        empresa.CorreoElectronico = Request.Form["Correo"];
+                        empresa.Telefono = Convert.ToInt32(Request.Form["Telefono"]);
+                        empresa.Direccion = Request.Form["Direccion"];
+
+                        HttpFileCollectionBase files = Request.Files;
+                        HttpPostedFileBase file = files[0];
+                        fname = file.FileName;
+                        string RutaBase = AppDomain.CurrentDomain.BaseDirectory;
+                        string Raiz = "." + fname.Split('.')[1];
+                        Ruta = RutaBase + "//Content//";
+
+                        ValorRespuesta = LogicaNegocioMantenimientos.InsertarEmpresa(empresa, Raiz);
+
+                        if (ValorRespuesta == 1)
+                        {
+                            string Imagen = Ruta + "//Logo" + Raiz;
+                            file.SaveAs(Imagen);
+
+                            return Json(true, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            return Json(false, JsonRequestBehavior.AllowGet);
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        return Json(false, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
 
         #endregion
 

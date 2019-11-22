@@ -259,6 +259,7 @@
     <Content Include="Scripts\Mantenimientos\ActualizarDatosEmpresa.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarSubTipo.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarTipo.js" />
+    <Content Include="Scripts\Mantenimientos\Empresa.js" />
     <Content Include="Scripts\Mantenimientos\ListaProductos.js" />
     <Content Include="Scripts\Mantenimientos\ListarRedesSociales.js" />
     <Content Include="Scripts\Mantenimientos\ListaSubTipos.js" />

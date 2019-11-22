@@ -61,6 +61,12 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.InsertarRelacionImagenProd(Imagen);
         }
 
+        public static int InsertarEmpresa(Empresa empresa, string Raiz)
+        {
+
+            return AccesoDatosMantenimientos.InsertarEmpresa(empresa, Raiz);
+        }
+
         #endregion
 
         #region SELECT 
@@ -141,6 +147,7 @@ namespace LogicaNegocio.Mantenimientos
 
             return AccesoDatosMantenimientos.ObtenerImagenesXIdProducto(IdProducto);
         }
+
 
         #endregion
 

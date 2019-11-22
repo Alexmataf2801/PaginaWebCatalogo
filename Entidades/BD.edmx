@@ -197,6 +197,15 @@
           <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
           <Parameter Name="IdImagen" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="paInsertarInformacionEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="int" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Raiz" Type="varchar" Mode="In" />
+          <Parameter Name="Resultado" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="paInsertarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
@@ -546,7 +555,16 @@
           <Parameter Name="IdTipo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerImagenesXIdProducto" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerImagenesXIdProducto_Result)">
-            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarInformacionEmpresa">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Raiz" Mode="In" Type="String" />
+            <Parameter Name="Resultado" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -1161,6 +1179,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paInsertarInformacionEmpresa" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
