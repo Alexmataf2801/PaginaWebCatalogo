@@ -35,7 +35,7 @@
                 <div style="text-align: center; margin-bottom: 20px">
                     <div class="col-md-12">
                         <div class="row" style="margin: 15px">
-                            <button style="margin:0 auto" onclick="ActualizarDatosEmpresa(@Model.IdRegistro)" class="btn btn-success">Guardar</button>
+                            <a style="margin:0 auto" onclick="ActualizarDatosEmpresa(@Model.IdRegistro)" class="btn btn-success">Guardar</a>
                         </div>
                     </div>
                 </div>
@@ -44,5 +44,24 @@
         </div>
     </div>
 </div>
+
+<!--INICIO MODAL CORRECTO-->
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalCorrectoActEmpresa">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#5CB85C;">
+                <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
+            </div>
+            <div class="modal-body">
+                <p id="msjCorrectoActEmpresa" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <a type="button" style="margin:0 auto" onclick="RedireccionarIndex()" class="btn btn-success" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL CORRECTO-->
+
 <script src="~/Js/Administracion/jquery.min.js"></script>
 <script src="~/Scripts/Mantenimientos/ActualizarDatosEmpresa.js"></script>

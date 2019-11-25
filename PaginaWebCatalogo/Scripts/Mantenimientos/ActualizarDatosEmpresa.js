@@ -16,13 +16,18 @@ function ActualizarDatosEmpresa(IdEmpresa) {
         url: "/Mantenimientos/ActualizarInfoEmpresa",
         data: { DatosEmpresa: empresa },
         success: function (data) {
-            $("#msjCorrecto").html("Información actualizada correctamente");
-            $('#ModalCorrecto').modal('show');
+            $("#msjCorrectoActEmpresa").html("Información actualizada correctamente");
+            $('#ModalCorrectoActEmpresa').modal('show');
 
         },
         error: function (error) {
-           alert("Error")
+            $("#msjError").html("Error al actualizar los datos de la empresa");
+            $('#ModalError').modal('show');
         }
     });
 
+}
+
+function RedireccionarIndex() {
+    location.href = '/Mantenimientos/Index/';
 }
