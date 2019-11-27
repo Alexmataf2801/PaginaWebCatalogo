@@ -678,6 +678,67 @@ namespace AccesoDatos.Mantenimientos
             return ListaImagenes;
         }
 
+        public static Productos ObtenerProductoXId(int IdProducto)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            Productos productos = new Productos();
+
+            try
+            {
+                var Info = entities.paObtenerInfoProductoXId(IdProducto);
+
+                foreach (var item in Info)
+                {
+                    productos.Codigo = item.Codigo;
+                    productos.Nombre = item.Nombre;
+                    productos.Descripcion = item.Descripcion;
+                    productos.Moneda = item.Moneda;
+                    productos.PrecioProducto = item.PrecioProducto.ToString();
+                    productos.TipoProducto = item.TipoProducto;
+                    productos.SubTipoProducto = item.SubTipo;
+                    productos.Estado = item.Estado;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return productos;
+        }
+
+        public static ImagenesProducto ObtenerImagenXId(int IdImagen)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ImagenesProducto img = new ImagenesProducto();
+
+            try
+            {
+                var Info = entities.paObtenerImagenXId(IdImagen);
+
+                foreach (var item in Info)
+                {
+                    img.NombreImagen = item.Nombre;
+                    img.Raiz = item.Raiz;
+                    img.Url = item.Url;
+                    img.Estado = item.Estado;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return img;
+        }
+
         #endregion
 
 
@@ -908,7 +969,6 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
-
         public static bool EliminarProducto(int IdProducto)
         {
             bool Correcto = false;
@@ -928,6 +988,27 @@ namespace AccesoDatos.Mantenimientos
 
             return Correcto;
         }
+
+        public static bool EliminarImagenXId(int IdImagen)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paEliminarImagenXId(IdImagen);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
 
         #endregion
 

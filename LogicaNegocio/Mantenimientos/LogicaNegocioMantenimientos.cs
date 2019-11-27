@@ -148,6 +148,17 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.ObtenerImagenesXIdProducto(IdProducto);
         }
 
+        public static Productos ObtenerProductoXId(int IdProducto)
+        {
+
+            return AccesoDatosMantenimientos.ObtenerProductoXId(IdProducto);
+        }
+
+        public static ImagenesProducto ObtenerImagenXId(int IdImagen)
+        {
+
+            return AccesoDatosMantenimientos.ObtenerImagenXId(IdImagen);
+        }
 
         #endregion
 
@@ -223,11 +234,16 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.EliminarSubTipo(IdSubTipo);
         }
 
-
         public static bool EliminarProducto(int IdProducto)
         {
 
             return AccesoDatosMantenimientos.EliminarProducto(IdProducto);
+        }
+
+        public static bool EliminarImagenXId(int IdImagen)
+        {
+
+            return AccesoDatosMantenimientos.EliminarImagenXId(IdImagen);
         }
 
         #endregion

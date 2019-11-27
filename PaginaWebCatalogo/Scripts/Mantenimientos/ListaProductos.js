@@ -103,6 +103,12 @@ function ConfirmarEliminarProducto(IdProducto) {
 
 }
 
+function EditarProducto(Id) {
+    sessionStorage.setItem("IdProdEditar", Id);
+    window.location.href = "/Mantenimientos/ActualizarProducto";
+}
+
+
 
 function EliminarProducto() {
     var Id = $("#IdProductoSeleccionado").val();

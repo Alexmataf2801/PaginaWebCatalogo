@@ -146,8 +146,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\datatables.min.css" />
     <Content Include="Content\easy-responsive-tabs.css" />
+    <Content Include="Content\Equis.png" />
     <Content Include="Content\Error.png" />
     <Content Include="Content\ErrorImagen.jpg" />
+    <Content Include="Content\EstilosBotonesImagenes.css" />
     <Content Include="Content\flexslider.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
@@ -257,6 +259,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\Administracion\Administracion.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarDatosEmpresa.js" />
+    <Content Include="Scripts\Mantenimientos\ActualizarDatosProducto.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarSubTipo.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarTipo.js" />
     <Content Include="Scripts\Mantenimientos\Empresa.js" />

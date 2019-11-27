@@ -14,7 +14,7 @@ namespace Entidades
         public string Descripcion { get; set; }
         public string Moneda { get; set; }
         public string PrecioProducto { get; set; }
-        public int TipoProducto { get; set; }
+        public int? TipoProducto { get; set; }
         public int? SubTipoProducto { get; set; }
         public bool Estado { get; set; }
         public string UsuarioCreacion { get; set; }

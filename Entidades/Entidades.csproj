@@ -95,6 +95,12 @@
     <Compile Include="paObtenerImagenesXTipoSubtipo_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerImagenXId_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerInfoProductoXId_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerInformacionEmpresa_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
@@ -149,6 +155,7 @@
     <Compile Include="paObtenerTodosTipos_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductoCompleto.cs" />
     <Compile Include="Productos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedesSociales.cs" />

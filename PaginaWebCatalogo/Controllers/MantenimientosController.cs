@@ -71,6 +71,13 @@ namespace PaginaWebCatalogo.Controllers
             return View();
         }
 
+        public ActionResult ActualizarProducto()
+        {
+
+            Iniciarlizar();
+            return View("ActualizarDatosProducto");
+        }
+
         [HttpGet]
         public ActionResult SubTipo()
         {
@@ -423,6 +430,29 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
+        public JsonResult ObtenerProductoXId(int IdProducto)
+        {
+            
+            ProductoCompleto productoCompleto = new ProductoCompleto();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Productos producto = new Productos();
+                producto = LogicaNegocioMantenimientos.ObtenerProductoXId(IdProducto);
+                producto.IdProducto = IdProducto;
+                List<ImagenesProducto> Imagenes = ObtenerImagenesXIdProducto(IdProducto);
+                productoCompleto.productos = producto;
+                productoCompleto.ListaImagenes = Imagenes;
+                ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+            }
+
+            return Json(productoCompleto,JsonRequestBehavior.AllowGet);
+
+        }
+
         public ActionResult ObtenerSubTipoXId(int IdSubTipoSeleccionado)
         {
             SubTipoProducto subtipo = new SubTipoProducto();
@@ -545,6 +575,24 @@ namespace PaginaWebCatalogo.Controllers
             }
 
             return ListaImagenes;
+        }
+
+        public JsonResult ObtenerImagenXId(int IdImagen)
+        {
+
+            ImagenesProducto imagen = new ImagenesProducto();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                imagen = LogicaNegocioMantenimientos.ObtenerImagenXId(IdImagen);
+                ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+            }
+
+            return Json(imagen, JsonRequestBehavior.AllowGet);
+
         }
         #endregion
 
@@ -778,6 +826,22 @@ namespace PaginaWebCatalogo.Controllers
                     }
 
                 }
+
+            }
+
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EliminarImagen(int IdImagen)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.EliminarImagenXId(IdImagen);
 
             }
 

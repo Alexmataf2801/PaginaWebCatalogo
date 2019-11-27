@@ -185,6 +185,9 @@
           <Parameter Name="IdTipo" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
+        <Function Name="paEliminarImagenXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdImagen" Type="int" Mode="In" />
+        </Function>
         <Function Name="paEliminarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdProducto" Type="int" Mode="In" />
         </Function>
@@ -304,6 +307,12 @@
         <Function Name="paObtenerImagenesXTipoSubtipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipoProducto" Type="int" Mode="In" />
           <Parameter Name="IdSubTipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerImagenXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdImagen" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerInfoProductoXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
         </Function>
         <Function Name="paObtenerInformacionEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerInfoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -588,6 +597,15 @@
             <Parameter Name="SubTipo" Mode="In" Type="Int32" />
             <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerInfoProductoXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerInfoProductoXId_Result)">
+          <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paEliminarImagenXId">
+            <Parameter Name="IdImagen" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerImagenXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerImagenXId_Result)">
+            <Parameter Name="IdImagen" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -826,6 +844,22 @@
         </ComplexType>
         <ComplexType Name="paObtenerImagenesXIdProducto_Result">
           <Property Type="Int32" Name="IdImagen" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="Boolean" Name="Estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerInfoProductoXId_Result">
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="TipoProducto" Nullable="true" />
+          <Property Type="Int32" Name="SubTipo" Nullable="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="paObtenerImagenXId_Result">
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
@@ -1203,6 +1237,31 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paInsertarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paInsertarInformacionEmpresa" />
           <FunctionImportMapping FunctionImportName="paActualizarProducto" FunctionName="PaginaWebCatalogosModel.Store.paActualizarProducto" />
+          <FunctionImportMapping FunctionImportName="paObtenerInfoProductoXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerInfoProductoXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerInfoProductoXId_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="TipoProducto" ColumnName="TipoProducto" />
+                <ScalarProperty Name="SubTipo" ColumnName="SubTipo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paEliminarImagenXId" FunctionName="PaginaWebCatalogosModel.Store.paEliminarImagenXId" />
+          <FunctionImportMapping FunctionImportName="paObtenerImagenXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerImagenXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerImagenXId_Result">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

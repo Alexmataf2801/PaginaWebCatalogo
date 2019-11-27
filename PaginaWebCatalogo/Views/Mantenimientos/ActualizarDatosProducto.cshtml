@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "ActualizarDatosProducto";
     Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
 }
@@ -44,6 +43,11 @@
                     <select class="form-control" id="ddlActSubTipoProdMant"></select>
                 </div>
                 <div class="form-group row">
+                    <label>Imagenes Actuales</label>
+                    <div id="ImagenesProductos">
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label>Imagenes</label>
                     <input id="Imagenes" type="file" multiple>
                 </div>
@@ -59,3 +63,5 @@
     </div>
 </div>
 
+<script src="~/Js/Administracion/jquery.min.js"></script>
+<script src="~/Scripts/Mantenimientos/ActualizarDatosProducto.js"></script>

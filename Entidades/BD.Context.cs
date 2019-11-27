@@ -759,5 +759,32 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarProducto", idProductoParameter, codigoParameter, nombreParameter, descripcionParameter, monedaParameter, precioUnitarioParameter, tipoProductoParameter, subTipoParameter, usuarioUltimaModificacionParameter);
         }
+    
+        public virtual ObjectResult<paObtenerInfoProductoXId_Result> paObtenerInfoProductoXId(Nullable<int> idProducto)
+        {
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerInfoProductoXId_Result>("paObtenerInfoProductoXId", idProductoParameter);
+        }
+    
+        public virtual int paEliminarImagenXId(Nullable<int> idImagen)
+        {
+            var idImagenParameter = idImagen.HasValue ?
+                new ObjectParameter("IdImagen", idImagen) :
+                new ObjectParameter("IdImagen", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarImagenXId", idImagenParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerImagenXId_Result> paObtenerImagenXId(Nullable<int> idImagen)
+        {
+            var idImagenParameter = idImagen.HasValue ?
+                new ObjectParameter("IdImagen", idImagen) :
+                new ObjectParameter("IdImagen", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerImagenXId_Result>("paObtenerImagenXId", idImagenParameter);
+        }
     }
 }
