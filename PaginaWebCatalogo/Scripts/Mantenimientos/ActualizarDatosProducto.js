@@ -11,6 +11,7 @@
             $("#txtActDescripProd").val(data.productos.Descripcion);
             $("#txtActPrecioUnitProd").val(data.productos.PrecioProducto);
             $("#ddlTipMoneda").val(data.productos.Moneda);
+            $("#IdProdEdit").val(Id);
             ObtenerTiposProd(data.productos.TipoProducto);
             $("#ddlActTipoProdMant").val(data.productos.TipoProducto);
             var Imagenes = ObtenerImagenes(data.ListaImagenes);
@@ -23,6 +24,70 @@
             $('#ModalError').modal('show');
         }
     });
+
+}
+
+function RedireccionarProd() {
+    location.href = '/Mantenimientos/ListaProductos/';
+}
+
+function ActualizarProducto() {
+
+    // Checking whether FormData is available in browser  
+    if (window.FormData !== undefined) {
+
+
+        var fileUpload = $("#ImagenesAct").get(0);
+
+        var files = fileUpload.files;
+
+        // Create FormData object  
+        var fileData = new FormData();
+
+        // Looping over all files and add it to FormData object  
+        for (var i = 0; i < files.length; i++) {
+            fileData.append(files[i].name, files[i]);
+        }
+
+        fileData.append('IdProducto', $("#IdProdEdit").val());
+        fileData.append('Codigo', $("#txtActCodProd").val());
+        fileData.append('Nombre', $("#txtActNomProd").val());
+        fileData.append('Descripcion', $("#txtActDescripProd").val());
+        fileData.append('Moneda', $("#ddlTipMoneda").val());
+        fileData.append('Precio', $("#txtActPrecioUnitProd").val());
+        fileData.append('TipoProd', $("#ddlActTipoProdMant").val());
+        fileData.append('SubTipo', $("#ddlActSubTipoProdMant").val());
+        fileData.append('TextoTipo', $("#ddlActTipoProdMant option:selected").text());
+        fileData.append('TextoSubTipo', $("#ddlActSubTipoProdMant option:selected").text());
+
+
+        $.ajax({
+            url: '/Mantenimientos/ActualizarProductoInfo',
+            type: "POST",
+            contentType: false, // Not to set any content header  
+            processData: false, // Not to process data  
+            data: fileData,
+            success: function (Info) {
+
+                if (Info) {
+                    $("#msjCorrectoActProdRedirect").html("Producto actualizado con exito");
+                    $('#ModalCorrectoActProdRedirect').modal('show');
+
+                } else {
+                    $("#msjError").html("No se pudo actualizar el producto o no adjunto ninguna imagen.");
+                    $('#ModalError').modal('show');
+                }
+
+            },
+            error: function (Error) {
+                $("#msjError").html("Error al actualizar el producto");
+                $('#ModalError').modal('show');
+            }
+        });
+    } else {
+        $("#msjError").html("Error al ejecutar la accion solicitada");
+        $('#ModalError').modal('show');
+    }
 
 }
 

@@ -730,19 +730,100 @@ namespace PaginaWebCatalogo.Controllers
         }
 
         [HttpPost]
-        public JsonResult ActualizarProducto(Productos productos)
+        public JsonResult ActualizarProductoInfo()
         {
 
             bool Correcto = false;
+            string TextoTipo = string.Empty;
+            string TextoSubTipo = string.Empty;
 
-            if (Session["UsuarioLogueado"] != null)
+            try
             {
-                Usuario usuario = new Usuario();
-                usuario = (Usuario)Session["UsuarioLogueado"];
-                productos.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                Correcto = LogicaNegocioMantenimientos.ActualizarProducto(productos);
+                if (Session["UsuarioLogueado"] != null)
+                {
+                    Usuario usuario = new Usuario();
+                    usuario = (Usuario)Session["UsuarioLogueado"];
 
+                    if (Request.Files.Count > 0)
+                    {
+                        Productos productos = new Productos();
+
+                        productos.IdProducto = Convert.ToInt32(Request.Form["IdProducto"]);
+                        productos.Codigo = Request.Form["Codigo"];
+                        productos.Nombre = Request.Form["Nombre"];
+                        productos.Descripcion = Request.Form["Descripcion"];
+                        productos.Moneda = Request.Form["Moneda"];
+                        productos.PrecioProducto = Request.Form["Precio"];
+                        productos.TipoProducto = Convert.ToInt32(Request.Form["TipoProd"]);
+                        productos.SubTipoProducto = Convert.ToInt32(Request.Form["SubTipo"]);
+                        productos.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+                        Correcto = LogicaNegocioMantenimientos.ActualizarProducto(productos);
+
+                        HttpFileCollectionBase files = Request.Files;
+
+                        for (int i = 0; i < files.Count; i++)
+                        {
+
+                            HttpPostedFileBase file = files[i];
+                            string fname;
+
+                            fname = file.FileName;
+                            TextoTipo = Request.Form["TextoTipo"];
+                            TextoSubTipo = Request.Form["TextoSubTipo"];
+
+                            if (productos.IdProducto > 0)
+                            {
+
+                                ImagenesProducto imagen = new ImagenesProducto();
+                                imagen.NombreImagen = fname.Split('.')[0];
+                                imagen.Raiz = "." + fname.Split('.')[1];
+                                imagen.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                                imagen.Url = "~//Imagenes//" + TextoTipo + "/" + TextoSubTipo + "/";
+                                imagen.IdProducto = productos.IdProducto;
+                                imagen.IdUsuario = usuario.IdUsuario;
+
+                                int IdImagen = LogicaNegocioMantenimientos.InsertarImagen(imagen);
+
+                                imagen.IdImagen = IdImagen;
+
+                                int Relacion = LogicaNegocioMantenimientos.InsertarRelacionImagenProd(imagen);
+
+
+                            }
+
+                            string Ruta = Path.Combine(Server.MapPath("~/Imagenes/"), TextoTipo + "/" + TextoSubTipo + "/");
+
+                            if (Directory.Exists(Ruta))
+                            {
+                                file.SaveAs(Ruta + "/" + fname);
+                                Correcto = true;
+                            }
+                            else
+                            {
+                                Directory.CreateDirectory(Ruta);
+                                file.SaveAs(Ruta + "/" + fname);
+                                Correcto = true;
+
+                            }
+                        }
+
+
+                    }
+
+
+
+
+
+
+                }
             }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+
 
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
@@ -865,7 +946,8 @@ namespace PaginaWebCatalogo.Controllers
                 Correcto = LogicaNegocioMantenimientos.EliminarImagenXId(IdImagen);
 
 
-                if (Correcto) {
+                if (Correcto)
+                {
                     var RutaBase = AppDomain.CurrentDomain.BaseDirectory;
                     string Ruta = RutaBase + imagen.Url.ToString().Split('~')[1] + imagen.NombreImagen + imagen.Raiz;
 
