@@ -58,8 +58,8 @@ function ObtenerImagenes(Imagenes) {
     if (Imagenes.length > 0) {
         $.each(Imagenes, function (key, value) {
             Resultado = Resultado + "<div id='" + value.IdImagen + "' class='img-wraps'>";
-            Resultado = Resultado + "<a onClick='EliminarImagenActualizar(" + value.IdImagen + ")'><img class='closes' src='/Content/Equis.png' /></a>";
-            Resultado = Resultado + "<img src='" + value.Url.replace('~/', '') + value.NombreImagen + value.Raiz + "' style='max-height: 200px; max-width: 200px' />";
+            Resultado = Resultado + "<a onClick='ConfirmarEliminacionImagen(" + value.IdImagen + ")'><img class='closes' src='/Content/Equis.png' /></a>";
+            Resultado = Resultado + "<img id='" + value.IdImagen + "' src='" + value.Url.replace('~/', '') + value.NombreImagen + value.Raiz + "' style='max-height: 200px; max-width: 200px' />";
             Resultado = Resultado + " </div>";
 
         });
@@ -67,7 +67,7 @@ function ObtenerImagenes(Imagenes) {
         Resultado = "<label>No hay imgenes asociadas al producto</label>";
     }
 
-   
+
 
     return Resultado;
 }
@@ -96,8 +96,36 @@ function ObtenerSubTiposProd(IdTipo) {
 
 }
 
-function EliminarImagenActualizar(id) {
-    $("#" + id).remove();
+function ConfirmarEliminacionImagen(IdImagen) {
+    $("#IdImgSeleccionada").val(IdImagen);
+    $("#msjInfoProd").html("¿Desea eliminar esta imagen?<br/> Si continua con la acción no se podra revertir y la imagen no se podra recuperar y deberá subir otra.");
+    $('#ModalInformacionProd').modal('show');
+}
+
+function EliminarImagenActualizar() {
+    var Id = $("#IdImgSeleccionada").val();
+
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        data: { IdImagen: Id },
+        url: "/Mantenimientos/EliminarImagen/",
+        success: function (Info) {
+            if (Info) {
+                $("#" + Id).remove();
+                $("#msjCorrectoActProd").html("Imagen eliminada correctamente");
+                $('#ModalCorrectoActProd').modal('show');
+            } else {
+                $("#msjError").html("No se pudo eliminar la imagen");
+                $('#ModalError').modal('show');
+            }
+        },
+        error: function (Error) {
+            $("#msjError").html("Error al eliminar la imagen");
+            $('#ModalError').modal('show');
+        }
+
+    });
 }
 
 $("#ddlActTipoProdMant").change(function () {

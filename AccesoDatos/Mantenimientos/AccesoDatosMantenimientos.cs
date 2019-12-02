@@ -739,6 +739,39 @@ namespace AccesoDatos.Mantenimientos
             return img;
         }
 
+        public static Imagen ObtenerRutaImagen(int IdImagen)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            Imagen img = new Imagen();
+
+            try
+            {
+                var Info = entities.paObtenerRutaImagen(IdImagen);
+
+                foreach (var item in Info)
+                {
+                    img.NombreImagen = item.Nombre;
+                    img.Raiz = item.Raiz;
+                    img.Url = item.Url;
+                    img.Estado = item.Estado;
+                    img.IdTipo = item.IdTipo;
+                    img.NombreTipo = item.Tipo;
+                    img.IdSubTipo = item.IdSubTipo;
+                    img.NombreSubTipo = item.SubTipo;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return img;
+        }
+
         #endregion
 
 

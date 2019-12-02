@@ -331,6 +331,9 @@
         <Function Name="paObtenerRedSocial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdRedSocial" Type="int" Mode="In" />
         </Function>
+        <Function Name="paObtenerRutaImagen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdImagen" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerSubTipoProdActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerSubTiposXIdTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipo" Type="int" Mode="In" />
@@ -601,9 +604,12 @@
           <Parameter Name="IdProducto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paEliminarImagenXId">
-            <Parameter Name="IdImagen" Mode="In" Type="Int32" />
+          <Parameter Name="IdImagen" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerImagenXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerImagenXId_Result)">
+          <Parameter Name="IdImagen" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerRutaImagen" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerRutaImagen_Result)">
             <Parameter Name="IdImagen" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -864,6 +870,17 @@
           <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
           <Property Type="Boolean" Name="Estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerRutaImagen_Result">
+          <Property Type="Int32" Name="IdImagen" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="Boolean" Name="Estado" Nullable="true" />
+          <Property Type="Int32" Name="IdTipo" Nullable="false" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="IdSubTipo" Nullable="false" />
+          <Property Type="String" Name="SubTipo" Nullable="false" MaxLength="150" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1259,6 +1276,21 @@
                 <ScalarProperty Name="Raiz" ColumnName="Raiz" />
                 <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerRutaImagen" FunctionName="PaginaWebCatalogosModel.Store.paObtenerRutaImagen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerRutaImagen_Result">
+                <ScalarProperty Name="IdImagen" ColumnName="IdImagen" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="IdSubTipo" ColumnName="IdSubTipo" />
+                <ScalarProperty Name="SubTipo" ColumnName="SubTipo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

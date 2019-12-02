@@ -63,5 +63,42 @@
     </div>
 </div>
 
+<!--INICIO MODAL INFORMACION-->
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalInformacionProd">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#0074D9;">
+                <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
+            </div>
+            <div class="modal-body">
+                <p id="msjInfoProd" style="text-align:center"></p>
+                <input type="hidden" id="IdImgSeleccionada" />
+            </div>
+            <div class="modal-footer">
+                <a id="ConfirmacionBorrar" onclick="EliminarImagenActualizar()" type="button" class="btn btn-primary" data-dismiss="modal">Si</a>
+                <a type="button" class="btn btn-primary" data-dismiss="modal">No</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL INFORMACION-->
+<!--INICIO MODAL CORRECTO-->
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalCorrectoActProd">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#5CB85C;">
+                <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
+            </div>
+            <div class="modal-body">
+                <p id="msjCorrectoActProd" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <a type="button" style="margin:0 auto" onclick="RedireccionarListaProd()" class="btn btn-success" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL CORRECTO-->
+
 <script src="~/Js/Administracion/jquery.min.js"></script>
 <script src="~/Scripts/Mantenimientos/ActualizarDatosProducto.js"></script>

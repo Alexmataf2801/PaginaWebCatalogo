@@ -72,6 +72,7 @@
     <Compile Include="Carrito.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Icono.cs" />
+    <Compile Include="Imagen.cs" />
     <Compile Include="ImagenesProducto.cs" />
     <Compile Include="Index.cs" />
     <Compile Include="Login.cs" />
@@ -123,6 +124,9 @@
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerRedSocial_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerRutaImagen_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerSubTipoProdActivo_Result.cs">

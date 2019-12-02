@@ -432,7 +432,7 @@ namespace PaginaWebCatalogo.Controllers
 
         public JsonResult ObtenerProductoXId(int IdProducto)
         {
-            
+
             ProductoCompleto productoCompleto = new ProductoCompleto();
 
             if (Session["UsuarioLogueado"] != null)
@@ -449,7 +449,7 @@ namespace PaginaWebCatalogo.Controllers
 
             }
 
-            return Json(productoCompleto,JsonRequestBehavior.AllowGet);
+            return Json(productoCompleto, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -594,6 +594,24 @@ namespace PaginaWebCatalogo.Controllers
             return Json(imagen, JsonRequestBehavior.AllowGet);
 
         }
+
+        public Imagen ObtenerRutaImagen(int IdImagen)
+        {
+            Imagen imagen = new Imagen();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                imagen = LogicaNegocioMantenimientos.ObtenerRutaImagen(IdImagen);
+
+            }
+
+            return imagen;
+
+        }
+
+
         #endregion
 
         #region UPDATE
@@ -841,25 +859,33 @@ namespace PaginaWebCatalogo.Controllers
             {
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
+
+                Imagen imagen = ObtenerRutaImagen(IdImagen);
+
                 Correcto = LogicaNegocioMantenimientos.EliminarImagenXId(IdImagen);
 
+
+                if (Correcto) {
+                    var RutaBase = AppDomain.CurrentDomain.BaseDirectory;
+                    string Ruta = RutaBase + imagen.Url.ToString().Split('~')[1] + imagen.NombreImagen + imagen.Raiz;
+
+                    if (System.IO.File.Exists(Ruta))
+                    {
+                        System.IO.File.Delete(Ruta);
+                        Correcto = true;
+                    }
+                    else
+                    {
+                        Correcto = false;
+                    }
+
+                }
             }
 
 
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
         #endregion
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

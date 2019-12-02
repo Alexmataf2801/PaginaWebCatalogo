@@ -160,6 +160,12 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.ObtenerImagenXId(IdImagen);
         }
 
+        public static Imagen ObtenerRutaImagen(int IdImagen)
+        {
+
+            return AccesoDatosMantenimientos.ObtenerRutaImagen(IdImagen);
+        }
+
         #endregion
 
         #region UPDATE 

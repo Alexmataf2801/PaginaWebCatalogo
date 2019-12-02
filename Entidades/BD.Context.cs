@@ -786,5 +786,14 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerImagenXId_Result>("paObtenerImagenXId", idImagenParameter);
         }
+    
+        public virtual ObjectResult<paObtenerRutaImagen_Result> paObtenerRutaImagen(Nullable<int> idImagen)
+        {
+            var idImagenParameter = idImagen.HasValue ?
+                new ObjectParameter("IdImagen", idImagen) :
+                new ObjectParameter("IdImagen", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerRutaImagen_Result>("paObtenerRutaImagen", idImagenParameter);
+        }
     }
 }
