@@ -744,72 +744,70 @@ namespace PaginaWebCatalogo.Controllers
                     Usuario usuario = new Usuario();
                     usuario = (Usuario)Session["UsuarioLogueado"];
 
-                    if (Request.Files.Count > 0)
+                    Productos productos = new Productos();
+
+                    productos.IdProducto = Convert.ToInt32(Request.Form["IdProducto"]);
+                    productos.Codigo = Request.Form["Codigo"];
+                    productos.Nombre = Request.Form["Nombre"];
+                    productos.Descripcion = Request.Form["Descripcion"];
+                    productos.Moneda = Request.Form["Moneda"];
+                    productos.PrecioProducto = Request.Form["Precio"];
+                    productos.TipoProducto = Convert.ToInt32(Request.Form["TipoProd"]);
+                    productos.SubTipoProducto = Convert.ToInt32(Request.Form["SubTipo"]);
+                    productos.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+                    Correcto = LogicaNegocioMantenimientos.ActualizarProducto(productos);
+
+                    HttpFileCollectionBase files = Request.Files;
+
+                    for (int i = 0; i < files.Count; i++)
                     {
-                        Productos productos = new Productos();
 
-                        productos.IdProducto = Convert.ToInt32(Request.Form["IdProducto"]);
-                        productos.Codigo = Request.Form["Codigo"];
-                        productos.Nombre = Request.Form["Nombre"];
-                        productos.Descripcion = Request.Form["Descripcion"];
-                        productos.Moneda = Request.Form["Moneda"];
-                        productos.PrecioProducto = Request.Form["Precio"];
-                        productos.TipoProducto = Convert.ToInt32(Request.Form["TipoProd"]);
-                        productos.SubTipoProducto = Convert.ToInt32(Request.Form["SubTipo"]);
-                        productos.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        HttpPostedFileBase file = files[i];
+                        string fname;
 
-                        Correcto = LogicaNegocioMantenimientos.ActualizarProducto(productos);
+                        fname = file.FileName;
+                        TextoTipo = Request.Form["TextoTipo"];
+                        TextoSubTipo = Request.Form["TextoSubTipo"];
 
-                        HttpFileCollectionBase files = Request.Files;
-
-                        for (int i = 0; i < files.Count; i++)
+                        if (productos.IdProducto > 0)
                         {
 
-                            HttpPostedFileBase file = files[i];
-                            string fname;
+                            ImagenesProducto imagen = new ImagenesProducto();
+                            imagen.NombreImagen = fname.Split('.')[0];
+                            imagen.Raiz = "." + fname.Split('.')[1];
+                            imagen.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            imagen.Url = "~//Imagenes//" + TextoTipo + "/" + TextoSubTipo + "/";
+                            imagen.IdProducto = productos.IdProducto;
+                            imagen.IdUsuario = usuario.IdUsuario;
 
-                            fname = file.FileName;
-                            TextoTipo = Request.Form["TextoTipo"];
-                            TextoSubTipo = Request.Form["TextoSubTipo"];
+                            int IdImagen = LogicaNegocioMantenimientos.InsertarImagen(imagen);
 
-                            if (productos.IdProducto > 0)
-                            {
+                            imagen.IdImagen = IdImagen;
 
-                                ImagenesProducto imagen = new ImagenesProducto();
-                                imagen.NombreImagen = fname.Split('.')[0];
-                                imagen.Raiz = "." + fname.Split('.')[1];
-                                imagen.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                                imagen.Url = "~//Imagenes//" + TextoTipo + "/" + TextoSubTipo + "/";
-                                imagen.IdProducto = productos.IdProducto;
-                                imagen.IdUsuario = usuario.IdUsuario;
-
-                                int IdImagen = LogicaNegocioMantenimientos.InsertarImagen(imagen);
-
-                                imagen.IdImagen = IdImagen;
-
-                                int Relacion = LogicaNegocioMantenimientos.InsertarRelacionImagenProd(imagen);
+                            int Relacion = LogicaNegocioMantenimientos.InsertarRelacionImagenProd(imagen);
 
 
-                            }
-
-                            string Ruta = Path.Combine(Server.MapPath("~/Imagenes/"), TextoTipo + "/" + TextoSubTipo + "/");
-
-                            if (Directory.Exists(Ruta))
-                            {
-                                file.SaveAs(Ruta + "/" + fname);
-                                Correcto = true;
-                            }
-                            else
-                            {
-                                Directory.CreateDirectory(Ruta);
-                                file.SaveAs(Ruta + "/" + fname);
-                                Correcto = true;
-
-                            }
                         }
 
+                        string Ruta = Path.Combine(Server.MapPath("~/Imagenes/"), TextoTipo + "/" + TextoSubTipo + "/");
 
+                        if (Directory.Exists(Ruta))
+                        {
+                            file.SaveAs(Ruta + "/" + fname);
+                            Correcto = true;
+                        }
+                        else
+                        {
+                            Directory.CreateDirectory(Ruta);
+                            file.SaveAs(Ruta + "/" + fname);
+                            Correcto = true;
+
+                        }
                     }
+
+
+
 
 
 

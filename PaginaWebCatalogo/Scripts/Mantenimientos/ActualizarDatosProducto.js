@@ -13,7 +13,7 @@
             $("#ddlTipMoneda").val(data.productos.Moneda);
             $("#IdProdEdit").val(Id);
             ObtenerTiposProd(data.productos.TipoProducto);
-            $("#ddlActTipoProdMant").val(data.productos.TipoProducto);
+
             var Imagenes = ObtenerImagenes(data.ListaImagenes);
             $("#ImagenesProductos").html(Imagenes);
 
@@ -106,6 +106,7 @@ function ObtenerTiposProd(IdTipo) {
 
             $("#ddlActTipoProdMant").html(Opciones);
             $("#ddlActTipoProdMant").trigger("chosen:updated");
+            $("#ddlActTipoProdMant").val(IdTipo);
             ObtenerSubTiposProd(IdTipo);
         },
         error: function (Error) {
@@ -129,7 +130,7 @@ function ObtenerImagenes(Imagenes) {
 
         });
     } else {
-        Resultado = "<label>No hay imgenes asociadas al producto</label>";
+        Resultado = "<label>No hay imagenes asociadas al producto</label>";
     }
 
 
