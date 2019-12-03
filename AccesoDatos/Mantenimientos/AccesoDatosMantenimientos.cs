@@ -406,7 +406,7 @@ namespace AccesoDatos.Mantenimientos
 
             return Correcto;
         }
-
+        //
         public static RedesSociales ObtenerRedSocial(int IdRedSocial)
         {
             PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
