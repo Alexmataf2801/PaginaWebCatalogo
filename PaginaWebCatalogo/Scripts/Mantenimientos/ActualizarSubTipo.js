@@ -27,6 +27,13 @@
 
 }
 
+function obtenerDatosSubtipo() {
+        // hay que cambiar la forma como se carga los
+        // datos de la edicion de un subtipo
+        // para que se carguen los combos correctamente
+
+}
+
 function ObtenerTipos() {
     var Opciones = '';
     $.ajax({

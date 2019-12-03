@@ -78,6 +78,13 @@ namespace PaginaWebCatalogo.Controllers
             return View("ActualizarDatosProducto");
         }
 
+        public ActionResult ActualizarRedSocial()
+        {
+
+            Iniciarlizar();
+            return View("ActualizarRedSocial");
+        }
+
         [HttpGet]
         public ActionResult SubTipo()
         {
@@ -826,6 +833,23 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult ActualizarRedesSociales(RedesSociales redesSociales)
+        {
+
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                redesSociales.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                Correcto = LogicaNegocioMantenimientos.ActualizarRedSocial(redesSociales);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
 
 
         #endregion

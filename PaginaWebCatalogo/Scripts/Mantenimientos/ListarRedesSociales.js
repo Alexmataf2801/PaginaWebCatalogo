@@ -65,6 +65,10 @@ function ObtenerTodasRedesSociales() {
 
     });
 }
+function EditarRedSocial(Id) {
+    sessionStorage.setItem("IdRedSocial", Id);
+    window.location.href = "/Mantenimientos/ActualizarRedSocial";
+}
 
 $("#CerrarEliminarRed").click(function () {
     $("#IdRedSeleccionada").val(0);

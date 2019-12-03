@@ -218,6 +218,11 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.ActualizarProducto(productos);
         }
 
+        public static bool ActualizarRedSocial(RedesSociales redSocial)
+        {
+
+            return AccesoDatosMantenimientos.ActualizarRedSocial(redSocial);
+        }
         #endregion
 
         #region DELETE 

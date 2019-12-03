@@ -1,6 +1,6 @@
-﻿@model Entidades.RedesSociales
+﻿
 @{
-    ViewBag.Title = "RedesSociales";
+    ViewBag.Title = "ActualizarRedSocial";
     Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
 }
 
@@ -14,29 +14,29 @@
                 </div>
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtNombreRed" maxlength="150" />
+                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtNombreRedAct" maxlength="150" />
                 </div>
                 <div class="form-group">
                     <label>Descripcion</label>
-                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtDescripcionRed" maxlength="150" />
+                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtDescripcionRedAct" maxlength="150" />
                 </div>
                 <div class="form-group">
                     <label>Url</label>
-                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtUrlRed" maxlength="150" />
+                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtUrlRedAct" maxlength="150" />
                 </div>
                 <div class="form-group">
                     <label>Icono Red Social</label>
-                    <select class="fa form-control" id="Iconos"></select>
+                    <select class="fa form-control" id="ddlIconoRed"></select>
                 </div>
                 <div class="form-group">
                     <label>Selector de Color</label>
-                    <input type="color" class="form-control" style="border-radius:4px" autocomplete="off" id="txtColor" />
+                    <input type="color" class="form-control" style="border-radius:4px" autocomplete="off" id="txtColorAct" />
                 </div>
 
                 <div style="text-align: center; margin-bottom: 20px">
                     <div class="col-md-12">
                         <div class="row" style="margin: 15px">
-                            <a style="margin:0 auto" id="btnGuardarRed" onclick="GuardarRedSocial();" class="btn btn-success">Guardar</a>
+                            <a style="margin:0 auto" id="btnActRed" onclick="ActualizarRedes();" class="btn btn-success">Guardar</a>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,6 @@
         </div>
     </div>
 </div>
-
 <!--INICIO MODAL CORRECTO-->
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalCorrectoRed">
     <div class="modal-dialog" role="document">
@@ -53,7 +52,7 @@
                 <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
             </div>
             <div class="modal-body">
-                <p id="msjCorrectoRed" style="text-align:center"></p>
+                <p id="msjCorrectoActRed" style="text-align:center"></p>
             </div>
             <div class="modal-footer">
                 <a type="button" style="margin:0 auto" onclick="RedireccionarRedes()" class="btn btn-success" data-dismiss="modal">Cerrar</a>
@@ -62,8 +61,5 @@
     </div>
 </div>
 <!--FIN MODAL CORRECTO-->
-
-
 <script src="~/Js/Administracion/jquery.min.js"></script>
-<script src="~/Scripts/Mantenimientos/RedSocial.js"></script>
-
+<script src="~/Scripts/Mantenimientos/ActualizarRedSocial.js"></script>

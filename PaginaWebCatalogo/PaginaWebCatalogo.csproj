@@ -260,6 +260,7 @@
     <Content Include="Scripts\Administracion\Administracion.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarDatosEmpresa.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarDatosProducto.js" />
+    <Content Include="Scripts\Mantenimientos\ActualizarRedSocial.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarSubTipo.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarTipo.js" />
     <Content Include="Scripts\Mantenimientos\Empresa.js" />
@@ -345,6 +346,7 @@
     <Content Include="Views\Mantenimientos\ActualizarDatosTipo.cshtml" />
     <Content Include="Views\Mantenimientos\ActualizarDatosSubTipo.cshtml" />
     <Content Include="Views\Mantenimientos\ActualizarDatosProducto.cshtml" />
+    <Content Include="Views\Mantenimientos\ActualizarRedSocial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
