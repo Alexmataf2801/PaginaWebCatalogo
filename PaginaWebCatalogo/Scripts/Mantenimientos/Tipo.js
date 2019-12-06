@@ -42,3 +42,5 @@ function GuardarTipoProducto() {
 function RedireccionarTip() {
     location.href = '/Mantenimientos/ListaTipos/';
 }
+
+

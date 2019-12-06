@@ -1,6 +1,7 @@
-﻿function ActualizarDatosTipo(IdTipo) {
+﻿function ActualizarDatosTipo() {
+    var Id = sessionStorage.getItem("IdTipo");
     var Tipo = {
-        IdTipo: IdTipo,
+        IdTipo: Id,
         Codigo: $("#txtActCodigoTipo").val(),
         Nombre: $("#txtActNombreTipo").val(),
         Descripcion: $("#txtActDescripcionTIpo").val()
@@ -26,6 +27,33 @@
     });
 
 }
+
+function ObtenerDatosTipo() {
+    var Id = sessionStorage.getItem("IdTipo");
+    $.ajax({
+        type: "POST",
+        datatype: "JSON",
+        url: "/Mantenimientos/ObtenerInfoTipo/",
+        data: { IdTipoSeleccionado: Id },
+        success: function (Info) {
+            if (Info) {
+                $("#txtActCodigoTipo").val(Info.Codigo);
+                $("#txtActNombreTipo").val(Info.Nombre);
+                $("#txtActDescripcionTIpo").val(Info.Descripcion);
+
+            }
+        },
+        error: function (Error) {
+            $("#msjError").html("Error al actualizar el SubTipo");
+            $('#ModalError').modal('show');
+        }
+
+    });
+
+
+}
+
+
 function RedireccionarTipos() {
     location.href = '/Mantenimientos/ListaTipos/';
 }
@@ -35,3 +63,8 @@ function LimpiarCampos() {
     $("#txtActNombreTipo").val("");
     $("#txtActDescripcionTIpo").val("");
 }
+
+
+$(document).ready(function () {
+    ObtenerDatosTipo();
+});

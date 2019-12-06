@@ -117,6 +117,14 @@ namespace PaginaWebCatalogo.Controllers
             return View("ActualizarDatosSubTipo");
         }
 
+        [HttpGet]
+        public ActionResult ActualizarTipo()
+        {
+
+            Iniciarlizar();
+            return View("ActualizarDatosTipo");
+        }
+
         public ActionResult ObtenerMenuAdministrativo()
         {
             List<MenuAdministracion> ListaMenuPublico = new List<MenuAdministracion>();
@@ -427,7 +435,7 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
-        public ActionResult ObtenerInfoTipo(int IdTipoSeleccionado)
+        public JsonResult ObtenerInfoTipo(int IdTipoSeleccionado)
         {
             TipoProducto tipo = new TipoProducto();
 
@@ -441,7 +449,7 @@ namespace PaginaWebCatalogo.Controllers
 
             }
 
-            return View("ActualizarDatosTipo", tipo);
+            return Json(tipo, JsonRequestBehavior.AllowGet);
 
         }
 

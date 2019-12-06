@@ -129,7 +129,8 @@ function EliminarTipo() {
 }
 
 function ObtenerInfoTipoXId(IdTipo) {
-    location.href = '/Mantenimientos/ObtenerInfoTipo?IdTipoSeleccionado=' + IdTipo;
+    sessionStorage.setItem("IdTipo", IdTipo);
+    location.href = '/Mantenimientos/ActualizarTipo/';
 }
 
 

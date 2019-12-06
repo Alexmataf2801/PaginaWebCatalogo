@@ -1,9 +1,9 @@
-﻿@model Entidades.TipoProducto
-@{
+﻿@{
     ViewBag.Title = "ActualizarDatosTipo";
+
     Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
 }
-<input type="hidden" value="@Model.IdTipo" />
+
 <div class="container" style="margin: 0 auto; width: 90%">
     <div class="panel panel-default" style="margin-top: 20px">
         <div class="panel-body">
@@ -14,20 +14,20 @@
                 </div>
                 <div class="form-group row">
                     <label>Codigo</label>
-                    <input type="text" class="form-control" value="@Model.Codigo" style="border-radius:4px" autocomplete="off" id="txtActCodigoTipo" maxlength="150" />
+                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtActCodigoTipo" maxlength="150" />
                 </div>
                 <div class="form-group row">
                     <label>Nombre</label>
-                    <input type="text" class="form-control" value="@Model.Nombre" style="border-radius:4px" autocomplete="off" id="txtActNombreTipo" maxlength="150" />
+                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtActNombreTipo" maxlength="150" />
                 </div>
                 <div class="form-group row">
                     <label>Descripcion</label>
-                    <textarea type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtActDescripcionTIpo" maxlength="150">@Model.Descripcion</textarea>
+                    <textarea type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtActDescripcionTIpo" maxlength="150"></textarea>
                 </div>
                 <div style="text-align: center; margin-bottom: 20px">
                     <div class="col-md-12">
                         <div class="row" style="margin: 15px">
-                            <a class="btn btn-success" style="margin:0 auto" onclick="ActualizarDatosTipo(@Model.IdTipo)">Guardar</a>
+                            <a class="btn btn-success" style="margin:0 auto" onclick="ActualizarDatosTipo()">Guardar</a>
                             @*<input type="button" style="margin:0 auto" onclick="ActualizarDatosTipo(@Model.IdTipo)" class="btn btn-success" value="Guardar" />*@
                         </div>
                     </div>
@@ -56,4 +56,6 @@
 </div>
 <!--FIN MODAL CORRECTO-->
 
+
+<script src="~/Js/Administracion/jquery.min.js"></script>
 <script src="~/Scripts/Mantenimientos/ActualizarTipo.js"></script>
