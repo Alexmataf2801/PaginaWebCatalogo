@@ -1,6 +1,7 @@
 ﻿function ActualizarDatosTipo(IdSubTipo) {
+    var Id = sessionStorage.getItem("IdSubTipoEditar");
     var SubTipo = {
-        IdSubTipo: IdSubTipo,
+        IdSubTipo: Id,
         Codigo: $("#txtCodigoSubTipoAct").val(),
         Nombre: $("#txtNombreSubTipoAct").val(),
         Descripcion: $("#txtDescripcionSubTipoAct").val(),
@@ -27,14 +28,33 @@
 
 }
 
-function obtenerDatosSubtipo() {
-        // hay que cambiar la forma como se carga los
-        // datos de la edicion de un subtipo
-        // para que se carguen los combos correctamente
+function ObtenerDatosSubtipo() {
+    var Id = sessionStorage.getItem("IdSubTipoEditar");
+    $.ajax({
+        type: "POST",
+        datatype: "JSON",
+        url: "/Mantenimientos/ObtenerSubTipoXId/",
+        data: { IdSubTipoSeleccionado: Id },
+        success: function (Info) {
+            if (Info) {
+                $("#txtCodigoSubTipoAct").val(Info.Codigo);
+                $("#txtNombreSubTipoAct").val(Info.Nombre);
+                $("#txtDescripcionSubTipoAct").val(Info.Descripcion);
+                ObtenerTipos(Info.IdTipo);
+
+            }
+        },
+        error: function (Error) {
+            $("#msjError").html("Error al actualizar el SubTipo");
+            $('#ModalError').modal('show');
+        }
+
+    });
+
 
 }
 
-function ObtenerTipos() {
+function ObtenerTipos(IdTipo) {
     var Opciones = '';
     $.ajax({
         type: "GET",
@@ -47,7 +67,9 @@ function ObtenerTipos() {
                 Opciones = Opciones + "<option value='" + value.IdTipo + "'>" + value.Nombre + "</option>";
             });
 
-            $("#ddlTipoProd").html(Opciones);
+            $("#ddlTipoProdActSub").html(Opciones);
+            $("#ddlTipoProdActSub").trigger("chosen:updated");
+            $("#ddlTipoProdActSub").val(IdTipo);
         },
         error: function (Error) {
             $("#msjError").html("Error al obtener los tipos");
@@ -69,5 +91,5 @@ function LimpiarCampos() {
 }
 
 $(document).ready(function () {
-    ObtenerTipos();
+    ObtenerDatosSubtipo();
 });

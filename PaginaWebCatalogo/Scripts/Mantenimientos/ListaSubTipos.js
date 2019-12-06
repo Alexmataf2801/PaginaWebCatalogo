@@ -128,7 +128,8 @@ function EliminarSubTipo() {
 }
 
 function ObtenerInfoSubTipoXId(IdSubTipo) {
-    location.href = '/Mantenimientos/ObtenerSubTipoXId?IdSubTipoSeleccionado=' + IdSubTipo;
+    sessionStorage.setItem("IdSubTipoEditar", IdSubTipo);
+    location.href = '/Mantenimientos/ActualizarSubTipo';
 }
 
 
