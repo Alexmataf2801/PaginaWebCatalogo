@@ -456,11 +456,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosTipos_Result>("paObtenerTodosTipos");
         }
     
-        public virtual ObjectResult<paObtenerTodosSubTipos_Result> paObtenerTodosSubTipos()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosSubTipos_Result>("paObtenerTodosSubTipos");
-        }
-    
         public virtual ObjectResult<paObtenerTodosProductos_Result> paObtenerTodosProductos()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosProductos_Result>("paObtenerTodosProductos");
@@ -794,6 +789,11 @@ namespace Entidades
                 new ObjectParameter("IdImagen", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerRutaImagen_Result>("paObtenerRutaImagen", idImagenParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosSubTipos_Result> paObtenerTodosSubTipos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosSubTipos_Result>("paObtenerTodosSubTipos");
         }
     }
 }

@@ -97,18 +97,6 @@
           <Property Name="UsuarioUltimaModificacion" Type="varchar" MaxLength="150" />
           <Property Name="FechaUltimaModificacion" Type="datetime" />
         </EntityType>
-        <Association Name="FK_ImagenPorProducto_Imagenes">
-          <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="1" />
-          <End Role="ImagenPorProducto" Type="Self.ImagenPorProducto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Imagenes">
-              <PropertyRef Name="IdImagen" />
-            </Principal>
-            <Dependent Role="ImagenPorProducto">
-              <PropertyRef Name="IdImagen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MenuPorPerfil_Menu">
           <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
           <End Role="MenuPorPerfil" Type="Self.MenuPorPerfil" Multiplicity="*" />
@@ -364,10 +352,6 @@
           <EntitySet Name="MenuPorPerfil" EntityType="Self.MenuPorPerfil" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuPublico" EntityType="Self.MenuPublico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_ImagenPorProducto_Imagenes" Association="Self.FK_ImagenPorProducto_Imagenes">
-            <End Role="Imagenes" EntitySet="Imagenes" />
-            <End Role="ImagenPorProducto" EntitySet="ImagenPorProducto" />
-          </AssociationSet>
           <AssociationSet Name="FK_MenuPorPerfil_Menu" Association="Self.FK_MenuPorPerfil_Menu">
             <End Role="Menu" EntitySet="Menu" />
             <End Role="MenuPorPerfil" EntitySet="MenuPorPerfil" />
@@ -510,7 +494,6 @@
           </FunctionImport>
           <FunctionImport Name="paObtenerTodasRedesSociales" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodasRedesSociales_Result)" />
           <FunctionImport Name="paObtenerTodosTipos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosTipos_Result)" />
-          <FunctionImport Name="paObtenerTodosSubTipos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosSubTipos_Result)" />
           <FunctionImport Name="paObtenerTodosProductos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosProductos_Result)" />
           <FunctionImport Name="paDesactivarActivarRedSocial">
             <Parameter Name="IdRedSocial" Mode="In" Type="Int32" />
@@ -610,8 +593,9 @@
           <Parameter Name="IdImagen" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerRutaImagen" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerRutaImagen_Result)">
-            <Parameter Name="IdImagen" Mode="In" Type="Int32" />
+          <Parameter Name="IdImagen" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerTodosSubTipos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosSubTipos_Result)" />
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -802,17 +786,6 @@
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
         </ComplexType>
-        <ComplexType Name="paObtenerTodosSubTipos_Result">
-          <Property Type="Int32" Name="IdSubTipo" Nullable="false" />
-          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="Descripcion" Nullable="true" />
-          <Property Type="Boolean" Name="Estado" Nullable="false" />
-          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
-          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
-          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
-          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
-        </ComplexType>
         <ComplexType Name="paObtenerTodosProductos_Result">
           <Property Type="Int32" Name="IdProducto" Nullable="false" />
           <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
@@ -881,6 +854,19 @@
           <Property Type="String" Name="Tipo" Nullable="false" MaxLength="150" />
           <Property Type="Int32" Name="IdSubTipo" Nullable="false" />
           <Property Type="String" Name="SubTipo" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosSubTipos_Result">
+          <Property Type="Int32" Name="IdSubTipo" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="IdTipo" Nullable="false" />
+          <Property Type="String" Name="NombreTipo" Nullable="false" MaxLength="150" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1163,21 +1149,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paObtenerTodosSubTipos" FunctionName="PaginaWebCatalogosModel.Store.paObtenerTodosSubTipos">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerTodosSubTipos_Result">
-                <ScalarProperty Name="IdSubTipo" ColumnName="IdSubTipo" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
-                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paObtenerTodosProductos" FunctionName="PaginaWebCatalogosModel.Store.paObtenerTodosProductos">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerTodosProductos_Result">
@@ -1291,6 +1262,23 @@
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="IdSubTipo" ColumnName="IdSubTipo" />
                 <ScalarProperty Name="SubTipo" ColumnName="SubTipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerTodosSubTipos" FunctionName="PaginaWebCatalogosModel.Store.paObtenerTodosSubTipos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerTodosSubTipos_Result">
+                <ScalarProperty Name="IdSubTipo" ColumnName="IdSubTipo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="NombreTipo" ColumnName="NombreTipo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

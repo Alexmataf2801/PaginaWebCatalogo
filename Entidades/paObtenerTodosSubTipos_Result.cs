@@ -22,5 +22,7 @@ namespace Entidades
         public System.DateTime FechaCreacion { get; set; }
         public string UsuarioUltimaModificacion { get; set; }
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
+        public int IdTipo { get; set; }
+        public string NombreTipo { get; set; }
     }
 }

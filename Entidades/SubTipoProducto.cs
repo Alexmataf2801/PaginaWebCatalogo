@@ -10,6 +10,7 @@ namespace Entidades
     {
         public int IdSubTipo { get; set; }
         public int IdTipo { get; set; }
+        public string NombreTipo { get; set; }
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }

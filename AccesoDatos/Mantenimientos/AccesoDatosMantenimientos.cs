@@ -533,6 +533,8 @@ namespace AccesoDatos.Mantenimientos
                     SubTipoProd.Nombre = item.Nombre;
                     SubTipoProd.Descripcion = item.Descripcion;
                     SubTipoProd.Estado = item.Estado;
+                    SubTipoProd.IdTipo = item.IdTipo;
+                    SubTipoProd.NombreTipo = item.NombreTipo;
 
                     ListaSubTipos.Add(SubTipoProd);
 
