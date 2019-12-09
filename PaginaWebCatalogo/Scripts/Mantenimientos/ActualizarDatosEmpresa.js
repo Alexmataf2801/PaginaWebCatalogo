@@ -1,20 +1,34 @@
 ﻿
 function ActualizarDatosEmpresa(IdEmpresa) {
 
-    var empresa = {
-        IdRegistro: IdEmpresa,
-        Nombre: $("#txtActNombreEmpresa").val(),
-        Descripcion: $("#txtActDescripcion").val(),
-        CorreoElectronico: $("#txtActCorreo").val(),
-        Telefono: $("#txtActTelefono").val(),
-        Direccion: $("#txtActDireccion").val()
-    };
+
+    if (window.FormData !== undefined) {
+
+        var fileUpload = $("#LogoAct").get(0);
+
+        var files = fileUpload.files;
+
+        var fileData = new FormData();
+
+        for (var i = 0; i < files.length; i++) {
+            fileData.append(files[i].name, files[i]);
+        }
+
+        fileData.append('IdRegistro', IdEmpresa);
+        fileData.append('Nombre', $("#txtActNombreEmpresa").val());
+        fileData.append('Descripcion', $("#txtActDescripcion").val());
+        fileData.append('CorreoElectronico', $("#txtActCorreo").val());
+        fileData.append('Telefono', $("#txtActTelefono").val());
+        fileData.append('Direccion', $("#txtActDireccion").val());
+
+    }
 
     $.ajax({
         type: "POST",
-        dataType: "JSON",
         url: "/Mantenimientos/ActualizarInfoEmpresa",
-        data: { DatosEmpresa: empresa },
+        contentType: false, // Not to set any content header  
+        processData: false, // Not to process data  
+        data: fileData,
         success: function (data) {
             $("#msjCorrectoActEmpresa").html("Información actualizada correctamente");
             $('#ModalCorrectoActEmpresa').modal('show');

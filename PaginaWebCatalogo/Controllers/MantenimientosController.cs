@@ -700,15 +700,65 @@ namespace PaginaWebCatalogo.Controllers
         }
 
         [HttpPost]
-        public JsonResult ActualizarInfoEmpresa(Empresa DatosEmpresa)
+        public JsonResult ActualizarInfoEmpresa()
         {
 
             bool Correcto = false;
+            string TextoTipo = string.Empty;
+            string TextoSubTipo = string.Empty;
 
             if (Session["UsuarioLogueado"] != null)
             {
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
+
+                Empresa DatosEmpresa = new Empresa();
+                DatosEmpresa.IdRegistro = Convert.ToInt32(Request.Form["IdRegistro"]);
+                DatosEmpresa.Nombre = Request.Form["Nombre"];
+                DatosEmpresa.Descripcion = Request.Form["Descripcion"];
+                DatosEmpresa.CorreoElectronico = Request.Form["CorreoElectronico"];
+                DatosEmpresa.Telefono = Convert.ToInt32(Request.Form["Telefono"]);
+                DatosEmpresa.Direccion = Request.Form["Direccion"];
+                DatosEmpresa.Url = "~/Content/";
+
+                HttpFileCollectionBase files = Request.Files;
+
+                if (files.Count > 0)
+                {
+
+                    HttpPostedFileBase file = files[0];
+
+                    string fname;
+
+                    fname = file.FileName;
+
+                    DatosEmpresa.NombreImagen = fname.Split('.')[0];
+                    DatosEmpresa.Raiz = "." + fname.Split('.')[1];
+
+
+                    string Rutabase = AppDomain.CurrentDomain.BaseDirectory;
+                    string Ruta = "/Content/";
+                    string RutaCompleta = Rutabase + Ruta;
+
+                    if (Directory.Exists(RutaCompleta))
+                    {
+                        file.SaveAs(RutaCompleta + "/" + fname);
+                        Correcto = true;
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(RutaCompleta);
+                        file.SaveAs(RutaCompleta + "/" + fname);
+                        Correcto = true;
+
+                    }
+                }
+                else {
+                    DatosEmpresa.NombreImagen = "SIN LOGO";
+                }
+
+
+
                 Correcto = LogicaNegocioMantenimientos.ActualizarInfoEmpresa(DatosEmpresa);
 
             }

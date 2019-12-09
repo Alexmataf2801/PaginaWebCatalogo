@@ -7,7 +7,10 @@
 <div style="margin-top:50px;">
     <div class="col-md-12" style="margin-bottom:90px">
         <div class="col-md-2" >
-            <img style="max-height:150px;max-width:150px" src="~/Content/Logo.png" />
+            @{ 
+                string RutaLogo = Model.Url.ToString().Split('~')[1] + "/" + Model.NombreImagen + Model.Raiz;
+            }
+            <img style="max-height:175px;max-width:175px" src="@RutaLogo" />
         </div>
         <div class="col-md-9"><h1 style="text-align:left;" id="NombreAbout">@Model.Nombre</h1></div>
     </div>

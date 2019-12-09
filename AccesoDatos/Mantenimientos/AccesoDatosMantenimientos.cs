@@ -866,7 +866,7 @@ namespace AccesoDatos.Mantenimientos
 
             try
             {
-                entities.paActualizarInformacionEmpresa(empresa.IdRegistro , empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion);
+                entities.paActualizarInformacionEmpresa(empresa.IdRegistro , empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion,empresa.NombreImagen, empresa.Raiz);
                 Correcto = true;
 
             }

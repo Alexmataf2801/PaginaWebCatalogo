@@ -483,35 +483,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarRedSocial", idRedSocialParameter);
         }
     
-        public virtual int paActualizarInformacionEmpresa(Nullable<int> idEmpresa, string nombreEmpresa, string descripcion, string correo, Nullable<int> telefono, string direccion)
-        {
-            var idEmpresaParameter = idEmpresa.HasValue ?
-                new ObjectParameter("IdEmpresa", idEmpresa) :
-                new ObjectParameter("IdEmpresa", typeof(int));
-    
-            var nombreEmpresaParameter = nombreEmpresa != null ?
-                new ObjectParameter("NombreEmpresa", nombreEmpresa) :
-                new ObjectParameter("NombreEmpresa", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var correoParameter = correo != null ?
-                new ObjectParameter("Correo", correo) :
-                new ObjectParameter("Correo", typeof(string));
-    
-            var telefonoParameter = telefono.HasValue ?
-                new ObjectParameter("Telefono", telefono) :
-                new ObjectParameter("Telefono", typeof(int));
-    
-            var direccionParameter = direccion != null ?
-                new ObjectParameter("Direccion", direccion) :
-                new ObjectParameter("Direccion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarInformacionEmpresa", idEmpresaParameter, nombreEmpresaParameter, descripcionParameter, correoParameter, telefonoParameter, direccionParameter);
-        }
-    
         public virtual int paDesactivarActivarProducto(Nullable<int> idProducto, Nullable<bool> estado)
         {
             var idProductoParameter = idProducto.HasValue ?
@@ -794,6 +765,43 @@ namespace Entidades
         public virtual ObjectResult<paObtenerTodosSubTipos_Result> paObtenerTodosSubTipos()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosSubTipos_Result>("paObtenerTodosSubTipos");
+        }
+    
+        public virtual int paActualizarInformacionEmpresa(Nullable<int> idEmpresa, string nombreEmpresa, string descripcion, string correo, Nullable<int> telefono, string direccion, string nombreImagen, string raiz)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var nombreEmpresaParameter = nombreEmpresa != null ?
+                new ObjectParameter("NombreEmpresa", nombreEmpresa) :
+                new ObjectParameter("NombreEmpresa", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var telefonoParameter = telefono.HasValue ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(int));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var nombreImagenParameter = nombreImagen != null ?
+                new ObjectParameter("NombreImagen", nombreImagen) :
+                new ObjectParameter("NombreImagen", typeof(string));
+    
+            var raizParameter = raiz != null ?
+                new ObjectParameter("Raiz", raiz) :
+                new ObjectParameter("Raiz", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarInformacionEmpresa", idEmpresaParameter, nombreEmpresaParameter, descripcionParameter, correoParameter, telefonoParameter, direccionParameter, nombreImagenParameter, raizParameter);
         }
     }
 }
