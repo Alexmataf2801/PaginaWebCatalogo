@@ -7,53 +7,35 @@ function ObtenerTodasRedesSociales() {
         url: "/Mantenimientos/ObtenerTodasRedesSociales/",
         data: {},
         success: function (Info) {
-    
-                $('#tbRedes').dataTable().fnDestroy();
-                $("#tbRedes").dataTable({
 
+            var TablaRedes = $('#tbRedes').DataTable(
+                {
                     autoWidth: false,
-                    responsive: true,
-                    //dom: 'Bfrtip', // Descomentar para habilitar botones de acciones
-                    lengthChange: true, // Habilita combo de opciones para mostrar
-                    language: {
+                    dom: 'frtip',
+                    lengthChange: false,
+                    "language": {
                         "url": "../../Content/Spanish.json"
                     },
-                    data: Info,
-                    columns: [
-                        {
-                            data: null,
-                            sortable: false,
-                            render: function (data, type, full) {
-                                return "<a type='button' class='btn btn-success fa fa-pencil' onclick='EditarRedSocial(" + data["IdRedSocial"] + ")'></a>";
-                            }
-                        },
-                        { data: 'Nombre' },
-                        {
-                            render: function (data, type, full) {
-                                if (full["Estado"]) {
-                                    return "<span class='EstadoActivo' >Activo</span>";
-                                } else {
-                                    return "<span class='EstadoInactivo' >Inactivo</span>";
-                                }
-                            }
-                        },
-                        {
-                            data: null,
-                            sortable: false,
-                            render: function (data, type, full) {
-                                return "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarRedSocial(" + data["IdRedSocial"] + "," + data["Estado"] + " )'></a>";
-                            }
-                        },
-                        {
-                            data: null,
-                            sortable: false,
-                            render: function (data, type, full) {
-                                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarRedSocial(" + data["IdRedSocial"] + ")'></a>";
-                            }
-                        }
+                    retrieve: true,
+                    responsive: true,
+                    searching: false
+                }
+            );
 
-                    ]
-                });
+            TablaRedes.clear().draw();
+            $(Info).each(function (key, value) {
+                var estado = '';
+                if (value.Estado) {
+                    estado = "<span class='EstadoActivo' >Activo</span>";
+                } else {
+                    estado = "<span class='EstadoInactivo' >Inactivo</span>";
+                }
+                var Editar = "<a type='button' class='btn btn-success fa fa-pencil' onclick='EditarRedSocial(" + value.IdRedSocial + ")'></a>";
+                var CambiarEstado = "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarRedSocial(" + value.IdRedSocial + "," + value.Estado + " )'></a>";
+                var Eliminar = "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarRedSocial(" + value.IdRedSocial + ")'></a>";
+
+                TablaRedes.row.add([ Editar, value.Nombre, estado, CambiarEstado, Eliminar]).draw();
+            });
             
         },
         error: function () {

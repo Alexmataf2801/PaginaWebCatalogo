@@ -7,54 +7,6 @@
         data: {},
         success: function (Info) {
 
-            //$('#tbSubTipos').dataTable().fnDestroy();
-            //$("#tbSubTipos").dataTable({
-
-            //    autoWidth: false,
-            //    responsive: true,
-            //    //dom: 'Bfrtip', // Descomentar para habilitar botones de acciones
-            //    lengthChange: true, // Habilita combo de opciones para mostrar
-            //    language: {
-            //        "url": "../../Content/Spanish.json"
-            //    },
-            //    data: Info,
-            //    columns: [
-            //        {
-            //            data: null,
-            //            sortable: false,
-            //            render: function (data, type, full) {
-            //                return "<a type='button' class='btn btn-success fa fa-pencil' onclick='ObtenerInfoSubTipoXId(" + data["IdSubTipo"] + ")'></a>";
-            //            }
-            //        },
-            //        { data: 'Codigo' },
-            //        { data: 'Nombre' },
-            //        { data: 'NombreTipo' },
-            //        {
-            //            render: function (data, type, full) {
-            //                if (full["Estado"]) {
-            //                    return "<span class='EstadoActivo' >Activo</span>";
-            //                } else {
-            //                    return "<span class='EstadoInactivo' >Inactivo</span>";
-            //                }
-            //            }
-            //        },
-            //        {
-            //            data: null,
-            //            sortable: false,
-            //            render: function (data, type, full) {
-            //                return "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarSubTipo(" + data["IdSubTipo"] + "," + data["Estado"] + " )'></a>";
-            //            }
-            //        },
-            //        {
-            //            data: null,
-            //            sortable: false,
-            //            render: function (data, type, full) {
-            //                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarSubTipo(" + data["IdSubTipo"] + ")'></a>";
-            //            }
-            //        }
-
-            //    ]
-            //});
 
             var TablaSubTipos = $('#tbSubTipos').DataTable(
                 {
@@ -64,7 +16,6 @@
                     "language": {
                         "url": "../../Content/Spanish.json"
                     },
-                    "aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }],
                     retrieve: true,
                     responsive: true,
                     searching: false
@@ -83,7 +34,7 @@
                 var CambiarEstado = "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarSubTipo(" + value.IdSubTipo + "," + value.Estado + " )'></a>";
                 var Eliminar = "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarSubTipo(" + value.IdSubTipo + ")'></a>";
 
-                TablaSubTipos.row.add([Editar, value.Codigo, value.Nombre, value.NombreTipo, estado, CambiarEstado, Eliminar]).draw();
+                TablaSubTipos.row.add([ Editar, value.Codigo, value.Nombre, value.NombreTipo, estado, CambiarEstado, Eliminar]).draw();
             });
 
 

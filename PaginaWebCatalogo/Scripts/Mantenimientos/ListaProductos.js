@@ -7,56 +7,35 @@
         data: {},
         success: function (Info) {
 
-                //var objeto = JSON.parse(Info);
-
-                $('#tbProductos').dataTable().fnDestroy();
-                $("#tbProductos").dataTable({
-
+            var TablaProd = $('#tbProductos').DataTable(
+                {
                     autoWidth: false,
-                    responsive: true,
-                    //dom: 'Bfrtip', // Descomentar para habilitar botones de acciones
-                    lengthChange: true, // Habilita combo de opciones para mostrar
-                    language: {
+                    dom: 'frtip',
+                    lengthChange: false,
+                    "language": {
                         "url": "../../Content/Spanish.json"
                     },
-                    data: Info,
-                    columns: [
-                        {
-                            data: null,
-                            sortable: false,
-                            render: function (data, type, full) {
-                                return "<a type='button' class='btn btn-success fa fa-pencil' onclick='EditarProducto(" + data["IdProducto"] + ")'></a>";
-                            }
-                        },
-                        { data: 'Codigo' },
-                        { data: 'Nombre' },
-                        {
-                            render: function (data, type, full) {
-                                if (full["Estado"]) {
-                                    return "<span class='EstadoActivo' >Activo</span>";
-                                } else {
-                                    return "<span class='EstadoInactivo' >Inactivo</span>";
-                                }
-                            }
-                        },
-                        {
-                            data: null,
-                            sortable: false,
-                            render: function (data, type, full) {
-                                return "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarProducto(" + data["IdProducto"] + "," + data["Estado"] + " )'></a>";
-                            }
-                        },
-                        {
-                            data: null,
-                            sortable: false,
-                            render: function (data, type, full) {
-                                return "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarProducto(" + data["IdProducto"] + ")'></a>";
-                            }
-                        }
+                    retrieve: true,
+                    responsive: true,
+                    searching: false
+                }
+            );
 
-                    ]
-                });
-            
+            TablaProd.clear().draw();
+            $(Info).each(function (key, value) {
+                var estado = '';
+                if (value.Estado) {
+                    estado = "<span class='EstadoActivo' >Activo</span>";
+                } else {
+                    estado = "<span class='EstadoInactivo' >Inactivo</span>";
+                }
+                var Editar = "<a type='button' class='btn btn-success fa fa-pencil' onclick='EditarProducto(" + value.IdProducto + ")'></a>";
+                var CambiarEstado = "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarProducto(" + value.IdProducto + "," + value.Estado + " )'></a>";
+                var Eliminar = "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarProducto(" + value.IdProducto + ")'></a>";
+
+                TablaProd.row.add([Editar, value.Codigo, value.Nombre, estado, CambiarEstado, Eliminar]).draw();
+            });
+
         },
         error: function () {
             $("#msjError").html("Error al obtener los productos");
