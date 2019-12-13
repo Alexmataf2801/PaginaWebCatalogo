@@ -72,11 +72,18 @@ namespace PaginaWebCatalogo.Controllers
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
 
-                Carrito carrito = new Carrito();
-                carrito.IdProducto = IdProducto;
-                carrito.IdUsuario = usuario.IdUsuario;
+                if (usuario.IdPerfil > 1)
+                {
+                    Carrito carrito = new Carrito();
+                    carrito.IdProducto = IdProducto;
+                    carrito.IdUsuario = usuario.IdUsuario;
 
-                respuesta = LogicaNegocioProducto.InsertarCarrito(carrito);
+                    respuesta = LogicaNegocioProducto.InsertarCarrito(carrito);
+                }
+                else
+                {
+                    respuesta = -1;
+                }
             }
             else
             {

@@ -17,7 +17,7 @@
                     },
                     retrieve: true,
                     responsive: true,
-                    searching: false
+                    searching: true
                 }
             );
 

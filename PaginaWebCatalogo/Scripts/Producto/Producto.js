@@ -34,7 +34,7 @@ function ObtenerDetalleProducto(Id) {
 }
 
 function ObtenerCarrito(a) {
-    var Detalle = ''; 
+    var Detalle = '';
     var total = 0;
 
     $.ajax({
@@ -103,8 +103,8 @@ function AgregarAlCarro(IdProducto) {
 
                 $("#msjInfo").html("Debe loguearse para poder agregar productos al carro");
                 $('#ModalInformacion').modal('show');
-            }
-            else {
+
+            } else {
                 $("#msjError").html("Fallo el registro del producto");
                 $('#ModalError').modal('show');
             }
