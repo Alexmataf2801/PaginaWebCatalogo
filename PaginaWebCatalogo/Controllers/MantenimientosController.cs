@@ -91,7 +91,7 @@ namespace PaginaWebCatalogo.Controllers
 
             Iniciarlizar();
             return View();
-        }
+        } 
 
         [HttpGet]
         public ActionResult RedesSociales()

@@ -9,7 +9,7 @@
             $("#txtActCodProd").val(data.productos.Codigo);
             $("#txtActNomProd").val(data.productos.Nombre);
             $("#txtActDescripProd").val(data.productos.Descripcion);
-            $("#txtActPrecioUnitProd").val(data.productos.PrecioProducto);
+            $("#txtActPrecioUnitProd").val(data.productos.PrecioProducto.replace(',','.'));
             $("#ddlTipMoneda").val(data.productos.Moneda);
             $("#IdProdEdit").val(Id);
             ObtenerTiposProd(data.productos.TipoProducto);

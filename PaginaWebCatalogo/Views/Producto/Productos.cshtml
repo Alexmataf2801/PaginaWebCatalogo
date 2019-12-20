@@ -12,21 +12,32 @@
         {
             <div class="col-md-3 product-men">
                 <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item" @*style="max-width:300px; max-height:400px"*@>
+                    <div class="men-thumb-item" style="min-width:200px; min-height:300px">
                         @{
                             List<Entidades.ImagenesProducto> ListaImagenes = ViewBag.Imagenes;
 
                             if (ListaImagenes.Count > 0)
                             {
-                                if (Model[j].IdProducto == ListaImagenes[j].IdProducto)
+
+                                var Info = ListaImagenes.Where(x => x.IdProducto == Model[j].IdProducto);
+
+                                if (Info != null)
                                 {
-                                    string ruta = ListaImagenes[j].Url + ListaImagenes[j].NombreImagen + ListaImagenes[j].Raiz;
+                                    string RutaCompleta = AppDomain.CurrentDomain.BaseDirectory + ListaImagenes[j].Url.ToString().Split('~')[1] + ListaImagenes[j].NombreImagen + ListaImagenes[j].Raiz;
+                                    string RutaImagen = ListaImagenes[j].Url + ListaImagenes[j].NombreImagen + ListaImagenes[j].Raiz;
 
-                                    <img  src="@Url.Content(ruta)" alt="" class="pro-image-front">
-                                    <img  src="@Url.Content(ruta)" alt="" class="pro-image-back">
+                                    if (File.Exists(RutaCompleta))
+                                    {
+                                        <img  src="@Url.Content(RutaImagen)" alt="" class="pro-image-front">
+                                        <img  src="@Url.Content(RutaImagen)" alt="" class="pro-image-back">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/nofoto.jpg" alt="" class="pro-image-front">
+                                        <img src="~/Content/nofoto.jpg" alt="" class="pro-image-back">
+                                    }
+
                                 }
-
-
 
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
@@ -37,7 +48,7 @@
                             }
                             else
                             {
-                                <img  src="~/Content/nofoto.jpg" alt="" class="pro-image-front">
+                                <img src="~/Content/nofoto.jpg" alt="" class="pro-image-front">
                                 <img src="~/Content/nofoto.jpg" alt="" class="pro-image-back">
 
                                 <div class="men-cart-pro">
@@ -77,9 +88,9 @@
     }
     else
     {
-            <div class="alert alert-info" style="margin-top:50px; width:100%; text-align:center" role="alert">
-                <strong>No hay informacion relacionada con los criterios de busqueda</strong>
-            </div>
+        <div class="alert alert-info" style="margin-top:50px; width:100%; text-align:center" role="alert">
+            <strong>No hay informacion relacionada con los criterios de busqueda</strong>
+        </div>
     }
 
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -696,7 +697,7 @@ namespace AccesoDatos.Mantenimientos
                     productos.Nombre = item.Nombre;
                     productos.Descripcion = item.Descripcion;
                     productos.Moneda = item.Moneda;
-                    productos.PrecioProducto = item.PrecioProducto.ToString();
+                    productos.PrecioProducto = item.PrecioProducto.ToString(CultureInfo.InvariantCulture);
                     productos.TipoProducto = item.TipoProducto;
                     productos.SubTipoProducto = item.SubTipo;
                     productos.Estado = item.Estado;

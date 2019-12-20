@@ -157,6 +157,7 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\Logo.png" />
     <Content Include="Content\nofoto.jpg" />
+    <Content Include="Content\Paginacion.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\team.css" />
     <Content Include="favicon.ico" />
@@ -251,6 +252,8 @@
     <Content Include="Js\minicart.min.js" />
     <Content Include="Js\modernizr.custom.js" />
     <Content Include="Js\move-top.js" />
+    <Content Include="Js\Pagify.js" />
+    <Content Include="Js\Paginacion.js" />
     <Content Include="Js\responsiveslides.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
