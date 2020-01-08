@@ -803,5 +803,66 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarInformacionEmpresa", idEmpresaParameter, nombreEmpresaParameter, descripcionParameter, correoParameter, telefonoParameter, direccionParameter, nombreImagenParameter, raizParameter);
         }
+    
+        public virtual int paDesactivarActivarBanner(Nullable<int> idBanner, Nullable<int> tipo)
+        {
+            var idBannerParameter = idBanner.HasValue ?
+                new ObjectParameter("IdBanner", idBanner) :
+                new ObjectParameter("IdBanner", typeof(int));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("Tipo", tipo) :
+                new ObjectParameter("Tipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarBanner", idBannerParameter, tipoParameter);
+        }
+    
+        public virtual int paEliminarbanner(Nullable<int> idBanner)
+        {
+            var idBannerParameter = idBanner.HasValue ?
+                new ObjectParameter("IdBanner", idBanner) :
+                new ObjectParameter("IdBanner", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarbanner", idBannerParameter);
+        }
+    
+        public virtual int paInsertarBannerPrincipal(string nombre, string raiz, string url, string titulo, string detalle, string usuarioCreacion)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var raizParameter = raiz != null ?
+                new ObjectParameter("Raiz", raiz) :
+                new ObjectParameter("Raiz", typeof(string));
+    
+            var urlParameter = url != null ?
+                new ObjectParameter("Url", url) :
+                new ObjectParameter("Url", typeof(string));
+    
+            var tituloParameter = titulo != null ?
+                new ObjectParameter("Titulo", titulo) :
+                new ObjectParameter("Titulo", typeof(string));
+    
+            var detalleParameter = detalle != null ?
+                new ObjectParameter("Detalle", detalle) :
+                new ObjectParameter("Detalle", typeof(string));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarBannerPrincipal", nombreParameter, raizParameter, urlParameter, tituloParameter, detalleParameter, usuarioCreacionParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerBanners_Result> paObtenerBanners()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerBanners_Result>("paObtenerBanners");
+        }
+    
+        public virtual ObjectResult<paObtenerBannersActivos_Result> paObtenerBannersActivos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerBannersActivos_Result>("paObtenerBannersActivos");
+        }
     }
 }

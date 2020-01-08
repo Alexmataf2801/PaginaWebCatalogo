@@ -75,6 +75,12 @@ namespace LogicaNegocio.Administracion
             return Correcto;
         }
 
+        public static List<Banner> ObtenerBannersActivos()
+        {
+
+            return AccesoDatosAdministracion.ObtenerBannersActivos();
+        }
+
         #endregion
 
 

@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Banner.cs" />
     <Compile Include="BD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,6 +79,12 @@
     <Compile Include="Login.cs" />
     <Compile Include="MenuAdministracion.cs" />
     <Compile Include="MenuPublico.cs" />
+    <Compile Include="paObtenerBannersActivos_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerBanners_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerCarrito_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>

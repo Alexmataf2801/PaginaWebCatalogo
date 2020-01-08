@@ -74,6 +74,14 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
+        public ActionResult ObtenerBanners()
+        {
+            List<Banner> ListaBanners = LogicaNegocioAdministracion.ObtenerBannersActivos();
+
+            return PartialView("_Banners", ListaBanners);
+
+        }
+
         public ActionResult ObtenerInformacionEmpresa()
         {
             Empresa Empresa = LogicaNegocioAdministracion.ObtenerInformacionEmpresa();

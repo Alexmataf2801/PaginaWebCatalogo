@@ -143,6 +143,11 @@
     <Content Include="Content\Administracion\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Administracion\TablasMantenimientos.css" />
     <Content Include="Content\Administracion\_all-skins.min.css" />
+    <Content Include="Content\Banners\banner1.jpg" />
+    <Content Include="Content\Banners\banner2.jpg" />
+    <Content Include="Content\Banners\banner3.jpg" />
+    <Content Include="Content\Banners\banner4.jpg" />
+    <Content Include="Content\Banners\banner5.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\datatables.min.css" />
     <Content Include="Content\easy-responsive-tabs.css" />
@@ -350,6 +355,7 @@
     <Content Include="Views\Mantenimientos\ActualizarDatosSubTipo.cshtml" />
     <Content Include="Views\Mantenimientos\ActualizarDatosProducto.cshtml" />
     <Content Include="Views\Mantenimientos\ActualizarRedSocial.cshtml" />
+    <Content Include="Views\Shared\_Banners.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

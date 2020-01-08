@@ -210,6 +210,40 @@ namespace AccesoDatos.Administracion
             return usuario;
         }
 
+        public static List<Banner> ObtenerBannersActivos()
+        {
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<Banner> ListaBanners = new List<Banner>();
+            try
+            {
+                var Informacion = entities.paObtenerBannersActivos();
+
+                foreach (var item in Informacion)
+                {
+                    Banner banner = new Banner();
+                    banner.IdBanner = item.IdBanner;
+                    banner.NombreBanner = item.Nombre;
+                    banner.Raiz = item.Raiz;
+                    banner.Url = item.Url;
+                    banner.Titulo = item.Titulo;
+                    banner.Detalle = item.Detalle;
+                    banner.UsuarioCreacionBanner = item.UsuarioCreacion;
+                    banner.FechaCreacionBanner = item.FechaCreacion;
+
+                    ListaBanners.Add(banner);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaBanners;
+        }
+
         #endregion
 
         #region UPDATE

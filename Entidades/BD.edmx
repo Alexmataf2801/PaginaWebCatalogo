@@ -159,6 +159,10 @@
           <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="paDesactivarActivarBanner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdBanner" Type="int" Mode="In" />
+          <Parameter Name="Tipo" Type="int" Mode="In" />
+        </Function>
         <Function Name="paDesactivarActivarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdProducto" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
@@ -174,6 +178,9 @@
         <Function Name="paDesactivarActivarTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipo" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="paEliminarbanner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdBanner" Type="int" Mode="In" />
         </Function>
         <Function Name="paEliminarImagenXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdImagen" Type="int" Mode="In" />
@@ -193,6 +200,14 @@
         </Function>
         <Function Name="paEliminarTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paInsertarBannerPrincipal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Raiz" Type="varchar" Mode="In" />
+          <Parameter Name="Url" Type="varchar" Mode="In" />
+          <Parameter Name="Titulo" Type="varchar" Mode="In" />
+          <Parameter Name="Detalle" Type="varchar" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="paInsertarImagen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -283,6 +298,8 @@
           <Parameter Name="Respuesta" Type="int" Mode="InOut" />
           <Parameter Name="IdUsuario" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="paObtenerBanners" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerBannersActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
@@ -600,6 +617,23 @@
             <Parameter Name="NombreImagen" Mode="In" Type="String" />
             <Parameter Name="Raiz" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="paDesactivarActivarBanner">
+            <Parameter Name="IdBanner" Mode="In" Type="Int32" />
+            <Parameter Name="Tipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paEliminarbanner">
+          <Parameter Name="IdBanner" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarBannerPrincipal">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Raiz" Mode="In" Type="String" />
+            <Parameter Name="Url" Mode="In" Type="String" />
+            <Parameter Name="Titulo" Mode="In" Type="String" />
+            <Parameter Name="Detalle" Mode="In" Type="String" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerBanners" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerBanners_Result)" />
+          <FunctionImport Name="paObtenerBannersActivos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerBannersActivos_Result)" />
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -871,6 +905,26 @@
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
           <Property Type="String" Name="NombreTipo" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerBanners_Result">
+          <Property Type="Int32" Name="IdBanner" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Titulo" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Detalle" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="paObtenerBannersActivos_Result">
+          <Property Type="Int32" Name="IdBanner" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Titulo" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Detalle" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1286,6 +1340,37 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paActualizarInformacionEmpresa" />
+          <FunctionImportMapping FunctionImportName="paDesactivarActivarBanner" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarBanner" />
+          <FunctionImportMapping FunctionImportName="paEliminarbanner" FunctionName="PaginaWebCatalogosModel.Store.paEliminarbanner" />
+          <FunctionImportMapping FunctionImportName="paInsertarBannerPrincipal" FunctionName="PaginaWebCatalogosModel.Store.paInsertarBannerPrincipal" />
+          <FunctionImportMapping FunctionImportName="paObtenerBanners" FunctionName="PaginaWebCatalogosModel.Store.paObtenerBanners">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerBanners_Result">
+                <ScalarProperty Name="IdBanner" ColumnName="IdBanner" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerBannersActivos" FunctionName="PaginaWebCatalogosModel.Store.paObtenerBannersActivos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerBannersActivos_Result">
+                <ScalarProperty Name="IdBanner" ColumnName="IdBanner" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
