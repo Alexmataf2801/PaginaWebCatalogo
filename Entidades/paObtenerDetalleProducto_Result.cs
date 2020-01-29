@@ -19,6 +19,9 @@ namespace Entidades
         public string Descripcion { get; set; }
         public string Moneda { get; set; }
         public decimal PrecioProducto { get; set; }
+        public Nullable<bool> Descuento { get; set; }
+        public Nullable<int> TipoDescuento { get; set; }
+        public Nullable<decimal> CantidadDescuento { get; set; }
         public int IdImagen { get; set; }
         public string Url { get; set; }
         public string NombreImagen { get; set; }

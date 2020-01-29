@@ -91,7 +91,7 @@ namespace PaginaWebCatalogo.Controllers
 
             Iniciarlizar();
             return View();
-        } 
+        }
 
         [HttpGet]
         public ActionResult RedesSociales()
@@ -258,6 +258,13 @@ namespace PaginaWebCatalogo.Controllers
                         productos.TipoProducto = Convert.ToInt32(Request.Form["TipoProd"]);
                         productos.SubTipoProducto = Convert.ToInt32(Request.Form["SubTipo"]);
                         productos.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        productos.Descuento = Convert.ToBoolean(Request.Form["Descuento"]);
+                        if (!string.IsNullOrEmpty(Request.Form["Descuento"]))
+                        {
+                            productos.TipoDescuento = Convert.ToInt32(Request.Form["TipoDescuento"]);
+                            productos.CantidadDescuento = Convert.ToInt32(Request.Form["CantidadDescuento"]);
+                        }
+
 
                         int IdProducto = LogicaNegocioMantenimientos.InsertarProducto(productos);
 
@@ -753,7 +760,8 @@ namespace PaginaWebCatalogo.Controllers
 
                     }
                 }
-                else {
+                else
+                {
                     DatosEmpresa.NombreImagen = "SIN LOGO";
                 }
 

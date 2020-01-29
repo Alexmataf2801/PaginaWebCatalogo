@@ -147,7 +147,7 @@ namespace AccesoDatos.Mantenimientos
             try
             {
                 respuesta = new ObjectParameter("IdProducto", typeof(int));
-                entities.paInsertarProducto(productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto), productos.TipoProducto, productos.SubTipoProducto, productos.UsuarioCreacion, respuesta);
+                entities.paInsertarProducto(productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto), productos.TipoProducto, productos.SubTipoProducto, productos.Descuento,productos.TipoDescuento,productos.CantidadDescuento, productos.UsuarioCreacion, respuesta);
                 IdProducto = Convert.ToInt32(respuesta.Value.ToString());
 
             }
@@ -701,6 +701,9 @@ namespace AccesoDatos.Mantenimientos
                     productos.TipoProducto = item.TipoProducto;
                     productos.SubTipoProducto = item.SubTipo;
                     productos.Estado = item.Estado;
+                    productos.Descuento = Convert.ToBoolean(item.Descuento);
+                    productos.TipoDescuento = Convert.ToInt32(item.TipoDescuento);
+                    productos.CantidadDescuento = Convert.ToInt32(item.CantidadDescuento);
                 }
 
             }

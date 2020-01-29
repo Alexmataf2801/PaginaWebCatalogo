@@ -12,6 +12,18 @@
             $("#txtActPrecioUnitProd").val(data.productos.PrecioProducto.replace(',','.'));
             $("#ddlTipMoneda").val(data.productos.Moneda);
             $("#IdProdEdit").val(Id);
+            $("#chkDescuento").val(data.productos.Descuento);
+            if (data.productos.Descuento) {
+                $("#SeccionDescuento").css("display", "block");
+                $("#chkDescuento").prop("checked", true);
+                $("#ddlTipoDescuento").val(data.productos.TipoDescuento);
+                $("#txtDescuento").val(data.productos.CantidadDescuento);
+            } else {
+                $("#chkDescuento").prop("checked", false);
+                $("#SeccionDescuento").css("display", "none");
+            }
+           
+         
             ObtenerTiposProd(data.productos.TipoProducto);
 
             var Imagenes = ObtenerImagenes(data.ListaImagenes);
@@ -26,6 +38,15 @@
     });
 
 }
+
+$("#chkDescuento").click(function () {
+    if ($(this).is(':checked')) {
+        $("#SeccionDescuento").css("display", "block");
+    } else {
+        $("#SeccionDescuento").css("display", "none");
+    }
+});
+
 
 function RedireccionarProd() {
     location.href = '/Mantenimientos/ListaProductos/';

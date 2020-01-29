@@ -20,6 +20,9 @@ namespace Entidades
         public decimal PrecioProducto { get; set; }
         public Nullable<int> TipoProducto { get; set; }
         public Nullable<int> SubTipo { get; set; }
+        public Nullable<bool> Descuento { get; set; }
+        public Nullable<int> TipoDescuento { get; set; }
+        public Nullable<decimal> CantidadDescuento { get; set; }
         public bool Estado { get; set; }
     }
 }

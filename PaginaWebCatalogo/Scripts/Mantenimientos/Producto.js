@@ -47,6 +47,15 @@ function ObtenerSubTiposProd() {
     });
 
 }
+
+$("#chkDescuento").click(function () {
+    if ($(this).is(':checked')) {
+        $("#SeccionDescuento").css("display", "block");
+    } else {
+        $("#SeccionDescuento").css("display", "none");
+    }
+});
+
 function GuardarProducto() {
 
     // Checking whether FormData is available in browser  
@@ -65,6 +74,8 @@ function GuardarProducto() {
             fileData.append(files[i].name, files[i]);
         }
 
+        var d = $("#chkDescuento").prop('checked');
+
         fileData.append('Codigo', $("#txtCodProd").val());
         fileData.append('Nombre', $("#txtNomProd").val());
         fileData.append('Descripcion', $("#txtDescripProd").val());
@@ -74,7 +85,9 @@ function GuardarProducto() {
         fileData.append('SubTipo', $("#ddlSubTipoProdMant").val());
         fileData.append('TextoTipo', $("#ddlTipoProdMant option:selected").text());
         fileData.append('TextoSubTipo', $("#ddlSubTipoProdMant option:selected").text());
-
+        fileData.append('Descuento', $("#chkDescuento").prop('checked'));
+        fileData.append('TipoDescuento', $("#ddlTipoDescuento").val());
+        fileData.append('CantidadDescuento', $("#txtDescuento").val());
 
         $.ajax({
             url: '/Mantenimientos/InsertarProducto',
