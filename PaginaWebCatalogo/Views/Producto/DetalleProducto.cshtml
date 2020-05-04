@@ -27,7 +27,7 @@
                                     <li data-thumb="@Url.Content("~/Content/nofoto.jpg")">
                                         <div class="thumb-image"> <img src="~/Content/nofoto.jpg" alt="" class="pro-image-front"></div>
                                     </li>
-                                    
+
                                 }
 
 
@@ -44,31 +44,49 @@
         @{
             if (Model.Count > 0)
             {
-                <div class="col-md-8 single-right-left simpleCart_shelfItem">
-                    <p><h3>@Model[0].NombreProducto</h3></p>
-                    <p><span class="item_price">Codigo:@Model[0].CodigoProducto</span></p>
-                    <p><span class="item_price">Precio:@Model[0].Moneda@Model[0].PrecioUnitario</span></p>
+        <div class="col-md-8 single-right-left simpleCart_shelfItem">
+            <hr />
+            <p><h3 style="text-align:center">@Model[0].NombreProducto</h3></p>
+            <hr />
+            <p><span class="item_price"><b>Codigo:</b>@Model[0].CodigoProducto</span></p>
+            <hr />
+            @{
+                if (Convert.ToBoolean(Model[0].Descuento))
+                {
 
-                    <div class="description">
-                        <h5>@Model[0].Descripcion</h5>
-                    </div>
-                    <div class="occasion-cart">
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="business" value=" " />
-                                    <input type="hidden" name="item_name" value=@Model[0].NombreProducto />
-                                    <input type="hidden" name="amount" value=@Model[0].Moneda@Model[0].PrecioUnitario />
-                                    <input type="hidden" name="cancel_return" value=" " />
-                                    <input type="button" onclick="AgregarAlCarro(@Model[0].IdProducto)" value="Agregar al Carrito" class="button" />
-                                </fieldset>
-                            </form>
-                        </div>
+                    <p><span class="item_price"><b>Precio con Descuento:</b>@Model[0].Moneda@Model[0].PrecioConDescuento</span></p>
+                    <hr />
+                    <p><span class="item_price"><b>Precio sin Descuento:</b><del>@Model[0].Moneda@Model[0].PrecioUnitario</del></span></p>
+                    <hr />
 
-                    </div>
+                }
+                else
+                {
+                    <p><span class="item_price"><b>Precio:</b>@Model[0].Moneda@Model[0].PrecioUnitario</span></p>
+                    <hr />
+                }
+
+            }
+            <p style="white-space:pre-line"><span class="item_price"><b>Descripción:</b><br />@Model[0].Descripcion</span></p>
+            <hr />
+
+            <div class="occasion-cart">
+                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                    <form action="#" method="post">
+                        <fieldset>
+                            <input type="hidden" name="cmd" value="_cart" />
+                            <input type="hidden" name="add" value="1" />
+                            <input type="hidden" name="business" value=" " />
+                            <input type="hidden" name="item_name" value=@Model[0].NombreProducto />
+                            <input type="hidden" name="amount" value=@Model[0].Moneda@Model[0].PrecioUnitario />
+                            <input type="hidden" name="cancel_return" value=" " />
+                            <input type="button" onclick="AgregarAlCarro(@Model[0].IdProducto)" value="Agregar al Carrito" class="button" />
+                        </fieldset>
+                    </form>
                 </div>
+
+            </div>
+        </div>
 
             }
 

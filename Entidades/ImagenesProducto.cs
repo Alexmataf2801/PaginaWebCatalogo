@@ -21,6 +21,10 @@ namespace Entidades
         public string PrecioUnitario { get; set; }
         public string CodigoProducto { get; set; }
         public int IdUsuario { get; set; }
+        public bool? Descuento { get; set; }
+        public int? TipoDescuento { get; set; }
+        public decimal? CantidadDescuento { get; set; }
+        public string PrecioConDescuento { get; set; }
 
     }
 }

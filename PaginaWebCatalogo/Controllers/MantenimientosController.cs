@@ -262,7 +262,12 @@ namespace PaginaWebCatalogo.Controllers
                         if (Convert.ToBoolean(Request.Form["Descuento"]))
                         {
                             productos.TipoDescuento = Convert.ToInt32(Request.Form["TipoDescuento"]);
-                            productos.CantidadDescuento = Convert.ToInt32(Request.Form["CantidadDescuento"]);
+                            productos.CantidadDescuento = Convert.ToDecimal(Request.Form["CantidadDescuento"]);
+                        }
+                        else
+                        {
+                            productos.TipoDescuento = 0;
+                            productos.CantidadDescuento = 0;
                         }
 
 
@@ -836,8 +841,17 @@ namespace PaginaWebCatalogo.Controllers
                     productos.TipoProducto = Convert.ToInt32(Request.Form["TipoProd"]);
                     productos.SubTipoProducto = Convert.ToInt32(Request.Form["SubTipo"]);
                     productos.Descuento = Convert.ToBoolean(Request.Form["Descuento"]);
-                    productos.TipoDescuento = Convert.ToInt32(Request.Form["TipoDescuento"]);
-                    productos.CantidadDescuento = Convert.ToDecimal(Request.Form["CantidadDescuento"]);
+                    if (Convert.ToBoolean(Request.Form["Descuento"]))
+                    {
+                        productos.TipoDescuento = Convert.ToInt32(Request.Form["TipoDescuento"]);
+                        productos.CantidadDescuento = Convert.ToDecimal(Request.Form["CantidadDescuento"]);
+                    }
+                    else {
+                        productos.TipoDescuento = 0;
+                        productos.CantidadDescuento = 0;
+                    }
+
+                  
                     productos.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
                     Correcto = LogicaNegocioMantenimientos.ActualizarProducto(productos);

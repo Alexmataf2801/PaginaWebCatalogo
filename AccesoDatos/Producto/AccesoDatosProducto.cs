@@ -162,6 +162,29 @@ namespace AccesoDatos.Producto
                     Imagen.Descripcion = item.Descripcion;
                     Imagen.Moneda = item.Moneda;
                     Imagen.PrecioUnitario = item.PrecioProducto.ToString("###,###,###,###,###.##");
+                    //Imagen.PrecioUnitario = item.PrecioProducto.ToString("###,###,###,###,###");
+                    Imagen.Descuento = item.Descuento;
+                    Imagen.TipoDescuento = item.TipoDescuento;
+                    Imagen.CantidadDescuento = item.CantidadDescuento;
+
+                    if (Convert.ToBoolean(item.Descuento))
+                    {
+                        decimal? PrecioConDescuento = 0.0M;
+                        if (item.TipoDescuento == 1)
+                        {
+                            PrecioConDescuento = item.PrecioProducto - item.CantidadDescuento;
+                            Imagen.PrecioConDescuento = Convert.ToDecimal(PrecioConDescuento).ToString("###,###,###,###,###.##");
+                        }
+                        else
+                        {
+                            decimal? Descuento = (item.CantidadDescuento / 100);
+                            PrecioConDescuento = item.PrecioProducto - (item.PrecioProducto * Descuento);
+                            Imagen.PrecioConDescuento = Convert.ToDecimal(PrecioConDescuento).ToString("###,###,###,###,###.##");
+                        }
+
+                    }
+
+
 
 
                     ListaImagenesProducto.Add(Imagen);
@@ -285,7 +308,7 @@ namespace AccesoDatos.Producto
 
 
 
-       
+
 
     }
 
