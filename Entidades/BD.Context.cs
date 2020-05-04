@@ -506,15 +506,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarDatosTipo", idTipoParameter, codigoParameter, nombreParameter, descripcionParameter);
         }
     
-        public virtual int paEliminarTipo(Nullable<int> idTipo)
-        {
-            var idTipoParameter = idTipo.HasValue ?
-                new ObjectParameter("IdTipo", idTipo) :
-                new ObjectParameter("IdTipo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarTipo", idTipoParameter);
-        }
-    
         public virtual int paActualizarSubTipo(Nullable<int> idSubTipo, string codigo, string nombre, string descripcion, string usuarioUltimaModificacion)
         {
             var idSubTipoParameter = idSubTipo.HasValue ?
@@ -637,47 +628,6 @@ namespace Entidades
                 new ObjectParameter("Raiz", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarInformacionEmpresa", nombreParameter, descripcionParameter, correoElectronicoParameter, telefonoParameter, direccionParameter, raizParameter, resultado);
-        }
-    
-        public virtual int paActualizarProducto(Nullable<int> idProducto, string codigo, string nombre, string descripcion, string moneda, Nullable<decimal> precioUnitario, Nullable<int> tipoProducto, Nullable<int> subTipo, string usuarioUltimaModificacion)
-        {
-            var idProductoParameter = idProducto.HasValue ?
-                new ObjectParameter("IdProducto", idProducto) :
-                new ObjectParameter("IdProducto", typeof(int));
-    
-            var codigoParameter = codigo != null ?
-                new ObjectParameter("Codigo", codigo) :
-                new ObjectParameter("Codigo", typeof(string));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var monedaParameter = moneda != null ?
-                new ObjectParameter("Moneda", moneda) :
-                new ObjectParameter("Moneda", typeof(string));
-    
-            var precioUnitarioParameter = precioUnitario.HasValue ?
-                new ObjectParameter("PrecioUnitario", precioUnitario) :
-                new ObjectParameter("PrecioUnitario", typeof(decimal));
-    
-            var tipoProductoParameter = tipoProducto.HasValue ?
-                new ObjectParameter("TipoProducto", tipoProducto) :
-                new ObjectParameter("TipoProducto", typeof(int));
-    
-            var subTipoParameter = subTipo.HasValue ?
-                new ObjectParameter("SubTipo", subTipo) :
-                new ObjectParameter("SubTipo", typeof(int));
-    
-            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
-                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
-                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarProducto", idProductoParameter, codigoParameter, nombreParameter, descripcionParameter, monedaParameter, precioUnitarioParameter, tipoProductoParameter, subTipoParameter, usuarioUltimaModificacionParameter);
         }
     
         public virtual int paEliminarImagenXId(Nullable<int> idImagen)
@@ -875,6 +825,68 @@ namespace Entidades
                 new ObjectParameter("IdProducto", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerInfoProductoXId_Result>("paObtenerInfoProductoXId", idProductoParameter);
+        }
+    
+        public virtual int paActualizarProducto(Nullable<int> idProducto, string codigo, string nombre, string descripcion, string moneda, Nullable<decimal> precioUnitario, Nullable<int> tipoProducto, Nullable<int> subTipo, Nullable<bool> descuento, Nullable<int> tipoDescuiento, Nullable<decimal> cantidadDescuento, string usuarioUltimaModificacion)
+        {
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var monedaParameter = moneda != null ?
+                new ObjectParameter("Moneda", moneda) :
+                new ObjectParameter("Moneda", typeof(string));
+    
+            var precioUnitarioParameter = precioUnitario.HasValue ?
+                new ObjectParameter("PrecioUnitario", precioUnitario) :
+                new ObjectParameter("PrecioUnitario", typeof(decimal));
+    
+            var tipoProductoParameter = tipoProducto.HasValue ?
+                new ObjectParameter("TipoProducto", tipoProducto) :
+                new ObjectParameter("TipoProducto", typeof(int));
+    
+            var subTipoParameter = subTipo.HasValue ?
+                new ObjectParameter("SubTipo", subTipo) :
+                new ObjectParameter("SubTipo", typeof(int));
+    
+            var descuentoParameter = descuento.HasValue ?
+                new ObjectParameter("Descuento", descuento) :
+                new ObjectParameter("Descuento", typeof(bool));
+    
+            var tipoDescuientoParameter = tipoDescuiento.HasValue ?
+                new ObjectParameter("TipoDescuiento", tipoDescuiento) :
+                new ObjectParameter("TipoDescuiento", typeof(int));
+    
+            var cantidadDescuentoParameter = cantidadDescuento.HasValue ?
+                new ObjectParameter("CantidadDescuento", cantidadDescuento) :
+                new ObjectParameter("CantidadDescuento", typeof(decimal));
+    
+            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
+                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
+                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarProducto", idProductoParameter, codigoParameter, nombreParameter, descripcionParameter, monedaParameter, precioUnitarioParameter, tipoProductoParameter, subTipoParameter, descuentoParameter, tipoDescuientoParameter, cantidadDescuentoParameter, usuarioUltimaModificacionParameter);
+        }
+    
+        public virtual int paEliminarTipo(Nullable<int> idTipo, ObjectParameter correcto, ObjectParameter descripcionTipo)
+        {
+            var idTipoParameter = idTipo.HasValue ?
+                new ObjectParameter("IdTipo", idTipo) :
+                new ObjectParameter("IdTipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarTipo", idTipoParameter, correcto, descripcionTipo);
         }
     }
 }

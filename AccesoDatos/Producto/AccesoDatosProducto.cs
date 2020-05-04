@@ -161,7 +161,7 @@ namespace AccesoDatos.Producto
                     Imagen.CodigoProducto = item.Codigo;
                     Imagen.Descripcion = item.Descripcion;
                     Imagen.Moneda = item.Moneda;
-                    Imagen.PrecioUnitario = item.PrecioProducto.ToString("###,###,###,###,###.##"); ;
+                    Imagen.PrecioUnitario = item.PrecioProducto.ToString("###,###,###,###,###.##");
 
 
                     ListaImagenesProducto.Add(Imagen);

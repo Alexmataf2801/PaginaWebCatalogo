@@ -259,7 +259,7 @@ namespace PaginaWebCatalogo.Controllers
                         productos.SubTipoProducto = Convert.ToInt32(Request.Form["SubTipo"]);
                         productos.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
                         productos.Descuento = Convert.ToBoolean(Request.Form["Descuento"]);
-                        if (!string.IsNullOrEmpty(Request.Form["Descuento"]))
+                        if (Convert.ToBoolean(Request.Form["Descuento"]))
                         {
                             productos.TipoDescuento = Convert.ToInt32(Request.Form["TipoDescuento"]);
                             productos.CantidadDescuento = Convert.ToInt32(Request.Form["CantidadDescuento"]);
@@ -835,6 +835,9 @@ namespace PaginaWebCatalogo.Controllers
                     productos.PrecioProducto = Request.Form["Precio"];
                     productos.TipoProducto = Convert.ToInt32(Request.Form["TipoProd"]);
                     productos.SubTipoProducto = Convert.ToInt32(Request.Form["SubTipo"]);
+                    productos.Descuento = Convert.ToBoolean(Request.Form["Descuento"]);
+                    productos.TipoDescuento = Convert.ToInt32(Request.Form["TipoDescuento"]);
+                    productos.CantidadDescuento = Convert.ToDecimal(Request.Form["CantidadDescuento"]);
                     productos.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
                     Correcto = LogicaNegocioMantenimientos.ActualizarProducto(productos);
@@ -949,11 +952,25 @@ namespace PaginaWebCatalogo.Controllers
         {
             bool Correcto = false;
 
+            string DescTipo = string.Empty;
+
             if (Session["UsuarioLogueado"] != null)
             {
+                
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
-                Correcto = LogicaNegocioMantenimientos.EliminarTipo(IdTipo);
+                Correcto = LogicaNegocioMantenimientos.EliminarTipo(IdTipo, ref DescTipo);
+
+                if (Correcto)
+                {
+                    var RutaBase = AppDomain.CurrentDomain.BaseDirectory;
+                    string rutaCompleta = RutaBase + "\\Imagenes\\" + DescTipo;
+                    if (Directory.Exists(rutaCompleta))
+                    {
+                        Directory.Delete(rutaCompleta,true);
+                    }
+                }
+
 
             }
 

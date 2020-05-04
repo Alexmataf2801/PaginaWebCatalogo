@@ -23,8 +23,17 @@
 
                                 if (Info != null)
                                 {
-                                    string RutaCompleta = AppDomain.CurrentDomain.BaseDirectory + ListaImagenes[j].Url.ToString().Split('~')[1] + ListaImagenes[j].NombreImagen + ListaImagenes[j].Raiz;
-                                    string RutaImagen = ListaImagenes[j].Url + ListaImagenes[j].NombreImagen + ListaImagenes[j].Raiz;
+                                    string RutaCompleta = string.Empty;
+                                    string RutaImagen = string.Empty;
+
+                                    foreach (var item in Info)
+                                    {
+                                        RutaCompleta = AppDomain.CurrentDomain.BaseDirectory + item.Url.ToString().Split('~')[1] + item.NombreImagen + item.Raiz;
+                                        RutaImagen = item.Url + item.NombreImagen + item.Raiz;
+                                    }
+
+                                    //string RutaCompleta = AppDomain.CurrentDomain.BaseDirectory + ListaImagenes[j].Url.ToString().Split('~')[1] + ListaImagenes[j].NombreImagen + ListaImagenes[j].Raiz;
+
 
                                     if (File.Exists(RutaCompleta))
                                     {
@@ -41,7 +50,8 @@
 
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
-                                        <a onclick="ObtenerDetalleProducto(@ListaImagenes[j].IdProducto)" class="link-product-add-cart">Detalles Producto</a>
+                                        @Html.ActionLink("Detalles Producto", "DetalleProducto", "Producto", new { IdProducto = @Model[j].IdProducto }, new { @class = "link-product-add-cart" })
+                                        @*<a onclick="ObtenerDetalleProducto(@ListaImagenes[j].IdProducto)" class="link-product-add-cart">Detalles Producto</a>*@
                                     </div>
                                 </div>
 
@@ -53,7 +63,8 @@
 
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
-                                        <a onclick="ObtenerDetalleProducto(@Model[j].IdProducto)" class="link-product-add-cart">Detalles Producto</a>
+                                        @Html.ActionLink("Detalles Producto", "DetalleProducto", "Producto", new { IdProducto = @Model[j].IdProducto }, new { @class = "link-product-add-cart" })
+                                        @*<a onclick="ObtenerDetalleProducto(@ListaImagenes[j].IdProducto)" class="link-product-add-cart">Detalles Producto</a>*@
                                     </div>
                                 </div>
                             }
@@ -63,7 +74,7 @@
 
                     </div>
                     <div class="item-info-product ">
-                        <h4><a href="#">@Model[j].Nombre</a></h4>
+                        <h4><a href ="#">@Model[j].Nombre</a></h4>
                         <div class="info-product-price">
                             <span class="item_price">@Model[j].Moneda@Model[j].PrecioProducto</span>
                         </div>

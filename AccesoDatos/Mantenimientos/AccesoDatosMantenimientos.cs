@@ -930,7 +930,7 @@ namespace AccesoDatos.Mantenimientos
 
             try
             {
-                entities.paActualizarProducto(productos.IdProducto, productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto), productos.TipoProducto, productos.SubTipoProducto, productos.UsuarioUltimaModificacion);
+                entities.paActualizarProducto(productos.IdProducto, productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto), productos.TipoProducto, productos.SubTipoProducto,productos.Descuento,productos.TipoDescuento,productos.CantidadDescuento, productos.UsuarioUltimaModificacion);
                 Correcto = true;
 
             }
@@ -968,15 +968,19 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
-        public static bool EliminarTipo(int IdTipo)
+        public static bool EliminarTipo(int IdTipo, ref string DescTipo)
         {
             bool Correcto = false;
             PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
-
+            ObjectParameter Respuesta;
+            ObjectParameter Descripcion;
             try
             {
-                entities.paEliminarTipo(IdTipo);
-                Correcto = true;
+                Respuesta = new ObjectParameter("Correcto", typeof(int));
+                Descripcion = new ObjectParameter("DescripcionTipo", typeof(string));
+                entities.paEliminarTipo(IdTipo, Respuesta, Descripcion);
+                Correcto = Convert.ToBoolean(Respuesta.Value.ToString());
+                DescTipo = Descripcion.Value.ToString();
 
             }
             catch (Exception ex)

@@ -8,7 +8,7 @@ namespace Entidades
 {
     public class ImagenesProducto
     {
-        public int IdImagen { get; set; }
+        public int? IdImagen { get; set; }
         public string NombreImagen { get; set; }
         public string Raiz { get; set; }
         public string Url { get; set; }

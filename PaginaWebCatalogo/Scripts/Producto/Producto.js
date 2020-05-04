@@ -15,21 +15,21 @@ function ObtenerProductosRandom() {
     });
 }
 
-function ObtenerDetalleProducto(Id) {
+function DetalleProducto(Id) {
     $.ajax({
         type: "GET",
         datatype: "JSON",
         data: { IdProducto: Id },
-        url: "/Producto/ObtenerDetalleProducto/",
-        success: function (info) {
-            if (info.length > 0) {
-                window.location.href = "/Producto/DetalleProducto?IdProducto=" + Id;
-            }
+        url: "/Producto/DetalleProducto/",
+        //success: function (info) {
+        //    if (info.length > 0) {
+        //        window.location.href = "/Producto/DetalleProducto?IdProducto=" + Id;
+        //    }
 
-        },
-        error: function (error) {
-            console.log(error);
-        }
+        //},
+        //error: function (error) {
+        //    console.log(error);
+        //}
     });
 }
 

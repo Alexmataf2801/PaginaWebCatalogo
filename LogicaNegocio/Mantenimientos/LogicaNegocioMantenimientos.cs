@@ -233,10 +233,10 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.EliminarRedSocial(IdRedSocial);
         }
 
-        public static bool EliminarTipo(int IdTipo)
+        public static bool EliminarTipo(int IdTipo, ref string DescTipo)
         {
 
-            return AccesoDatosMantenimientos.EliminarTipo(IdTipo);
+            return AccesoDatosMantenimientos.EliminarTipo(IdTipo, ref DescTipo);
         }
 
         public static bool EliminarSubTipo(int IdSubTipo)

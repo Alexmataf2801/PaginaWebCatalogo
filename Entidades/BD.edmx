@@ -134,6 +134,9 @@
           <Parameter Name="PrecioUnitario" Type="decimal" Mode="In" />
           <Parameter Name="TipoProducto" Type="int" Mode="In" />
           <Parameter Name="SubTipo" Type="int" Mode="In" />
+          <Parameter Name="Descuento" Type="bit" Mode="In" />
+          <Parameter Name="TipoDescuiento" Type="int" Mode="In" />
+          <Parameter Name="CantidadDescuento" Type="decimal" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="paActualizarRedSocial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -200,6 +203,8 @@
         </Function>
         <Function Name="paEliminarTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipo" Type="int" Mode="In" />
+          <Parameter Name="Correcto" Type="bit" Mode="InOut" />
+          <Parameter Name="DescripcionTipo" Type="varchar" Mode="InOut" />
         </Function>
         <Function Name="paInsertarBannerPrincipal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -531,9 +536,6 @@
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="paEliminarTipo">
-          <Parameter Name="IdTipo" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paActualizarSubTipo">
             <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
             <Parameter Name="Codigo" Mode="In" Type="String" />
@@ -571,17 +573,6 @@
             <Parameter Name="Direccion" Mode="In" Type="String" />
             <Parameter Name="Raiz" Mode="In" Type="String" />
             <Parameter Name="Resultado" Mode="InOut" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paActualizarProducto">
-            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
-            <Parameter Name="Codigo" Mode="In" Type="String" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="Moneda" Mode="In" Type="String" />
-            <Parameter Name="PrecioUnitario" Mode="In" Type="Decimal" />
-            <Parameter Name="TipoProducto" Mode="In" Type="Int32" />
-            <Parameter Name="SubTipo" Mode="In" Type="Int32" />
-            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="paEliminarImagenXId">
           <Parameter Name="IdImagen" Mode="In" Type="Int32" />
@@ -638,7 +629,26 @@
           <Parameter Name="IdProducto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerInfoProductoXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerInfoProductoXId_Result)">
+          <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarProducto">
             <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Moneda" Mode="In" Type="String" />
+            <Parameter Name="PrecioUnitario" Mode="In" Type="Decimal" />
+            <Parameter Name="TipoProducto" Mode="In" Type="Int32" />
+            <Parameter Name="SubTipo" Mode="In" Type="Int32" />
+            <Parameter Name="Descuento" Mode="In" Type="Boolean" />
+            <Parameter Name="TipoDescuiento" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paEliminarTipo">
+            <Parameter Name="IdTipo" Mode="In" Type="Int32" />
+            <Parameter Name="Correcto" Mode="InOut" Type="Boolean" />
+            <Parameter Name="DescripcionTipo" Mode="InOut" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -1237,7 +1247,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarDatosTipo" FunctionName="PaginaWebCatalogosModel.Store.paActualizarDatosTipo" />
-          <FunctionImportMapping FunctionImportName="paEliminarTipo" FunctionName="PaginaWebCatalogosModel.Store.paEliminarTipo" />
           <FunctionImportMapping FunctionImportName="paActualizarSubTipo" FunctionName="PaginaWebCatalogosModel.Store.paActualizarSubTipo" />
           <FunctionImportMapping FunctionImportName="paObtenerSubTipoXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerSubTipoXId">
             <ResultMapping>
@@ -1276,7 +1285,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paInsertarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paInsertarInformacionEmpresa" />
-          <FunctionImportMapping FunctionImportName="paActualizarProducto" FunctionName="PaginaWebCatalogosModel.Store.paActualizarProducto" />
           <FunctionImportMapping FunctionImportName="paEliminarImagenXId" FunctionName="PaginaWebCatalogosModel.Store.paEliminarImagenXId" />
           <FunctionImportMapping FunctionImportName="paObtenerImagenXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerImagenXId">
             <ResultMapping>
@@ -1389,6 +1397,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paActualizarProducto" FunctionName="PaginaWebCatalogosModel.Store.paActualizarProducto" />
+          <FunctionImportMapping FunctionImportName="paEliminarTipo" FunctionName="PaginaWebCatalogosModel.Store.paEliminarTipo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
