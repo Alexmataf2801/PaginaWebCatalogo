@@ -19,7 +19,7 @@ namespace PaginaWebCatalogo.Controllers
 
             Index index = new Index();
             index.ListaProductos = LogicaNegocioProducto.ObtenerProductosRandom();
-
+            index.ListaProductosDescuento = LogicaNegocioProducto.ObtenerProductosRandomDescuentos();
 
 
             return View("Index", index);

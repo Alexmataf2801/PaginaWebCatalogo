@@ -888,5 +888,10 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerProductoPorTipo_Result>("paObtenerProductoPorTipo", idTipoProductoParameter, idSubTipoParameter);
         }
+    
+        public virtual ObjectResult<paObtenerProductosDescuentoRandom_Result> paObtenerProductosDescuentoRandom()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerProductosDescuentoRandom_Result>("paObtenerProductosDescuentoRandom");
+        }
     }
 }

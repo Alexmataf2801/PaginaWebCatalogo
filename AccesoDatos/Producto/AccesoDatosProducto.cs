@@ -95,7 +95,25 @@ namespace AccesoDatos.Producto
                     producto.FechaCreacion = item.FechaCreacion;
                     producto.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
                     producto.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    producto.Descuento = item.Descuento;
+                    producto.TipoDescuento = item.TipoDescuento;
+                    producto.CantidadDescuento = item.CantidadDescuento;
+                    if (Convert.ToBoolean(item.Descuento))
+                    {
+                        decimal? PrecioConDescuento = 0.0M;
+                        if (item.TipoDescuento == 1)
+                        {
+                            PrecioConDescuento = item.PrecioProducto - item.CantidadDescuento;
+                            producto.PrecioConDescuento = Convert.ToDecimal(PrecioConDescuento).ToString("###,###,###,###,###.##");
+                        }
+                        else
+                        {
+                            decimal? Descuento = (item.CantidadDescuento / 100);
+                            PrecioConDescuento = item.PrecioProducto - (item.PrecioProducto * Descuento);
+                            producto.PrecioConDescuento = Convert.ToDecimal(PrecioConDescuento).ToString("###,###,###,###,###.##");
+                        }
 
+                    }
                     ListaProducto.Add(producto);
                 }
             }
@@ -207,6 +225,39 @@ namespace AccesoDatos.Producto
             try
             {
                 var Producto = entities.paObtenerProductosRandom();
+
+                foreach (var item in Producto)
+                {
+                    ImagenesProducto Imagen = new ImagenesProducto();
+                    Imagen.NombreImagen = item.NombreImagen;
+                    Imagen.Raiz = item.Raiz;
+                    Imagen.Url = item.Url;
+                    Imagen.IdProducto = item.IdProducto;
+                    Imagen.NombreProducto = item.Nombre;
+                    Imagen.PrecioUnitario = item.PrecioProducto.ToString("###,###,###,###,###.##");
+                    Imagen.Moneda = item.Moneda;
+
+
+                    ListaImagenesProducto.Add(Imagen);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaImagenesProducto;
+        }
+
+        public static List<ImagenesProducto> ObtenerProductosRandomDescuentos()
+        {
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<ImagenesProducto> ListaImagenesProducto = new List<ImagenesProducto>();
+
+            try
+            {
+                var Producto = entities.paObtenerProductosDescuentoRandom();
 
                 foreach (var item in Producto)
                 {

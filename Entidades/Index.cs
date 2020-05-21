@@ -13,6 +13,7 @@ namespace Entidades
         public Usuario usuario = new Usuario();
         public List<RedesSociales> ListaRedesSociales = new List<RedesSociales>();
         public Empresa Empresa = new Empresa();
-        
+        public List<ImagenesProducto> ListaProductosDescuento = new List<ImagenesProducto>();
+
     }
 }

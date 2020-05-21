@@ -127,16 +127,18 @@
 
         @if (Model != null)
         {
+
+            // ACA SE MUESTRNA PRODUCTOS SIN DESCUENTOS
             if (Model.ListaProductos.Count > 0)
             {
-                <h3 class="wthree_text_info">Nuevos Productos</h3>
+                <h3 class="wthree_text_info">Productos a precios increibles</h3>
             }
 
             for (int j = 0; j < Model.ListaProductos.Count; j++)
             {
 
 
-                <div class="col-md-3 product-men" @*style="width:250px; height:350px; margin-bottom:50px"*@>
+                <div class="col-md-3 product-men">
                     <div class="men-pro-item simpleCart_shelfItem">
                         <div class="men-thumb-item">
                             @{
@@ -153,8 +155,7 @@
 
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
-                                        @Html.ActionLink("Detalles Producto", "DetalleProducto","Producto", new { IdProducto = @Model.ListaProductos[j].IdProducto }, new { @class = "link-product-add-cart"})
-                                        @*<a onclick="ObtenerDetalleProducto(@Model.ListaProductos[j].IdProducto)" class="link-product-add-cart">Detalles Producto</a>*@
+                                        @Html.ActionLink("Detalles Producto", "DetalleProducto", "Producto", new { IdProducto = @Model.ListaProductos[j].IdProducto }, new { @class = "link-product-add-cart" })
                                     </div>
                                 </div>
 
@@ -186,23 +187,87 @@
                 </div>
             }
 
+
+
+
         }
 
 
 
     </div>
 </div>
-<!-- //new_arrivals -->
-<!-- /we-offer -->
-<div class="sale-w3ls">
-    <div class="container">
-        <h6>We Offer Flat <span>40%</span> Discount</h6>
 
-        <a class="hvr-outline-out button2" href="single.html">Shop Now </a>
+<div class="new_arrivals_agile_w3ls_info">
+    <div class="container">
+
+        @if (Model != null)
+        {
+            // ACA SE MUESTRAN PRODUCTOS CON DESCUENTOS
+
+            if (Model.ListaProductosDescuento.Count > 0)
+            {
+                <h3 class="wthree_text_info">Productos con descuentos increibles</h3>
+            }
+
+            for (int h = 0; h < Model.ListaProductosDescuento.Count; h++)
+            {
+
+
+                <div class="col-md-3 product-men">
+                    <div class="men-pro-item simpleCart_shelfItem">
+                        <div class="men-thumb-item">
+                            @{
+
+                                if (Model.ListaProductosDescuento.Count > 0)
+                                {
+                                    string ruta = Model.ListaProductosDescuento[h].Url + Model.ListaProductosDescuento[h].NombreImagen + Model.ListaProductosDescuento[h].Raiz;
+
+                                    <img style="max-width:300px; max-height:400px" src="@Url.Content(ruta)" alt="" class="pro-image-front">
+                                    <img style="max-width:300px; max-height:400px" src="@Url.Content(ruta)" alt="" class="pro-image-back">
+
+                                }
+
+
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        @Html.ActionLink("Detalles Producto", "DetalleProducto", "Producto", new { IdProducto = @Model.ListaProductosDescuento[h].IdProducto }, new { @class = "link-product-add-cart" })
+                                    </div>
+                                </div>
+
+                            }
+                            <span class="product-new-top">Nuevo</span>
+
+                        </div>
+                        <div class="item-info-product ">
+                            <h4><a href="#">@Model.ListaProductosDescuento[h].NombreProducto</a></h4>
+                            <div class="info-product-price">
+                                <span class="item_price">@Model.ListaProductosDescuento[h].Moneda@Model.ListaProductosDescuento[h].PrecioUnitario</span>
+                            </div>
+                            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                                <form action="#" method="post">
+                                    <fieldset>
+                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="add" value="1" />
+                                        <input type="hidden" name="business" value=" " />
+                                        <input type="hidden" name="item_name" value="@Model.ListaProductosDescuento[h].NombreProducto" />
+                                        <input type="hidden" name="amount" value="@Model.ListaProductosDescuento[h].Moneda@Model.ListaProductosDescuento[h].PrecioUnitario" />
+                                        <input type="hidden" name="cancel_return" value=" " />
+                                        <input type="button" onclick="AgregarAlCarro(@Model.ListaProductosDescuento[h].IdProducto)" value="Agregar al Carrito" class="button" />
+                                    </fieldset>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+
+
     </div>
 </div>
-<!-- //we-offer -->
-<!--/grids-->
+
 <div class="coupons">
     <div class="coupons-grids text-center">
         <div class="w3layouts_mail_grid">

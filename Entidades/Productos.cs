@@ -16,9 +16,10 @@ namespace Entidades
         public string PrecioProducto { get; set; }
         public int? TipoProducto { get; set; }
         public int? SubTipoProducto { get; set; }
-        public bool Descuento { get; set; }
-        public int TipoDescuento { get; set; }
-        public decimal CantidadDescuento { get; set; }
+        public bool? Descuento { get; set; }
+        public int? TipoDescuento { get; set; }
+        public decimal? CantidadDescuento { get; set; }
+        public string PrecioConDescuento { get; set; }
         public bool Estado { get; set; }
         public string UsuarioCreacion { get; set; }
         public DateTime FechaCreacion { get; set; }

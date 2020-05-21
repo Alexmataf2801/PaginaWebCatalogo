@@ -45,6 +45,12 @@ namespace LogicaNegocio.Producto
             return AccesoDatosProductos.ObtenerProductosRandom();
         }
 
+        public static List<ImagenesProducto> ObtenerProductosRandomDescuentos()
+        {
+
+            return AccesoDatosProductos.ObtenerProductosRandomDescuentos();
+        }
+
         public static List<Carrito> ObtenerCarrito(int IdUsuario)
         {
 

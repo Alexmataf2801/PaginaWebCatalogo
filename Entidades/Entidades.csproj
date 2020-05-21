@@ -124,6 +124,9 @@
     <Compile Include="paObtenerProductoPorTipo_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerProductosDescuentoRandom_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerProductosRandom_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>

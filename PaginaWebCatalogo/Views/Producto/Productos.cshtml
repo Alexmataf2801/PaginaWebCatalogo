@@ -76,7 +76,20 @@
                     <div class="item-info-product ">
                         <h4><a href ="#">@Model[j].Nombre</a></h4>
                         <div class="info-product-price">
-                            <span class="item_price">@Model[j].Moneda@Model[j].PrecioProducto</span>
+                            @{
+                                if (Convert.ToBoolean(Model[j].Descuento))
+                                {
+                                    <span class="item_price">@Model[j].Moneda@Model[j].PrecioConDescuento</span><br />
+                                    <span class="item_price"><del>@Model[j].Moneda@Model[j].PrecioProducto</del></span>
+                                }
+                                else
+                                {
+
+                                    <span class="item_price">@Model[j].Moneda@Model[j].PrecioProducto</span>
+                                }
+
+
+                            }
                         </div>
                         <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
                             <form action="#" method="post">

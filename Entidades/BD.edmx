@@ -341,6 +341,7 @@
           <Parameter Name="IdTipoProducto" Type="int" Mode="In" />
           <Parameter Name="IdSubTipo" Type="int" Mode="In" />
         </Function>
+        <Function Name="paObtenerProductosDescuentoRandom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerProductosRandom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerRedesSociales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerRedSocial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -650,6 +651,7 @@
             <Parameter Name="IdTipoProducto" Mode="In" Type="Int32" />
             <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerProductosDescuentoRandom" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerProductosDescuentoRandom_Result)" />
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -950,6 +952,16 @@
           <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="paObtenerProductosDescuentoRandom_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1402,6 +1414,20 @@
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
                 <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerProductosDescuentoRandom" FunctionName="PaginaWebCatalogosModel.Store.paObtenerProductosDescuentoRandom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerProductosDescuentoRandom_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

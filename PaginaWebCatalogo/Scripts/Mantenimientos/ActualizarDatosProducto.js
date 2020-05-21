@@ -80,7 +80,7 @@ function ActualizarProducto() {
         fileData.append('SubTipo', $("#ddlActSubTipoProdMant").val());
         fileData.append('TextoTipo', $("#ddlActTipoProdMant option:selected").text());
         fileData.append('TextoSubTipo', $("#ddlActSubTipoProdMant option:selected").text());
-        fileData.append('Descuento', $("#chkDescuento").val());
+        fileData.append('Descuento', $("#chkDescuento").prop('checked'));
         fileData.append('TipoDescuento', $("#ddlTipoDescuento").val());
         fileData.append('CantidadDescuento', $("#txtDescuento").val());
 
