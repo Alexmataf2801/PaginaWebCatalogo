@@ -49,8 +49,7 @@
             <p><h3 style="text-align:center">@Model[0].NombreProducto</h3></p>
             <hr />
             <p><span class="item_price"><b>Codigo:</b>@Model[0].CodigoProducto</span></p>
-            <hr />
-            @{
+            <hr />PrecioConDescuento            @{
                 if (Convert.ToBoolean(Model[0].Descuento))
                 {
 

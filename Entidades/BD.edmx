@@ -961,6 +961,9 @@
           <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+          <Property Type="Boolean" Name="Descuento" Nullable="true" />
+          <Property Type="Decimal" Name="CantidadDescuento" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="TipoDescuento" Nullable="true" />
           <Property Type="Int64" Name="RowNumber" Nullable="true" />
         </ComplexType>
       </Schema>
@@ -1427,6 +1430,9 @@
                 <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
                 <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="CantidadDescuento" ColumnName="CantidadDescuento" />
+                <ScalarProperty Name="TipoDescuento" ColumnName="TipoDescuento" />
                 <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
               </ComplexTypeMapping>
             </ResultMapping>

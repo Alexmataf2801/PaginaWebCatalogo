@@ -20,6 +20,9 @@ namespace Entidades
         public string Url { get; set; }
         public string NombreImagen { get; set; }
         public string Raiz { get; set; }
+        public Nullable<bool> Descuento { get; set; }
+        public Nullable<decimal> CantidadDescuento { get; set; }
+        public Nullable<int> TipoDescuento { get; set; }
         public Nullable<long> RowNumber { get; set; }
     }
 }

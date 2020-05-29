@@ -241,7 +241,8 @@
                         <div class="item-info-product ">
                             <h4><a href="#">@Model.ListaProductosDescuento[h].NombreProducto</a></h4>
                             <div class="info-product-price">
-                                <span class="item_price">@Model.ListaProductosDescuento[h].Moneda@Model.ListaProductosDescuento[h].PrecioUnitario</span>
+                                <span class="item_price">@Model.ListaProductosDescuento[h].Moneda@Model.ListaProductosDescuento[h].PrecioConDescuento</span><br />
+                                <span class="item_price"><del>@Model.ListaProductosDescuento[h].Moneda@Model.ListaProductosDescuento[h].PrecioUnitario</del></span>
                             </div>
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
                                 <form action="#" method="post">
