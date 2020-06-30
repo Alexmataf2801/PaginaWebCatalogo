@@ -80,7 +80,11 @@ namespace LogicaNegocio.Administracion
 
             return AccesoDatosAdministracion.ObtenerBannersActivos();
         }
+        public static List<Beneficios> ObtenerBeneficiosActivos()
+        {
 
+            return AccesoDatosAdministracion.ObtenerBeneficiosActivos();
+        }
         #endregion
 
 

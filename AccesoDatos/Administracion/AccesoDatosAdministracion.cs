@@ -244,6 +244,41 @@ namespace AccesoDatos.Administracion
             return ListaBanners;
         }
 
+        public static List<Beneficios> ObtenerBeneficiosActivos()
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<Beneficios> ListaBeneficios = new List<Beneficios>();
+
+            try
+            {
+                var info = entities.paObtenerBeneficiosActivos();
+
+                foreach (var item in info)
+                {
+                    Beneficios beneficio = new Beneficios();
+                    beneficio.Id = item.Id;
+                    beneficio.Nombre = item.Nombre;
+                    beneficio.Descripcion = item.Descripcion;
+                    beneficio.Icono = item.Icono;
+                    beneficio.UsuarioCreacion = item.UsuarioCreacion;
+                    beneficio.FechaCreacion = item.FechaCreacion;
+                    beneficio.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    beneficio.FechaUltimaModificacion = item.FechaUltimaModificacion;
+
+                    ListaBeneficios.Add(beneficio);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaBeneficios;
+
+        }
         #endregion
 
         #region UPDATE

@@ -893,5 +893,87 @@ namespace Entidades
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerProductosDescuentoRandom_Result>("paObtenerProductosDescuentoRandom");
         }
+    
+        public virtual int paDesactivarActivarBeneficio(Nullable<int> idBeneficio, Nullable<bool> estado)
+        {
+            var idBeneficioParameter = idBeneficio.HasValue ?
+                new ObjectParameter("IdBeneficio", idBeneficio) :
+                new ObjectParameter("IdBeneficio", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarBeneficio", idBeneficioParameter, estadoParameter);
+        }
+    
+        public virtual int paEliminarBeneficio(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarBeneficio", idParameter);
+        }
+    
+        public virtual int paActualizarBeneficio(Nullable<int> id, string nombre, string descripcion, string icono, string color, string usuarioUltimaModificacion)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var iconoParameter = icono != null ?
+                new ObjectParameter("Icono", icono) :
+                new ObjectParameter("Icono", typeof(string));
+    
+            var colorParameter = color != null ?
+                new ObjectParameter("Color", color) :
+                new ObjectParameter("Color", typeof(string));
+    
+            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
+                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
+                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarBeneficio", idParameter, nombreParameter, descripcionParameter, iconoParameter, colorParameter, usuarioUltimaModificacionParameter);
+        }
+    
+        public virtual int paInsertarBeneficios(string nombre, string descripcion, string icono, string usuarioCreacion)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var iconoParameter = icono != null ?
+                new ObjectParameter("Icono", icono) :
+                new ObjectParameter("Icono", typeof(string));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarBeneficios", nombreParameter, descripcionParameter, iconoParameter, usuarioCreacionParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerBeneficiosActivos_Result> paObtenerBeneficiosActivos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerBeneficiosActivos_Result>("paObtenerBeneficiosActivos");
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosBeneficios_Result> paObtenerTodosLosBeneficios()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosBeneficios_Result>("paObtenerTodosLosBeneficios");
+        }
     }
 }

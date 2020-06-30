@@ -356,6 +356,7 @@
     <Content Include="Views\Mantenimientos\ActualizarDatosProducto.cshtml" />
     <Content Include="Views\Mantenimientos\ActualizarRedSocial.cshtml" />
     <Content Include="Views\Shared\_Banners.cshtml" />
+    <Content Include="Views\Shared\_Beneficios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

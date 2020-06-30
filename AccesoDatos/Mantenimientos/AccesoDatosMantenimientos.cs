@@ -386,28 +386,7 @@ namespace AccesoDatos.Mantenimientos
 
             return ListaSubTipoProducto;
         }
-
-        public static bool ActualizarRedSocial(RedesSociales redSocial)
-        {
-
-            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
-            bool Correcto = false;
-
-            try
-            {
-                entities.paActualizarRedSocial(redSocial.IdRedSocial,redSocial.Nombre, redSocial.Descripcion, redSocial.Url, redSocial.Icono, redSocial.Color,redSocial.UsuarioUltimaModificacion);
-                Correcto = true;
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-            return Correcto;
-        }
-        //
+        
         public static RedesSociales ObtenerRedSocial(int IdRedSocial)
         {
             PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
@@ -592,6 +571,7 @@ namespace AccesoDatos.Mantenimientos
 
             return ListaProductos;
         }
+
         public static TipoProducto ObtenerTipoXId(int IdTipo)
         {
 
@@ -778,6 +758,43 @@ namespace AccesoDatos.Mantenimientos
             return img;
         }
 
+        public static List<Beneficios> ObtenerTodosLosBeneficios() {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            List<Beneficios> ListaBeneficios = new List<Beneficios>();
+
+            try
+            {
+                var info = entities.paObtenerTodosLosBeneficios();
+
+                foreach (var item in info)
+                {
+                    Beneficios beneficio = new Beneficios();
+                    beneficio.Id = item.Id;
+                    beneficio.Nombre = item.Nombre;
+                    beneficio.Descripcion = item.Descripcion;
+                    beneficio.Icono = item.Icono;
+                    beneficio.UsuarioCreacion = item.UsuarioCreacion;
+                    beneficio.FechaCreacion = item.FechaCreacion;
+                    beneficio.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    beneficio.FechaUltimaModificacion = item.FechaUltimaModificacion;
+
+                    ListaBeneficios.Add(beneficio);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return ListaBeneficios;
+
+        }
+
+
+
         #endregion
 
 
@@ -791,6 +808,25 @@ namespace AccesoDatos.Mantenimientos
             try
             {
                 entities.paDesactivarActivarRedSocial(IdRedSocial, Estado);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+        public static bool DesactivarActivarBeneficio(int IdBeneficio, bool Estado)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paDesactivarActivarBeneficio(IdBeneficio, Estado);
                 Correcto = true;
 
             }
@@ -943,6 +979,47 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
+        public static bool ActualizarRedSocial(RedesSociales redSocial)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            bool Correcto = false;
+
+            try
+            {
+                entities.paActualizarRedSocial(redSocial.IdRedSocial, redSocial.Nombre, redSocial.Descripcion, redSocial.Url, redSocial.Icono, redSocial.Color, redSocial.UsuarioUltimaModificacion);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return Correcto;
+        }
+
+        public static bool ActualizarBeneficio(Beneficios beneficio)
+        {
+
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            bool Correcto = false;
+
+            try
+            {
+                entities.paActualizarBeneficio(beneficio.Id,beneficio.Nombre,beneficio.Descripcion,beneficio.Icono,beneficio.Color,beneficio.UsuarioUltimaModificacion);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return Correcto;
+        }
         #endregion
 
 
@@ -1052,7 +1129,25 @@ namespace AccesoDatos.Mantenimientos
             return Correcto;
         }
 
+        public static bool EliminarBeneficioXId(int IdBeneficio)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
 
+            try
+            {
+                entities.paEliminarBeneficio(IdBeneficio);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
         #endregion
 
 

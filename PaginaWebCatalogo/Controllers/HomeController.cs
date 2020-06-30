@@ -82,6 +82,14 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
+        public ActionResult ObtenerBeneficios()
+        {
+            List<Beneficios> ListaBeneficios = LogicaNegocioAdministracion.ObtenerBeneficiosActivos();
+
+            return PartialView("_Beneficios", ListaBeneficios);
+
+        }
+
         public ActionResult ObtenerInformacionEmpresa()
         {
             Empresa Empresa = LogicaNegocioAdministracion.ObtenerInformacionEmpresa();

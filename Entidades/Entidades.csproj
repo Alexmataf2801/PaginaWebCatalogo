@@ -70,6 +70,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BD.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Beneficios.cs" />
     <Compile Include="Carrito.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Icono.cs" />
@@ -83,6 +84,9 @@
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerBanners_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerBeneficiosActivos_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerCarrito_Result.cs">
@@ -158,6 +162,9 @@
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerTodasRedesSociales_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerTodosLosBeneficios_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerTodosProductos_Result.cs">
