@@ -147,7 +147,7 @@ namespace AccesoDatos.Mantenimientos
             try
             {
                 respuesta = new ObjectParameter("IdProducto", typeof(int));
-                entities.paInsertarProducto(productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto), productos.TipoProducto, productos.SubTipoProducto, productos.Descuento,productos.TipoDescuento,productos.CantidadDescuento, productos.UsuarioCreacion, respuesta);
+                entities.paInsertarProducto(productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto),productos.Condicion, productos.TipoProducto, productos.SubTipoProducto, productos.Descuento,productos.TipoDescuento,productos.CantidadDescuento, productos.UsuarioCreacion, respuesta);
                 IdProducto = Convert.ToInt32(respuesta.Value.ToString());
 
             }
@@ -678,6 +678,7 @@ namespace AccesoDatos.Mantenimientos
                     productos.Descripcion = item.Descripcion;
                     productos.Moneda = item.Moneda;
                     productos.PrecioProducto = item.PrecioProducto.ToString(CultureInfo.InvariantCulture);
+                    productos.Condicion = Convert.ToInt32(item.Condicion);
                     productos.TipoProducto = item.TipoProducto;
                     productos.SubTipoProducto = item.SubTipo;
                     productos.Estado = item.Estado;
@@ -966,7 +967,7 @@ namespace AccesoDatos.Mantenimientos
 
             try
             {
-                entities.paActualizarProducto(productos.IdProducto, productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto), productos.TipoProducto, productos.SubTipoProducto,productos.Descuento,productos.TipoDescuento,productos.CantidadDescuento, productos.UsuarioUltimaModificacion);
+                entities.paActualizarProducto(productos.IdProducto, productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto),productos.Condicion, productos.TipoProducto, productos.SubTipoProducto,productos.Descuento,productos.TipoDescuento,productos.CantidadDescuento, productos.UsuarioUltimaModificacion);
                 Correcto = true;
 
             }

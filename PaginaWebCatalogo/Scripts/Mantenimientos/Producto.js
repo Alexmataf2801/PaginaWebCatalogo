@@ -58,6 +58,7 @@ $("#chkDescuento").click(function () {
 
 function GuardarProducto() {
 
+
     // Checking whether FormData is available in browser  
     if (window.FormData !== undefined) {
 
@@ -81,6 +82,7 @@ function GuardarProducto() {
         fileData.append('Descripcion', $("#txtDescripProd").val());
         fileData.append('Moneda', $("#ddlTipMoneda").val());
         fileData.append('Precio', $("#txtPrecioUnitProd").val());
+        fileData.append('Condicion', $("input:radio[name=rbCondicion]:checked").val());
         fileData.append('TipoProd', $("#ddlTipoProdMant").val());
         fileData.append('SubTipo', $("#ddlSubTipoProdMant").val());
         fileData.append('TextoTipo', $("#ddlTipoProdMant option:selected").text());

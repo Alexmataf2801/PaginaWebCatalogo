@@ -259,6 +259,8 @@ namespace PaginaWebCatalogo.Controllers
                         productos.SubTipoProducto = Convert.ToInt32(Request.Form["SubTipo"]);
                         productos.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
                         productos.Descuento = Convert.ToBoolean(Request.Form["Descuento"]);
+                        productos.Condicion = Convert.ToInt32(Request.Form["Condicion"]);
+
                         if (Convert.ToBoolean(Request.Form["Descuento"]))
                         {
                             productos.TipoDescuento = Convert.ToInt32(Request.Form["TipoDescuento"]);
@@ -841,6 +843,8 @@ namespace PaginaWebCatalogo.Controllers
                     productos.TipoProducto = Convert.ToInt32(Request.Form["TipoProd"]);
                     productos.SubTipoProducto = Convert.ToInt32(Request.Form["SubTipo"]);
                     productos.Descuento = Convert.ToBoolean(Request.Form["Descuento"]);
+                    productos.Condicion = Convert.ToInt32(Request.Form["Condicion"]);
+
                     if (Convert.ToBoolean(Request.Form["Descuento"]))
                     {
                         productos.TipoDescuento = Convert.ToInt32(Request.Form["TipoDescuento"]);

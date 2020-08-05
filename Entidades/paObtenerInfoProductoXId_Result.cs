@@ -18,6 +18,7 @@ namespace Entidades
         public string Descripcion { get; set; }
         public string Moneda { get; set; }
         public decimal PrecioProducto { get; set; }
+        public Nullable<int> Condicion { get; set; }
         public Nullable<int> TipoProducto { get; set; }
         public Nullable<int> SubTipo { get; set; }
         public Nullable<bool> Descuento { get; set; }

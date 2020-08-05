@@ -140,6 +140,7 @@
           <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
           <Parameter Name="Moneda" Type="varchar" Mode="In" />
           <Parameter Name="PrecioUnitario" Type="decimal" Mode="In" />
+          <Parameter Name="Condicion" Type="int" Mode="In" />
           <Parameter Name="TipoProducto" Type="int" Mode="In" />
           <Parameter Name="SubTipo" Type="int" Mode="In" />
           <Parameter Name="Descuento" Type="bit" Mode="In" />
@@ -267,6 +268,7 @@
           <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
           <Parameter Name="Moneda" Type="varchar" Mode="In" />
           <Parameter Name="PrecioProducto" Type="decimal" Mode="In" />
+          <Parameter Name="Condicion" Type="int" Mode="In" />
           <Parameter Name="TipoProducto" Type="int" Mode="In" />
           <Parameter Name="SubTipo" Type="int" Mode="In" />
           <Parameter Name="Descuento" Type="bit" Mode="In" />
@@ -631,39 +633,8 @@
           </FunctionImport>
           <FunctionImport Name="paObtenerBanners" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerBanners_Result)" />
           <FunctionImport Name="paObtenerBannersActivos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerBannersActivos_Result)" />
-          <FunctionImport Name="paInsertarProducto">
-            <Parameter Name="Codigo" Mode="In" Type="String" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="Moneda" Mode="In" Type="String" />
-            <Parameter Name="PrecioProducto" Mode="In" Type="Decimal" />
-            <Parameter Name="TipoProducto" Mode="In" Type="Int32" />
-            <Parameter Name="SubTipo" Mode="In" Type="Int32" />
-            <Parameter Name="Descuento" Mode="In" Type="Boolean" />
-            <Parameter Name="TipoDescuento" Mode="In" Type="Int32" />
-            <Parameter Name="CantidadDescuento" Mode="In" Type="Decimal" />
-            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
-            <Parameter Name="IdProducto" Mode="InOut" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paObtenerDetalleProducto" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerDetalleProducto_Result)">
           <Parameter Name="IdProducto" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paObtenerInfoProductoXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerInfoProductoXId_Result)">
-          <Parameter Name="IdProducto" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paActualizarProducto">
-            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
-            <Parameter Name="Codigo" Mode="In" Type="String" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="Moneda" Mode="In" Type="String" />
-            <Parameter Name="PrecioUnitario" Mode="In" Type="Decimal" />
-            <Parameter Name="TipoProducto" Mode="In" Type="Int32" />
-            <Parameter Name="SubTipo" Mode="In" Type="Int32" />
-            <Parameter Name="Descuento" Mode="In" Type="Boolean" />
-            <Parameter Name="TipoDescuiento" Mode="In" Type="Int32" />
-            <Parameter Name="CantidadDescuento" Mode="In" Type="Decimal" />
-            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="paEliminarTipo">
             <Parameter Name="IdTipo" Mode="In" Type="Int32" />
@@ -698,6 +669,39 @@
           </FunctionImport>
           <FunctionImport Name="paObtenerBeneficiosActivos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerBeneficiosActivos_Result)" />
           <FunctionImport Name="paObtenerTodosLosBeneficios" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosLosBeneficios_Result)" />
+          <FunctionImport Name="paInsertarProducto">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Moneda" Mode="In" Type="String" />
+            <Parameter Name="PrecioProducto" Mode="In" Type="Decimal" />
+            <Parameter Name="Condicion" Mode="In" Type="Int32" />
+            <Parameter Name="TipoProducto" Mode="In" Type="Int32" />
+            <Parameter Name="SubTipo" Mode="In" Type="Int32" />
+            <Parameter Name="Descuento" Mode="In" Type="Boolean" />
+            <Parameter Name="TipoDescuento" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="IdProducto" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerInfoProductoXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerInfoProductoXId_Result)">
+          <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarProducto">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Moneda" Mode="In" Type="String" />
+            <Parameter Name="PrecioUnitario" Mode="In" Type="Decimal" />
+            <Parameter Name="Condicion" Mode="In" Type="Int32" />
+            <Parameter Name="TipoProducto" Mode="In" Type="Int32" />
+            <Parameter Name="SubTipo" Mode="In" Type="Int32" />
+            <Parameter Name="Descuento" Mode="In" Type="Boolean" />
+            <Parameter Name="TipoDescuiento" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -968,19 +972,6 @@
           <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
         </ComplexType>
-        <ComplexType Name="paObtenerInfoProductoXId_Result">
-          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="Descripcion" Nullable="true" />
-          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
-          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="TipoProducto" Nullable="true" />
-          <Property Type="Int32" Name="SubTipo" Nullable="true" />
-          <Property Type="Boolean" Name="Descuento" Nullable="true" />
-          <Property Type="Int32" Name="TipoDescuento" Nullable="true" />
-          <Property Type="Decimal" Name="CantidadDescuento" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Boolean" Name="Estado" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="paObtenerProductoPorTipo_Result">
           <Property Type="Int32" Name="IdProducto" Nullable="false" />
           <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
@@ -1031,6 +1022,20 @@
           <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="paObtenerInfoProductoXId_Result">
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Condicion" Nullable="true" />
+          <Property Type="Int32" Name="TipoProducto" Nullable="true" />
+          <Property Type="Int32" Name="SubTipo" Nullable="true" />
+          <Property Type="Boolean" Name="Descuento" Nullable="true" />
+          <Property Type="Int32" Name="TipoDescuento" Nullable="true" />
+          <Property Type="Decimal" Name="CantidadDescuento" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
         </ComplexType>
       </Schema>
@@ -1426,7 +1431,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paInsertarProducto" FunctionName="PaginaWebCatalogosModel.Store.paInsertarProducto" />
           <FunctionImportMapping FunctionImportName="paObtenerDetalleProducto" FunctionName="PaginaWebCatalogosModel.Store.paObtenerDetalleProducto">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerDetalleProducto_Result">
@@ -1446,24 +1450,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paObtenerInfoProductoXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerInfoProductoXId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerInfoProductoXId_Result">
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
-                <ScalarProperty Name="TipoProducto" ColumnName="TipoProducto" />
-                <ScalarProperty Name="SubTipo" ColumnName="SubTipo" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-                <ScalarProperty Name="TipoDescuento" ColumnName="TipoDescuento" />
-                <ScalarProperty Name="CantidadDescuento" ColumnName="CantidadDescuento" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paActualizarProducto" FunctionName="PaginaWebCatalogosModel.Store.paActualizarProducto" />
           <FunctionImportMapping FunctionImportName="paEliminarTipo" FunctionName="PaginaWebCatalogosModel.Store.paEliminarTipo" />
           <FunctionImportMapping FunctionImportName="paObtenerProductoPorTipo" FunctionName="PaginaWebCatalogosModel.Store.paObtenerProductoPorTipo">
             <ResultMapping>
@@ -1537,6 +1523,26 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarProducto" FunctionName="PaginaWebCatalogosModel.Store.paInsertarProducto" />
+          <FunctionImportMapping FunctionImportName="paObtenerInfoProductoXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerInfoProductoXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerInfoProductoXId_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="Condicion" ColumnName="Condicion" />
+                <ScalarProperty Name="TipoProducto" ColumnName="TipoProducto" />
+                <ScalarProperty Name="SubTipo" ColumnName="SubTipo" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="TipoDescuento" ColumnName="TipoDescuento" />
+                <ScalarProperty Name="CantidadDescuento" ColumnName="CantidadDescuento" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paActualizarProducto" FunctionName="PaginaWebCatalogosModel.Store.paActualizarProducto" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

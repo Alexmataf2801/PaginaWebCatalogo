@@ -11,6 +11,7 @@
             $("#txtActDescripProd").val(data.productos.Descripcion);
             $("#txtActPrecioUnitProd").val(data.productos.PrecioProducto.replace(',','.'));
             $("#ddlTipMoneda").val(data.productos.Moneda);
+            $("input[name=rbCondicion][value='" + data.productos.Condicion + "']").prop('checked', true);
             $("#IdProdEdit").val(Id);
             $("#chkDescuento").val(data.productos.Descuento);
             if (data.productos.Descuento) {
@@ -83,7 +84,7 @@ function ActualizarProducto() {
         fileData.append('Descuento', $("#chkDescuento").prop('checked'));
         fileData.append('TipoDescuento', $("#ddlTipoDescuento").val());
         fileData.append('CantidadDescuento', $("#txtDescuento").val());
-
+        fileData.append('Condicion', $("input:radio[name=rbCondicion]:checked").val());
 
         $.ajax({
             url: '/Mantenimientos/ActualizarProductoInfo',
