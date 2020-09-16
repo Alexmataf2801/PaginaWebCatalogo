@@ -51,11 +51,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerImagenesXTipoSubtipo_Result>("paObtenerImagenesXTipoSubtipo", idTipoProductoParameter, idSubTipoParameter);
         }
     
-        public virtual ObjectResult<paObtenerProductosRandom_Result> paObtenerProductosRandom()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerProductosRandom_Result>("paObtenerProductosRandom");
-        }
-    
         public virtual ObjectResult<paObtenerInformacionEmpresa_Result> paObtenerInformacionEmpresa()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerInformacionEmpresa_Result>("paObtenerInformacionEmpresa");
@@ -765,24 +760,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarTipo", idTipoParameter, correcto, descripcionTipo);
         }
     
-        public virtual ObjectResult<paObtenerProductoPorTipo_Result> paObtenerProductoPorTipo(Nullable<int> idTipoProducto, Nullable<int> idSubTipo)
-        {
-            var idTipoProductoParameter = idTipoProducto.HasValue ?
-                new ObjectParameter("IdTipoProducto", idTipoProducto) :
-                new ObjectParameter("IdTipoProducto", typeof(int));
-    
-            var idSubTipoParameter = idSubTipo.HasValue ?
-                new ObjectParameter("IdSubTipo", idSubTipo) :
-                new ObjectParameter("IdSubTipo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerProductoPorTipo_Result>("paObtenerProductoPorTipo", idTipoProductoParameter, idSubTipoParameter);
-        }
-    
-        public virtual ObjectResult<paObtenerProductosDescuentoRandom_Result> paObtenerProductosDescuentoRandom()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerProductosDescuentoRandom_Result>("paObtenerProductosDescuentoRandom");
-        }
-    
         public virtual int paDesactivarActivarBeneficio(Nullable<int> idBeneficio, Nullable<bool> estado)
         {
             var idBeneficioParameter = idBeneficio.HasValue ?
@@ -982,6 +959,29 @@ namespace Entidades
                 new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarProducto", idProductoParameter, codigoParameter, nombreParameter, descripcionParameter, monedaParameter, precioUnitarioParameter, condicionParameter, tipoProductoParameter, subTipoParameter, descuentoParameter, tipoDescuientoParameter, cantidadDescuentoParameter, usuarioUltimaModificacionParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerProductosDescuentoRandom_Result> paObtenerProductosDescuentoRandom()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerProductosDescuentoRandom_Result>("paObtenerProductosDescuentoRandom");
+        }
+    
+        public virtual ObjectResult<paObtenerProductosRandom_Result> paObtenerProductosRandom()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerProductosRandom_Result>("paObtenerProductosRandom");
+        }
+    
+        public virtual ObjectResult<paObtenerProductoPorTipo_Result> paObtenerProductoPorTipo(Nullable<int> idTipoProducto, Nullable<int> idSubTipo)
+        {
+            var idTipoProductoParameter = idTipoProducto.HasValue ?
+                new ObjectParameter("IdTipoProducto", idTipoProducto) :
+                new ObjectParameter("IdTipoProducto", typeof(int));
+    
+            var idSubTipoParameter = idSubTipo.HasValue ?
+                new ObjectParameter("IdSubTipo", idSubTipo) :
+                new ObjectParameter("IdSubTipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerProductoPorTipo_Result>("paObtenerProductoPorTipo", idTipoProductoParameter, idSubTipoParameter);
         }
     }
 }

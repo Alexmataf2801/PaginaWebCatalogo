@@ -98,6 +98,7 @@ namespace AccesoDatos.Producto
                     producto.Descuento = item.Descuento;
                     producto.TipoDescuento = item.TipoDescuento;
                     producto.CantidadDescuento = item.CantidadDescuento;
+                    producto.Condicion = item.Condicion;
                     if (Convert.ToBoolean(item.Descuento))
                     {
                         decimal? PrecioConDescuento = 0.0M;
@@ -236,7 +237,7 @@ namespace AccesoDatos.Producto
                     Imagen.NombreProducto = item.Nombre;
                     Imagen.PrecioUnitario = item.PrecioProducto.ToString("###,###,###,###,###.##");
                     Imagen.Moneda = item.Moneda;
-
+                    Imagen.Condicion = item.Condicion;
 
                     ListaImagenesProducto.Add(Imagen);
                 }
@@ -272,6 +273,7 @@ namespace AccesoDatos.Producto
                     Imagen.Descuento = item.Descuento;
                     Imagen.TipoDescuento = item.TipoDescuento;
                     Imagen.CantidadDescuento = item.CantidadDescuento;
+                    Imagen.Condicion = item.Condicion;
 
                     if (Convert.ToBoolean(item.Descuento))
                     {

@@ -421,7 +421,6 @@
             <Parameter Name="IdTipoProducto" Mode="In" Type="Int32" />
             <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerProductosRandom" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerProductosRandom_Result)" />
           <FunctionImport Name="paObtenerInformacionEmpresa" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerInformacionEmpresa_Result)" />
           <FunctionImport Name="paInsertarUsuario">
             <Parameter Name="Identificacion" Mode="In" Type="String" />
@@ -641,11 +640,6 @@
             <Parameter Name="Correcto" Mode="InOut" Type="Boolean" />
             <Parameter Name="DescripcionTipo" Mode="InOut" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerProductoPorTipo" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerProductoPorTipo_Result)">
-            <Parameter Name="IdTipoProducto" Mode="In" Type="Int32" />
-            <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paObtenerProductosDescuentoRandom" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerProductosDescuentoRandom_Result)" />
           <FunctionImport Name="paDesactivarActivarBeneficio">
             <Parameter Name="IdBeneficio" Mode="In" Type="Int32" />
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
@@ -702,6 +696,12 @@
             <Parameter Name="CantidadDescuento" Mode="In" Type="Decimal" />
             <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerProductosDescuentoRandom" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerProductosDescuentoRandom_Result)" />
+          <FunctionImport Name="paObtenerProductosRandom" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerProductosRandom_Result)" />
+          <FunctionImport Name="paObtenerProductoPorTipo" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerProductoPorTipo_Result)">
+            <Parameter Name="IdTipoProducto" Mode="In" Type="Int32" />
+            <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -732,16 +732,6 @@
           <Property Type="Boolean" Name="Estado" Nullable="true" />
           <Property Type="Int32" Name="IdProducto" Nullable="false" />
           <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="150" />
-        </ComplexType>
-        <ComplexType Name="paObtenerProductosRandom_Result">
-          <Property Type="Int32" Name="IdProducto" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
-          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
-          <Property Type="Int64" Name="RowNumber" Nullable="true" />
         </ComplexType>
         <ComplexType Name="paObtenerInformacionEmpresa_Result">
           <Property Type="Int32" Name="IdRegistro" Nullable="false" />
@@ -972,37 +962,6 @@
           <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
         </ComplexType>
-        <ComplexType Name="paObtenerProductoPorTipo_Result">
-          <Property Type="Int32" Name="IdProducto" Nullable="false" />
-          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="Descripcion" Nullable="true" />
-          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
-          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="TipoProducto" Nullable="true" />
-          <Property Type="Int32" Name="SubTipo" Nullable="true" />
-          <Property Type="Boolean" Name="Descuento" Nullable="true" />
-          <Property Type="Int32" Name="TipoDescuento" Nullable="true" />
-          <Property Type="Decimal" Name="CantidadDescuento" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Boolean" Name="Estado" Nullable="false" />
-          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
-          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
-          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
-          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
-        </ComplexType>
-        <ComplexType Name="paObtenerProductosDescuentoRandom_Result">
-          <Property Type="Int32" Name="IdProducto" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
-          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
-          <Property Type="Boolean" Name="Descuento" Nullable="true" />
-          <Property Type="Decimal" Name="CantidadDescuento" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="TipoDescuento" Nullable="true" />
-          <Property Type="Int64" Name="RowNumber" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="paObtenerBeneficiosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
@@ -1037,6 +996,50 @@
           <Property Type="Int32" Name="TipoDescuento" Nullable="true" />
           <Property Type="Decimal" Name="CantidadDescuento" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="paObtenerProductosDescuentoRandom_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+          <Property Type="Boolean" Name="Descuento" Nullable="true" />
+          <Property Type="Decimal" Name="CantidadDescuento" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="TipoDescuento" Nullable="true" />
+          <Property Type="Int32" Name="Condicion" Nullable="true" />
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerProductosRandom_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="NombreImagen" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="Condicion" Nullable="true" />
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerProductoPorTipo_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="TipoProducto" Nullable="true" />
+          <Property Type="Int32" Name="SubTipo" Nullable="true" />
+          <Property Type="Boolean" Name="Descuento" Nullable="true" />
+          <Property Type="Int32" Name="TipoDescuento" Nullable="true" />
+          <Property Type="Decimal" Name="CantidadDescuento" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Condicion" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1083,20 +1086,6 @@
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
                 <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paObtenerProductosRandom" FunctionName="PaginaWebCatalogosModel.Store.paObtenerProductosRandom">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerProductosRandom_Result">
-                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
-                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
-                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1451,45 +1440,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paEliminarTipo" FunctionName="PaginaWebCatalogosModel.Store.paEliminarTipo" />
-          <FunctionImportMapping FunctionImportName="paObtenerProductoPorTipo" FunctionName="PaginaWebCatalogosModel.Store.paObtenerProductoPorTipo">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerProductoPorTipo_Result">
-                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
-                <ScalarProperty Name="TipoProducto" ColumnName="TipoProducto" />
-                <ScalarProperty Name="SubTipo" ColumnName="SubTipo" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-                <ScalarProperty Name="TipoDescuento" ColumnName="TipoDescuento" />
-                <ScalarProperty Name="CantidadDescuento" ColumnName="CantidadDescuento" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
-                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paObtenerProductosDescuentoRandom" FunctionName="PaginaWebCatalogosModel.Store.paObtenerProductosDescuentoRandom">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerProductosDescuentoRandom_Result">
-                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
-                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-                <ScalarProperty Name="CantidadDescuento" ColumnName="CantidadDescuento" />
-                <ScalarProperty Name="TipoDescuento" ColumnName="TipoDescuento" />
-                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paDesactivarActivarBeneficio" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarBeneficio" />
           <FunctionImportMapping FunctionImportName="paEliminarBeneficio" FunctionName="PaginaWebCatalogosModel.Store.paEliminarBeneficio" />
           <FunctionImportMapping FunctionImportName="paActualizarBeneficio" FunctionName="PaginaWebCatalogosModel.Store.paActualizarBeneficio" />
@@ -1543,6 +1493,62 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarProducto" FunctionName="PaginaWebCatalogosModel.Store.paActualizarProducto" />
+          <FunctionImportMapping FunctionImportName="paObtenerProductosDescuentoRandom" FunctionName="PaginaWebCatalogosModel.Store.paObtenerProductosDescuentoRandom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerProductosDescuentoRandom_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="CantidadDescuento" ColumnName="CantidadDescuento" />
+                <ScalarProperty Name="TipoDescuento" ColumnName="TipoDescuento" />
+                <ScalarProperty Name="Condicion" ColumnName="Condicion" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerProductosRandom" FunctionName="PaginaWebCatalogosModel.Store.paObtenerProductosRandom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerProductosRandom_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="Condicion" ColumnName="Condicion" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerProductoPorTipo" FunctionName="PaginaWebCatalogosModel.Store.paObtenerProductoPorTipo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerProductoPorTipo_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="TipoProducto" ColumnName="TipoProducto" />
+                <ScalarProperty Name="SubTipo" ColumnName="SubTipo" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="TipoDescuento" ColumnName="TipoDescuento" />
+                <ScalarProperty Name="CantidadDescuento" ColumnName="CantidadDescuento" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Condicion" ColumnName="Condicion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -25,6 +25,7 @@ namespace Entidades
         public int? TipoDescuento { get; set; }
         public decimal? CantidadDescuento { get; set; }
         public string PrecioConDescuento { get; set; }
+        public int? Condicion { get; set; }
 
     }
 }

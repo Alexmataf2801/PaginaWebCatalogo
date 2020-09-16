@@ -26,14 +26,6 @@ namespace PaginaWebCatalogo.Controllers
         }
 
 
-        //public JsonResult ObtenerDetalleProducto(int IdProducto)
-        //{
-        //    List<ImagenesProducto> ListaDetalleProducto = LogicaNegocioProducto.ObtenerDetalleProducto(IdProducto);
-
-        //    return Json(ListaDetalleProducto, JsonRequestBehavior.AllowGet);
-
-        //}
-
         public ActionResult DetalleProducto(int IdProducto)
         {
             List<ImagenesProducto> ListaDetalleProducto = LogicaNegocioProducto.ObtenerDetalleProducto(IdProducto);
@@ -42,14 +34,6 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
-
-        //public ActionResult DetalleProducto(int IdProducto)
-        //{
-
-        //    List<ImagenesProducto> ListaDetalleProducto = LogicaNegocioProducto.ObtenerDetalleProducto(IdProducto);
-
-        //    return View("DetalleProducto", ListaDetalleProducto);
-        //}
 
         public JsonResult ObtenerProductosRandom()
         {

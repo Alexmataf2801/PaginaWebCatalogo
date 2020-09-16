@@ -121,6 +121,8 @@
     <div class="clearfix"></div>
 </div>
 <!--/grids-->
+
+
 <!-- /new_arrivals -->
 <div class="new_arrivals_agile_w3ls_info">
     <div class="container" @*style="margin-bottom:50px"*@>
@@ -140,7 +142,7 @@
 
                 <div class="col-md-3 product-men">
                     <div class="men-pro-item simpleCart_shelfItem">
-                        <div class="men-thumb-item">
+                        <div class="men-thumb-item" style="min-width:200px; min-height:300px">
                             @{
 
                                 if (Model.ListaProductos.Count > 0)
@@ -159,14 +161,27 @@
                                     </div>
                                 </div>
 
+                                switch (@Model.ListaProductos[j].Condicion)
+                                {
+                                    case 1:
+                                        <span class="product-new-top">Nuevo</span>
+                                        break;
+                                    case 2:
+                                        <span class="product-new-top">Semi-Nuevo</span>
+                                        break;
+                                    default:
+                                        break;
+                                }
+
                             }
-                            <span class="product-new-top">Nuevo</span>
+
 
                         </div>
                         <div class="item-info-product ">
                             <h4><a href="#">@Model.ListaProductos[j].NombreProducto</a></h4>
                             <div class="info-product-price">
-                                <span class="item_price">@Model.ListaProductos[j].Moneda@Model.ListaProductos[j].PrecioUnitario</span>
+                                <span class="item_price">@Model.ListaProductos[j].Moneda@Model.ListaProductos[j].PrecioUnitario</span><br />
+                                <span class="item_price">&nbsp;</span>
                             </div>
                             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
                                 <form action="#" method="post">
@@ -215,7 +230,7 @@
 
                 <div class="col-md-3 product-men">
                     <div class="men-pro-item simpleCart_shelfItem">
-                        <div class="men-thumb-item">
+                        <div class="men-thumb-item" style="min-width:200px; min-height:300px">
                             @{
 
                                 if (Model.ListaProductosDescuento.Count > 0)
@@ -234,8 +249,26 @@
                                     </div>
                                 </div>
 
+
+
+                                switch (@Model.ListaProductosDescuento[h].Condicion)
+                                {
+                                    case 1:
+                                        <span class="product-new-top">Nuevo</span>
+                                        break;
+                                    case 2:
+                                        <span class="product-new-top">Semi-Nuevo</span>
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
-                            <span class="product-new-top">Nuevo</span>
+
+
+
+
+
+
 
                         </div>
                         <div class="item-info-product ">

@@ -20,6 +20,7 @@ namespace Entidades
         public string Url { get; set; }
         public string NombreImagen { get; set; }
         public string Raiz { get; set; }
+        public Nullable<int> Condicion { get; set; }
         public Nullable<long> RowNumber { get; set; }
     }
 }

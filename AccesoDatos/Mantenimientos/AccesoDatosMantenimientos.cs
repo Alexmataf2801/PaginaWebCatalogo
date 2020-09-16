@@ -962,6 +962,7 @@ namespace AccesoDatos.Mantenimientos
 
         public static bool ActualizarProducto(Productos productos)
         {
+
             bool Correcto = false;
             PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
 

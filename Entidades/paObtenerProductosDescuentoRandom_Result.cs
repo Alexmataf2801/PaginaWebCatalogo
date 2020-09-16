@@ -23,6 +23,7 @@ namespace Entidades
         public Nullable<bool> Descuento { get; set; }
         public Nullable<decimal> CantidadDescuento { get; set; }
         public Nullable<int> TipoDescuento { get; set; }
+        public Nullable<int> Condicion { get; set; }
         public Nullable<long> RowNumber { get; set; }
     }
 }
