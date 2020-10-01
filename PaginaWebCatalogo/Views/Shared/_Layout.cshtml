@@ -60,9 +60,75 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- footer -->
     @{Html.RenderAction("ObtenerInfoFooter", "Home");}
     <!-- //footer -->
-
     <!--REGISTRO-->
-    <div class="modal fade" id="ModalRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="ModalRegistro" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body modal-body-sub_agile">
+                    <div class="col-md-12">
+                        <h3 class="agileinfo_sign">Registro</h3>
+                        <br />
+          
+                            <div class="styled-input agile-styled-input-top">
+                                <input type="text" id="txtIdentificacion">
+                                <label>Identificación</label>
+                                <span></span>
+                            </div>
+                            <div class="styled-input">
+                                <input type="text" id="txtNombre">
+                                <label>Nombre</label>
+                                <span></span>
+                            </div>
+                            <div class="styled-input">
+                                <input type="text" id="txtPrimerApellido">
+                                <label>Primer Apellido</label>
+                                <span></span>
+                            </div>
+                            <div class="styled-input">
+                                <input type="text" id="txtSegundoApellido">
+                                <label>Segundo Apellido</label>
+                                <span></span>
+                            </div>
+                            <div class="styled-input">
+                                <input type="text" id="txtCorreoElectronico">
+                                <label>Correo Electrónico</label>
+                                <span></span>
+                            </div>
+                            <div class="styled-input">
+                                <input type="text" id="txtTelefono">
+                                <label>Teléfono</label>
+                                <span></span>
+                            </div>
+                            <div class="styled-input">
+                                <input type="text" id="txtDireccion">
+                                <label>Dirección</label>
+                                <span></span>
+                            </div>
+                            <div class="styled-input">
+                                <label style="color:#2fdab8">Genero</label><br />
+                            </div>
+                            <select class="form-control" id="ddlGenero">
+                                <option value="1">Hombre</option>
+                                <option value="0">Mujer</option>
+                            </select>
+                            <br /><br />
+                            <input type="button" onclick="GuardarUsuario(1)" value="Registrarse" class="btn btn-success">
+                   
+                        <div class="clearfix"></div>
+
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- //Modal content-->
+        </div>
+    </div>
+    @*<div class="modal fade" id="ModalRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-info">
                 <div class="modal-header">
@@ -119,9 +185,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
     <!--FIN REGISTRO-->
-
     <!-- LOGIN -->
     <div class="modal fade" id="ModalIngreso" tabindex="-1" role="dialog">
         <div class="modal-dialog">
@@ -157,7 +222,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!-- //LOGIN -->
-
     <!--INICIO MODAL CORRECTO-->
     <div class="modal fade" tabindex="-1" role="dialog" id="ModalCorrecto">
         <div class="modal-dialog" role="document">
@@ -175,7 +239,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--FIN MODAL CORRECTO-->
-
     <!--INICIO MODAL ERROR-->
     <div class="modal fade" tabindex="-1" role="dialog" id="ModalError">
         <div class="modal-dialog" role="document">
@@ -193,7 +256,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--FIN MODAL ERROR-->
-
     <!--INICIO MODAL INFORMACION-->
     <div class="modal fade" tabindex="-1" role="dialog" id="ModalInformacion">
         <div class="modal-dialog" role="document">
@@ -211,7 +273,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--FIN MODAL INFORMACION-->
-
     <!--INICIO MODAL PERFIL-->
     <div class="modal fade" tabindex="-1" id="ModalPerfil" role="dialog" aria-hidden="true">
         <div class="modal-dialog">

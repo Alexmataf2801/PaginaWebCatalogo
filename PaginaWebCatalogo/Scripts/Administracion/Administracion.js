@@ -55,6 +55,17 @@ function ObtenerInformacionEmpresa() {
         }
     });
 }
+
+function LimpiarRegistro() {
+    $("#txtIdentificacion").val("");
+    $("#txtNombre").val("");
+    $("#txtPrimerApellido").val("");
+    $("#txtSegundoApellido").val("");
+    $("#txtCorreoElectronico").val("");
+    $("#txtTelefono").val("");
+    $("#txtDireccion").val("");
+}
+
 function GuardarUsuario(a) {
     var usuario = {
         Identificacion: $("#txtIdentificacion").val(),
@@ -79,6 +90,7 @@ function GuardarUsuario(a) {
                     $('#myModal2').modal('hide');
                     $("#msjCorrecto").html("Se registro el usuario correctamente");
                     $('#ModalCorrecto').modal('show');
+                    LimpiarRegistro();
 
                 } else if (info === 2) {
 
@@ -111,6 +123,9 @@ function GuardarUsuario(a) {
 
 
 }
+
+
+
 function Modal() {
     $('.modal').on('show.bs.modal', function () {
         if ($(document).height() > $(window).height()) {
