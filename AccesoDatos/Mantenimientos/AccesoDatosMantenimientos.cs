@@ -147,7 +147,7 @@ namespace AccesoDatos.Mantenimientos
             try
             {
                 respuesta = new ObjectParameter("IdProducto", typeof(int));
-                entities.paInsertarProducto(productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto),productos.Condicion, productos.TipoProducto, productos.SubTipoProducto, productos.Descuento,productos.TipoDescuento,productos.CantidadDescuento, productos.UsuarioCreacion, respuesta);
+                entities.paInsertarProducto(productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto), productos.Condicion, productos.TipoProducto, productos.SubTipoProducto, productos.Descuento, productos.TipoDescuento, productos.CantidadDescuento, productos.UsuarioCreacion, respuesta);
                 IdProducto = Convert.ToInt32(respuesta.Value.ToString());
 
             }
@@ -191,7 +191,7 @@ namespace AccesoDatos.Mantenimientos
             try
             {
                 respuesta = new ObjectParameter("IdRelacion", typeof(int));
-                entities.paInsertarRelacionImagenProducto(Imagen.IdProducto,Imagen.IdImagen,Imagen.IdUsuario, respuesta);
+                entities.paInsertarRelacionImagenProducto(Imagen.IdProducto, Imagen.IdImagen, Imagen.IdUsuario, respuesta);
                 IdRelacion = Convert.ToInt32(respuesta.Value.ToString());
 
             }
@@ -213,7 +213,7 @@ namespace AccesoDatos.Mantenimientos
             try
             {
                 respuesta = new ObjectParameter("Resultado", typeof(int));
-                entities.paInsertarInformacionEmpresa(empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion,Raiz, respuesta);
+                entities.paInsertarInformacionEmpresa(empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion, Raiz, respuesta);
                 Resultado = Convert.ToInt32(respuesta.Value.ToString());
 
             }
@@ -226,6 +226,31 @@ namespace AccesoDatos.Mantenimientos
             return Resultado;
         }
 
+        public static bool InsertarBeneficios(Beneficios beneficios)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ObjectParameter respuesta;
+            int IdBeneficio = 0;
+            try
+            {
+                respuesta = new ObjectParameter("IdBeneficio", typeof(int));
+                entities.paInsertarBeneficios(beneficios.Nombre, beneficios.Descripcion, beneficios.Icono, beneficios.UsuarioCreacion, respuesta);
+                IdBeneficio = Convert.ToInt32(respuesta.Value.ToString());
+
+                if (IdBeneficio > 0) {
+                    Correcto = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
         #endregion
 
 
@@ -386,7 +411,7 @@ namespace AccesoDatos.Mantenimientos
 
             return ListaSubTipoProducto;
         }
-        
+
         public static RedesSociales ObtenerRedSocial(int IdRedSocial)
         {
             PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
@@ -398,7 +423,7 @@ namespace AccesoDatos.Mantenimientos
 
                 foreach (var item in RedesSociales)
                 {
-                   
+
                     redesSociales.IdRedSocial = item.IdRedSocial;
                     redesSociales.Nombre = item.Nombre;
                     redesSociales.Descripcion = item.Descripcion;
@@ -759,7 +784,8 @@ namespace AccesoDatos.Mantenimientos
             return img;
         }
 
-        public static List<Beneficios> ObtenerTodosLosBeneficios() {
+        public static List<Beneficios> ObtenerTodosLosBeneficios()
+        {
 
             PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
             List<Beneficios> ListaBeneficios = new List<Beneficios>();
@@ -779,6 +805,7 @@ namespace AccesoDatos.Mantenimientos
                     beneficio.FechaCreacion = item.FechaCreacion;
                     beneficio.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
                     beneficio.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    beneficio.Estado = item.Estado;
 
                     ListaBeneficios.Add(beneficio);
                 }
@@ -820,25 +847,7 @@ namespace AccesoDatos.Mantenimientos
 
             return Correcto;
         }
-        public static bool DesactivarActivarBeneficio(int IdBeneficio, bool Estado)
-        {
-            bool Correcto = false;
-            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
 
-            try
-            {
-                entities.paDesactivarActivarBeneficio(IdBeneficio, Estado);
-                Correcto = true;
-
-            }
-            catch (Exception ex)
-            {
-                Correcto = false;
-                throw;
-            }
-
-            return Correcto;
-        }
 
         public static bool DesactivarActivarProducto(int IdProducto, bool Estado)
         {
@@ -907,7 +916,7 @@ namespace AccesoDatos.Mantenimientos
 
             try
             {
-                entities.paActualizarInformacionEmpresa(empresa.IdRegistro , empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion,empresa.NombreImagen, empresa.Raiz);
+                entities.paActualizarInformacionEmpresa(empresa.IdRegistro, empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion, empresa.NombreImagen, empresa.Raiz);
                 Correcto = true;
 
             }
@@ -927,7 +936,7 @@ namespace AccesoDatos.Mantenimientos
 
             try
             {
-                entities.paActualizarTipo(tipo.IdTipo,tipo.Codigo,tipo.Nombre, tipo.Descripcion, tipo.UsuarioUltimaModificacion);
+                entities.paActualizarTipo(tipo.IdTipo, tipo.Codigo, tipo.Nombre, tipo.Descripcion, tipo.UsuarioUltimaModificacion);
                 Correcto = true;
 
             }
@@ -968,7 +977,7 @@ namespace AccesoDatos.Mantenimientos
 
             try
             {
-                entities.paActualizarProducto(productos.IdProducto, productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto),productos.Condicion, productos.TipoProducto, productos.SubTipoProducto,productos.Descuento,productos.TipoDescuento,productos.CantidadDescuento, productos.UsuarioUltimaModificacion);
+                entities.paActualizarProducto(productos.IdProducto, productos.Codigo, productos.Nombre, productos.Descripcion, productos.Moneda, Convert.ToDecimal(productos.PrecioProducto), productos.Condicion, productos.TipoProducto, productos.SubTipoProducto, productos.Descuento, productos.TipoDescuento, productos.CantidadDescuento, productos.UsuarioUltimaModificacion);
                 Correcto = true;
 
             }
@@ -1010,13 +1019,32 @@ namespace AccesoDatos.Mantenimientos
 
             try
             {
-                entities.paActualizarBeneficio(beneficio.Id,beneficio.Nombre,beneficio.Descripcion,beneficio.Icono,beneficio.Color,beneficio.UsuarioUltimaModificacion);
+                entities.paActualizarBeneficio(beneficio.Id, beneficio.Nombre, beneficio.Descripcion, beneficio.Icono, beneficio.UsuarioUltimaModificacion);
                 Correcto = true;
 
             }
             catch (Exception ex)
             {
 
+                throw;
+            }
+
+            return Correcto;
+        }
+        public static bool DesactivarActivarBeneficio(int IdBeneficio, bool Estado)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+
+            try
+            {
+                entities.paDesactivarActivarBeneficio(IdBeneficio, Estado);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
                 throw;
             }
 

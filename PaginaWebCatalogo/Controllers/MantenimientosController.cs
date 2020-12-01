@@ -64,7 +64,24 @@ namespace PaginaWebCatalogo.Controllers
         }
 
         [HttpGet]
+        public ActionResult ListaBeneficios()
+        {
+
+            Iniciarlizar();
+
+            return View("ListaBeneficios");
+        }
+
+        [HttpGet]
         public ActionResult Tipo()
+        {
+
+            Iniciarlizar();
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Beneficios()
         {
 
             Iniciarlizar();
@@ -76,6 +93,13 @@ namespace PaginaWebCatalogo.Controllers
 
             Iniciarlizar();
             return View("ActualizarDatosProducto");
+        }
+
+        public ActionResult ActualizarDatosBeneficio()
+        {
+
+            Iniciarlizar();
+            return View("ActualizarDatosBeneficio");
         }
 
         public ActionResult ActualizarRedSocial()
@@ -203,6 +227,24 @@ namespace PaginaWebCatalogo.Controllers
                 redSocial.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
                 Correcto = LogicaNegocioMantenimientos.InsertarRedSocial(redSocial);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult InsertarBeneficio(Beneficios Beneficio)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+
+                Beneficio.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+                Correcto = LogicaNegocioMantenimientos.InsertarBeneficios(Beneficio);
 
             }
 
@@ -599,6 +641,21 @@ namespace PaginaWebCatalogo.Controllers
             return Json(ListaProductos, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ObtenerTodosLosBeneficios()
+        {
+            List<Beneficios> ListaBeneficios = new List<Beneficios>();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                ListaBeneficios = LogicaNegocioMantenimientos.ObtenerTodosLosBeneficios();
+
+            }
+
+            return Json(ListaBeneficios, JsonRequestBehavior.AllowGet);
+        }
+
         public List<ImagenesProducto> ObtenerImagenesXIdProducto(int IdProducto)
         {
             List<ImagenesProducto> ListaImagenes = new List<ImagenesProducto>();
@@ -707,6 +764,20 @@ namespace PaginaWebCatalogo.Controllers
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
                 Correcto = LogicaNegocioMantenimientos.DesactivarActivarSubTipo(IdSubTipo, Estado);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult DesactivarActivarBeneficios(int IdBeneficio, bool Estado)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.DesactivarActivarBeneficio(IdBeneficio, Estado);
 
             }
 
@@ -946,6 +1017,26 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult ActualizarBeneficio(Beneficios beneficios)
+        {
+
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                beneficios.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                Correcto = LogicaNegocioMantenimientos.ActualizarBeneficio(beneficios);
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
+ 
+
 
         #endregion
 
@@ -1095,6 +1186,21 @@ namespace PaginaWebCatalogo.Controllers
                 }
             }
 
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EliminarBeneficio(int IdBeneficio)
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                Correcto = LogicaNegocioMantenimientos.EliminarBeneficioXId(IdBeneficio);
+
+            }
 
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }

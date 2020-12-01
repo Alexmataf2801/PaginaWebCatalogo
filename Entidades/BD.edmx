@@ -114,7 +114,6 @@
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="Icono" Type="varchar" Mode="In" />
-          <Parameter Name="Color" Type="nvarchar" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="paActualizarDatosTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -235,6 +234,7 @@
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="Icono" Type="varchar" Mode="In" />
           <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="IdBeneficio" Type="int" Mode="InOut" />
         </Function>
         <Function Name="paInsertarImagen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -647,20 +647,6 @@
           <FunctionImport Name="paEliminarBeneficio">
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paActualizarBeneficio">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="Icono" Mode="In" Type="String" />
-            <Parameter Name="Color" Mode="In" Type="String" />
-            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="paInsertarBeneficios">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="Icono" Mode="In" Type="String" />
-            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="paObtenerBeneficiosActivos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerBeneficiosActivos_Result)" />
           <FunctionImport Name="paObtenerTodosLosBeneficios" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosLosBeneficios_Result)" />
           <FunctionImport Name="paInsertarProducto">
@@ -701,6 +687,20 @@
           <FunctionImport Name="paObtenerProductoPorTipo" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerProductoPorTipo_Result)">
             <Parameter Name="IdTipoProducto" Mode="In" Type="Int32" />
             <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarBeneficios">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Icono" Mode="In" Type="String" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="IdBeneficio" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarBeneficio">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Icono" Mode="In" Type="String" />
+            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -1442,8 +1442,6 @@
           <FunctionImportMapping FunctionImportName="paEliminarTipo" FunctionName="PaginaWebCatalogosModel.Store.paEliminarTipo" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarBeneficio" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarBeneficio" />
           <FunctionImportMapping FunctionImportName="paEliminarBeneficio" FunctionName="PaginaWebCatalogosModel.Store.paEliminarBeneficio" />
-          <FunctionImportMapping FunctionImportName="paActualizarBeneficio" FunctionName="PaginaWebCatalogosModel.Store.paActualizarBeneficio" />
-          <FunctionImportMapping FunctionImportName="paInsertarBeneficios" FunctionName="PaginaWebCatalogosModel.Store.paInsertarBeneficios" />
           <FunctionImportMapping FunctionImportName="paObtenerBeneficiosActivos" FunctionName="PaginaWebCatalogosModel.Store.paObtenerBeneficiosActivos">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerBeneficiosActivos_Result">
@@ -1549,6 +1547,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarBeneficios" FunctionName="PaginaWebCatalogosModel.Store.paInsertarBeneficios" />
+          <FunctionImportMapping FunctionImportName="paActualizarBeneficio" FunctionName="PaginaWebCatalogosModel.Store.paActualizarBeneficio" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

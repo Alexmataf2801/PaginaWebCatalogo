@@ -67,6 +67,11 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.InsertarEmpresa(empresa, Raiz);
         }
 
+        public static bool InsertarBeneficios(Beneficios beneficios)
+        {
+
+            return AccesoDatosMantenimientos.InsertarBeneficios(beneficios);
+        }
         #endregion
 
         #region SELECT 
@@ -165,7 +170,11 @@ namespace LogicaNegocio.Mantenimientos
 
             return AccesoDatosMantenimientos.ObtenerRutaImagen(IdImagen);
         }
+        public static List<Beneficios> ObtenerTodosLosBeneficios()
+        {
 
+            return AccesoDatosMantenimientos.ObtenerTodosLosBeneficios();
+        }
         #endregion
 
         #region UPDATE 
@@ -192,6 +201,12 @@ namespace LogicaNegocio.Mantenimientos
         {
 
             return AccesoDatosMantenimientos.DesactivarActivarTipo(IdTipo, Estado);
+        }
+
+        public static bool DesactivarActivarBeneficio(int IdBeneficio, bool Estado)
+        {
+
+            return AccesoDatosMantenimientos.DesactivarActivarBeneficio(IdBeneficio, Estado);
         }
 
         public static bool ActualizarInfoEmpresa(Empresa empresa)
@@ -222,6 +237,12 @@ namespace LogicaNegocio.Mantenimientos
         {
 
             return AccesoDatosMantenimientos.ActualizarRedSocial(redSocial);
+        }
+
+        public static bool ActualizarBeneficio(Beneficios beneficio)
+        {
+
+            return AccesoDatosMantenimientos.ActualizarBeneficio(beneficio);
         }
         #endregion
 
@@ -257,6 +278,11 @@ namespace LogicaNegocio.Mantenimientos
             return AccesoDatosMantenimientos.EliminarImagenXId(IdImagen);
         }
 
+        public static bool EliminarBeneficioXId(int IdBeneficio)
+        {
+
+            return AccesoDatosMantenimientos.EliminarBeneficioXId(IdBeneficio);
+        }
         #endregion
 
 

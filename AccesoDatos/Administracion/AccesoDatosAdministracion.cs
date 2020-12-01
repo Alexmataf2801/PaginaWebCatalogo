@@ -73,6 +73,7 @@ namespace AccesoDatos.Administracion
 
             return Correcto;
         }
+        
 
         #endregion
 
@@ -279,12 +280,15 @@ namespace AccesoDatos.Administracion
             return ListaBeneficios;
 
         }
+        
         #endregion
 
         #region UPDATE
+
         #endregion
 
         #region DELETE
+       
         #endregion
 
 

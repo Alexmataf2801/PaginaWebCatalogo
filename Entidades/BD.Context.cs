@@ -782,56 +782,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarBeneficio", idParameter);
         }
     
-        public virtual int paActualizarBeneficio(Nullable<int> id, string nombre, string descripcion, string icono, string color, string usuarioUltimaModificacion)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var iconoParameter = icono != null ?
-                new ObjectParameter("Icono", icono) :
-                new ObjectParameter("Icono", typeof(string));
-    
-            var colorParameter = color != null ?
-                new ObjectParameter("Color", color) :
-                new ObjectParameter("Color", typeof(string));
-    
-            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
-                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
-                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarBeneficio", idParameter, nombreParameter, descripcionParameter, iconoParameter, colorParameter, usuarioUltimaModificacionParameter);
-        }
-    
-        public virtual int paInsertarBeneficios(string nombre, string descripcion, string icono, string usuarioCreacion)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var iconoParameter = icono != null ?
-                new ObjectParameter("Icono", icono) :
-                new ObjectParameter("Icono", typeof(string));
-    
-            var usuarioCreacionParameter = usuarioCreacion != null ?
-                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
-                new ObjectParameter("UsuarioCreacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarBeneficios", nombreParameter, descripcionParameter, iconoParameter, usuarioCreacionParameter);
-        }
-    
         public virtual ObjectResult<paObtenerBeneficiosActivos_Result> paObtenerBeneficiosActivos()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerBeneficiosActivos_Result>("paObtenerBeneficiosActivos");
@@ -982,6 +932,52 @@ namespace Entidades
                 new ObjectParameter("IdSubTipo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerProductoPorTipo_Result>("paObtenerProductoPorTipo", idTipoProductoParameter, idSubTipoParameter);
+        }
+    
+        public virtual int paInsertarBeneficios(string nombre, string descripcion, string icono, string usuarioCreacion, ObjectParameter idBeneficio)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var iconoParameter = icono != null ?
+                new ObjectParameter("Icono", icono) :
+                new ObjectParameter("Icono", typeof(string));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarBeneficios", nombreParameter, descripcionParameter, iconoParameter, usuarioCreacionParameter, idBeneficio);
+        }
+    
+        public virtual int paActualizarBeneficio(Nullable<int> id, string nombre, string descripcion, string icono, string usuarioUltimaModificacion)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var iconoParameter = icono != null ?
+                new ObjectParameter("Icono", icono) :
+                new ObjectParameter("Icono", typeof(string));
+    
+            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
+                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
+                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarBeneficio", idParameter, nombreParameter, descripcionParameter, iconoParameter, usuarioUltimaModificacionParameter);
         }
     }
 }

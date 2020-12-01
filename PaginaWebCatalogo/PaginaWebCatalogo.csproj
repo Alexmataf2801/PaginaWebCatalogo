@@ -271,7 +271,9 @@
     <Content Include="Scripts\Mantenimientos\ActualizarRedSocial.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarSubTipo.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarTipo.js" />
+    <Content Include="Scripts\Mantenimientos\Beneficio.js" />
     <Content Include="Scripts\Mantenimientos\Empresa.js" />
+    <Content Include="Scripts\Mantenimientos\ListaBeneficios.js" />
     <Content Include="Scripts\Mantenimientos\ListaProductos.js" />
     <Content Include="Scripts\Mantenimientos\ListarRedesSociales.js" />
     <Content Include="Scripts\Mantenimientos\ListaSubTipos.js" />
@@ -357,6 +359,9 @@
     <Content Include="Views\Mantenimientos\ActualizarRedSocial.cshtml" />
     <Content Include="Views\Shared\_Banners.cshtml" />
     <Content Include="Views\Shared\_Beneficios.cshtml" />
+    <Content Include="Views\Mantenimientos\ListaBeneficios.cshtml" />
+    <Content Include="Views\Mantenimientos\ActualizarDatosBeneficio.cshtml" />
+    <Content Include="Views\Mantenimientos\Beneficios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

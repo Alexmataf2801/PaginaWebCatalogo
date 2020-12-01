@@ -43,6 +43,7 @@ namespace LogicaNegocio.Administracion
 
             return respuesta;
         }
+        
 
         #endregion
 
@@ -85,14 +86,19 @@ namespace LogicaNegocio.Administracion
 
             return AccesoDatosAdministracion.ObtenerBeneficiosActivos();
         }
+       
+
         #endregion
 
 
         #region UPDATE
+       
         #endregion
 
 
         #region DELETE
+        
+
         #endregion
 
 
