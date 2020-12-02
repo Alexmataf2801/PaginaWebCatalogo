@@ -3,6 +3,7 @@
     ViewBag.Title = "ActualizarDatosBeneficio";
     Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
 }
+
 <div class="container" style="margin: 0 auto; width: 90%">
     <div class="panel panel-default" style="margin-top: 20px">
         <div class="panel-body">
@@ -11,13 +12,13 @@
                     <h3 id="lblTitulo" class="box-header">Mantenimiento de Beneficios</h3>
                     <hr />
                 </div>
-                <div class="form-group row">
+                <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtNomBene" maxlength="150" />
+                    <input type="text" maxlength="20" class="form-control" style="border-radius:4px" autocomplete="off" id="txtNomBene" maxlength="150" />
                 </div>
-                <div class="form-group row">
-                    <label>Descripción</label>
-                    <textarea type="text" class="form-control" style="border-radius:4px; white-space:pre-line" rows="8" cols="5" autocomplete="off" id="txtDescripBene"></textarea>
+                <div class="form-group">
+                    <label>Descripción Breve</label>
+                    <textarea type="text" class="form-control" maxlength="80" style="border-radius:4px; white-space:pre-line" rows="2" autocomplete="off" id="txtDescripBene"></textarea>
 
                 </div>
                 <div class="form-group">
