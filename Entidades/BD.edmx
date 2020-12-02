@@ -332,6 +332,9 @@
         <Function Name="paObtenerBanners" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerBannersActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerBeneficiosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerBeneficioXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdBeneficio" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
@@ -702,6 +705,9 @@
             <Parameter Name="Icono" Mode="In" Type="String" />
             <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerBeneficioXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerBeneficioXId_Result)">
+            <Parameter Name="IdBeneficio" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -1040,6 +1046,11 @@
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="Condicion" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="paObtenerBeneficioXId_Result">
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Icono" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1549,6 +1560,15 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paInsertarBeneficios" FunctionName="PaginaWebCatalogosModel.Store.paInsertarBeneficios" />
           <FunctionImportMapping FunctionImportName="paActualizarBeneficio" FunctionName="PaginaWebCatalogosModel.Store.paActualizarBeneficio" />
+          <FunctionImportMapping FunctionImportName="paObtenerBeneficioXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerBeneficioXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerBeneficioXId_Result">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Icono" ColumnName="Icono" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

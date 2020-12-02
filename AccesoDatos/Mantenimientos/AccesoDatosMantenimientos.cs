@@ -821,7 +821,32 @@ namespace AccesoDatos.Mantenimientos
 
         }
 
+        public static Beneficios ObtenerBeneficioXId(int IdBeneficio)
+        {
 
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            Beneficios beneficio = new Beneficios();
+
+            try
+            {
+                var bene = entities.paObtenerBeneficioXId(IdBeneficio);
+
+                foreach (var item in bene)
+                {
+                    beneficio.Nombre = item.Nombre;
+                    beneficio.Descripcion = item.Descripcion;
+                    beneficio.Icono = item.Icono;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return beneficio;
+        }
 
         #endregion
 

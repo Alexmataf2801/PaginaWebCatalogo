@@ -175,6 +175,12 @@ namespace LogicaNegocio.Mantenimientos
 
             return AccesoDatosMantenimientos.ObtenerTodosLosBeneficios();
         }
+
+        public static Beneficios ObtenerBeneficioXId(int IdBeneficio)
+        {
+
+            return AccesoDatosMantenimientos.ObtenerBeneficioXId(IdBeneficio);
+        }
         #endregion
 
         #region UPDATE 

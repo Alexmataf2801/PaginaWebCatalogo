@@ -48,7 +48,7 @@
 }
 
 function EditarBeneficio(Id) {
-    sessionStorage.setItem("IdProdEditar", Id);
+    sessionStorage.setItem("IdBeneEditar", Id);
     window.location.href = "/Mantenimientos/ActualizarDatosBeneficio";
 }
 

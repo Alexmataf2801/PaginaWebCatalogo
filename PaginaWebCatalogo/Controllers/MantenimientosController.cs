@@ -705,7 +705,24 @@ namespace PaginaWebCatalogo.Controllers
 
         }
 
+        public JsonResult ObtenerBeneficioXId(int IdBeneficio)
+        {
 
+            Beneficios beneficio = new Beneficios();
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+
+                beneficio = LogicaNegocioMantenimientos.ObtenerBeneficioXId(IdBeneficio);               
+                ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+            }
+
+            return Json(beneficio, JsonRequestBehavior.AllowGet);
+
+        }
         #endregion
 
         #region UPDATE

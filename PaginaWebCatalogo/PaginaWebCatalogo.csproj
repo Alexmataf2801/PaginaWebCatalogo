@@ -266,6 +266,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\Administracion\Administracion.js" />
+    <Content Include="Scripts\Mantenimientos\ActualizarBeneficio.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarDatosEmpresa.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarDatosProducto.js" />
     <Content Include="Scripts\Mantenimientos\ActualizarRedSocial.js" />

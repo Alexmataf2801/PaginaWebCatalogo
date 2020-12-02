@@ -979,5 +979,14 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarBeneficio", idParameter, nombreParameter, descripcionParameter, iconoParameter, usuarioUltimaModificacionParameter);
         }
+    
+        public virtual ObjectResult<paObtenerBeneficioXId_Result> paObtenerBeneficioXId(Nullable<int> idBeneficio)
+        {
+            var idBeneficioParameter = idBeneficio.HasValue ?
+                new ObjectParameter("IdBeneficio", idBeneficio) :
+                new ObjectParameter("IdBeneficio", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerBeneficioXId_Result>("paObtenerBeneficioXId", idBeneficioParameter);
+        }
     }
 }

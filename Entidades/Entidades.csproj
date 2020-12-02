@@ -89,6 +89,9 @@
     <Compile Include="paObtenerBeneficiosActivos_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerBeneficioXId_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerCarrito_Result.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
