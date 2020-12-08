@@ -138,6 +138,7 @@ namespace AccesoDatos.Administracion
                     empresa.NombreImagen = item.NombreImagen;
                     empresa.Raiz = item.Raiz;
                     empresa.Direccion = item.Direccion;
+                    empresa.Mapa = item.UrlMapa;
 
                 }
             }

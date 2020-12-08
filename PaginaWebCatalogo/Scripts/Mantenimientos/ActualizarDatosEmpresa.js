@@ -20,6 +20,7 @@ function ActualizarDatosEmpresa(IdEmpresa) {
         fileData.append('CorreoElectronico', $("#txtActCorreo").val());
         fileData.append('Telefono', $("#txtActTelefono").val());
         fileData.append('Direccion', $("#txtActDireccion").val());
+        fileData.append('Mapa', $("#txtUrlMapa").val());
 
     }
 

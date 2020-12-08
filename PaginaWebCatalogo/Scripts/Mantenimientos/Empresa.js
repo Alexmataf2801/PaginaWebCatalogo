@@ -21,7 +21,7 @@
         fileData.append('Correo', $("#txtCorreo").val());
         fileData.append('Telefono', $("#txtTelefono").val());
         fileData.append('Direccion', $("#txtDireccion").val());
-
+        fileData.append('Mapa', $("#txtUrlMapa").val());
 
         $.ajax({
             url: '/Mantenimientos/InsertarEmpresa',
@@ -37,13 +37,13 @@
                     LimpiarDatosEmpresa();
 
                 } else {
-                    $("#msjError").html("No se pudo insertar los datos de la empresa porque ya existe un registro o no adjunto ninguna imagen.");
+                    $("#msjError").html("No se pudo insertar los datos de la empresa, intente nuevamente y si el error persiste contecte al administrador del sistema");
                     $('#ModalError').modal('show');
                 }
 
             },
             error: function (Error) {
-                $("#msjError").html("Error al guardar los datos de la empresa");
+                $("#msjError").html("No se pudo insertar los datos de la empresa, intente nuevamente y si el error persiste contecte al administrador del sistema");
                 $('#ModalError').modal('show');
             }
         });

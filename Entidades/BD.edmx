@@ -130,6 +130,7 @@
           <Parameter Name="Telefono" Type="int" Mode="In" />
           <Parameter Name="Direccion" Type="varchar(max)" Mode="In" />
           <Parameter Name="NombreImagen" Type="varchar" Mode="In" />
+          <Parameter Name="Mapa" Type="varchar(max)" Mode="In" />
           <Parameter Name="Raiz" Type="varchar" Mode="In" />
         </Function>
         <Function Name="paActualizarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -250,6 +251,7 @@
           <Parameter Name="Telefono" Type="int" Mode="In" />
           <Parameter Name="Direccion" Type="varchar(max)" Mode="In" />
           <Parameter Name="Raiz" Type="varchar" Mode="In" />
+          <Parameter Name="Mapa" Type="varchar(max)" Mode="In" />
           <Parameter Name="Resultado" Type="int" Mode="InOut" />
         </Function>
         <Function Name="paInsertarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -424,7 +426,6 @@
             <Parameter Name="IdTipoProducto" Mode="In" Type="Int32" />
             <Parameter Name="IdSubTipo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerInformacionEmpresa" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerInformacionEmpresa_Result)" />
           <FunctionImport Name="paInsertarUsuario">
             <Parameter Name="Identificacion" Mode="In" Type="String" />
             <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -589,15 +590,6 @@
           <FunctionImport Name="paObtenerImagenesXIdProducto" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerImagenesXIdProducto_Result)">
           <Parameter Name="IdProducto" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paInsertarInformacionEmpresa">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="Int32" />
-            <Parameter Name="Direccion" Mode="In" Type="String" />
-            <Parameter Name="Raiz" Mode="In" Type="String" />
-            <Parameter Name="Resultado" Mode="InOut" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paEliminarImagenXId">
           <Parameter Name="IdImagen" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -608,16 +600,6 @@
           <Parameter Name="IdImagen" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerTodosSubTipos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerTodosSubTipos_Result)" />
-          <FunctionImport Name="paActualizarInformacionEmpresa">
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
-            <Parameter Name="NombreEmpresa" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="Correo" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="Int32" />
-            <Parameter Name="Direccion" Mode="In" Type="String" />
-            <Parameter Name="NombreImagen" Mode="In" Type="String" />
-            <Parameter Name="Raiz" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="paDesactivarActivarBanner">
             <Parameter Name="IdBanner" Mode="In" Type="Int32" />
             <Parameter Name="Tipo" Mode="In" Type="Int32" />
@@ -706,7 +688,29 @@
             <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="paObtenerBeneficioXId" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerBeneficioXId_Result)">
-            <Parameter Name="IdBeneficio" Mode="In" Type="Int32" />
+          <Parameter Name="IdBeneficio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarInformacionEmpresa">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Raiz" Mode="In" Type="String" />
+            <Parameter Name="Mapa" Mode="In" Type="String" />
+            <Parameter Name="Resultado" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerInformacionEmpresa" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerInformacionEmpresa_Result)" />
+          <FunctionImport Name="paActualizarInformacionEmpresa">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="NombreEmpresa" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="NombreImagen" Mode="In" Type="String" />
+            <Parameter Name="Mapa" Mode="In" Type="String" />
+            <Parameter Name="Raiz" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -738,17 +742,6 @@
           <Property Type="Boolean" Name="Estado" Nullable="true" />
           <Property Type="Int32" Name="IdProducto" Nullable="false" />
           <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="150" />
-        </ComplexType>
-        <ComplexType Name="paObtenerInformacionEmpresa_Result">
-          <Property Type="Int32" Name="IdRegistro" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Descripcion" Nullable="false" />
-          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="Telefono" Nullable="false" />
-          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="NombreImagen" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Raiz" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="Direccion" Nullable="true" />
         </ComplexType>
         <ComplexType Name="paObtenerInfoUsuario_Result">
           <Property Type="Int32" Name="IdUsuario" Nullable="false" />
@@ -1052,6 +1045,18 @@
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="Icono" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="paObtenerInformacionEmpresa_Result">
+          <Property Type="Int32" Name="IdRegistro" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="false" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Telefono" Nullable="false" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="NombreImagen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Raiz" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Direccion" Nullable="true" />
+          <Property Type="String" Name="UrlMapa" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1097,21 +1102,6 @@
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
                 <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paObtenerInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paObtenerInformacionEmpresa">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerInformacionEmpresa_Result">
-                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
-                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1355,7 +1345,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paInsertarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paInsertarInformacionEmpresa" />
           <FunctionImportMapping FunctionImportName="paEliminarImagenXId" FunctionName="PaginaWebCatalogosModel.Store.paEliminarImagenXId" />
           <FunctionImportMapping FunctionImportName="paObtenerImagenXId" FunctionName="PaginaWebCatalogosModel.Store.paObtenerImagenXId">
             <ResultMapping>
@@ -1399,7 +1388,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paActualizarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paActualizarInformacionEmpresa" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarBanner" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarBanner" />
           <FunctionImportMapping FunctionImportName="paEliminarbanner" FunctionName="PaginaWebCatalogosModel.Store.paEliminarbanner" />
           <FunctionImportMapping FunctionImportName="paInsertarBannerPrincipal" FunctionName="PaginaWebCatalogosModel.Store.paInsertarBannerPrincipal" />
@@ -1569,6 +1557,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paInsertarInformacionEmpresa" />
+          <FunctionImportMapping FunctionImportName="paObtenerInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paObtenerInformacionEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerInformacionEmpresa_Result">
+                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+                <ScalarProperty Name="Raiz" ColumnName="Raiz" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="UrlMapa" ColumnName="UrlMapa" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paActualizarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paActualizarInformacionEmpresa" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

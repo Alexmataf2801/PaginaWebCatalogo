@@ -400,6 +400,7 @@ namespace PaginaWebCatalogo.Controllers
                         empresa.CorreoElectronico = Request.Form["Correo"];
                         empresa.Telefono = Convert.ToInt32(Request.Form["Telefono"]);
                         empresa.Direccion = Request.Form["Direccion"];
+                        empresa.Mapa = Request.Unvalidated.Form["Mapa"];
 
                         HttpFileCollectionBase files = Request.Files;
                         HttpPostedFileBase file = files[0];
@@ -802,6 +803,7 @@ namespace PaginaWebCatalogo.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public JsonResult ActualizarInfoEmpresa()
         {
 
@@ -821,6 +823,7 @@ namespace PaginaWebCatalogo.Controllers
                 DatosEmpresa.CorreoElectronico = Request.Form["CorreoElectronico"];
                 DatosEmpresa.Telefono = Convert.ToInt32(Request.Form["Telefono"]);
                 DatosEmpresa.Direccion = Request.Form["Direccion"];
+                DatosEmpresa.Mapa = Request.Unvalidated.Form["Mapa"];
                 DatosEmpresa.Url = "~/Content/";
 
                 HttpFileCollectionBase files = Request.Files;

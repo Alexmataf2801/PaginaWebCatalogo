@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Entidades
 {
     public class Empresa
@@ -17,7 +18,7 @@ namespace Entidades
         public string NombreImagen { get; set; }
         public string Raiz { get; set; }
         public string Direccion { get; set; }
-
+        public string Mapa { get; set; }
 
     }
 }

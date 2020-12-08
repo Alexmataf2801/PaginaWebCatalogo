@@ -22,5 +22,6 @@ namespace Entidades
         public string NombreImagen { get; set; }
         public string Raiz { get; set; }
         public string Direccion { get; set; }
+        public string UrlMapa { get; set; }
     }
 }

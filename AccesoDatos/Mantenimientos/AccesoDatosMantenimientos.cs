@@ -213,7 +213,7 @@ namespace AccesoDatos.Mantenimientos
             try
             {
                 respuesta = new ObjectParameter("Resultado", typeof(int));
-                entities.paInsertarInformacionEmpresa(empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion, Raiz, respuesta);
+                entities.paInsertarInformacionEmpresa(empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion, Raiz, empresa.Mapa, respuesta);
                 Resultado = Convert.ToInt32(respuesta.Value.ToString());
 
             }
@@ -941,7 +941,7 @@ namespace AccesoDatos.Mantenimientos
 
             try
             {
-                entities.paActualizarInformacionEmpresa(empresa.IdRegistro, empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion, empresa.NombreImagen, empresa.Raiz);
+                entities.paActualizarInformacionEmpresa(empresa.IdRegistro, empresa.Nombre, empresa.Descripcion, empresa.CorreoElectronico, empresa.Telefono, empresa.Direccion, empresa.NombreImagen,empresa.Mapa, empresa.Raiz);
                 Correcto = true;
 
             }

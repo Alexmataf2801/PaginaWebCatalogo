@@ -6,15 +6,15 @@
 
 <div style="margin-top:50px;">
     <div class="col-md-12" style="margin-bottom:90px">
-        <div class="col-md-2" >
-            @{ 
+        <div class="col-md-2">
+            @{
                 string RutaLogo = Model.Url.ToString().Split('~')[1] + "/" + Model.NombreImagen + Model.Raiz;
             }
             <img style="max-height:175px;max-width:175px" src="@RutaLogo" />
         </div>
-        <div class="col-md-9"><h1 style="text-align:left;" id="NombreAbout">@Model.Nombre</h1></div>
+        <div class="col-md-9"><h1 style="text-align:center;" id="NombreAbout">@Model.Nombre</h1></div>
     </div>
-    
+
     <hr />
     <div class="col-md-12" style=" margin-bottom:80px;">
         <div class="col-md-4"> <i class="fa fa-phone fa-2x fa-fw"></i><b><label style="color:#2FDAB8">Telefono:</label></b><br /><label style="margin-left:70px" id="TelefonoAbout">@Model.Telefono</label></div>
@@ -25,6 +25,10 @@
 
         <i class="fa fa-building fa-2x fa-fw"></i><b><label style="color:#2FDAB8">Acerca de Nosotros:</label><br /></b> <label style="margin-left:70px" id="DireccionAbout">@Model.Descripcion</label>
     </p>
+    <div id="DivMapa">
+        <h1 style="text-align:center;margin-top:50px;">Encuentranos en Google Maps</h1><hr />
+        <center>@Html.Raw(@Model.Mapa)</center>
+    </div>
 
 </div>
 
