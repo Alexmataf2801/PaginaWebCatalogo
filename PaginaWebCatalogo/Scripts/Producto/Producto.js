@@ -45,52 +45,53 @@ function ObtenerCarrito(a) {
         success: function (info) {
 
             if (info.length > 0) {
+                $("#TablaCarrito").css("display", "block");
 
-                //var TablaCarrito = $('#DetalleCarrito').DataTable(
-                //    {
-                //        autoWidth: false,
-                //        dom: 'frtip',
-                //        lengthChange: false,
-                //        "language": {
-                //            "url": "../../Content/Spanish.json"
-                //        },
-                //        retrieve: true,
-                //        responsive: true,
-                //        searching: true
-                //    }
-                //);
+                var TablaCarrito = $('#DetalleCarrito').DataTable(
+                    {
+                        autoWidth: false,
+                        dom: 'frtip',
+                        lengthChange: false,
+                        "language": {
+                            "url": "../../Content/Spanish.json"
+                        },
+                        retrieve: true,
+                        responsive: true,
+                        searching: true
+                    }
+                );
 
-                //TablaCarrito.clear().draw();
+                TablaCarrito.clear().draw();
 
-                //$(info).each(function (key, value) {
-                //    var estado = '';
+                $(info).each(function (key, value) {
+                    var estado = '';
                    
-                //    var Cantidad = info[key].CantidadTotal;
-                //    var Nombre = info[key].NombreProducto;
-                //    var Moneda = info[key].Moneda + currencyFormat(parseFloat(info[key].PrecioProducto));
-                //    var Imagen = "<img style='max-width: 75px; max-height: 100px' src=" + info[key].UrlImagen +" class='responsive'>";
-                //    var Eliminar = "<button class='btn btn-danger fa fa-trash' onclick='EliminarProductoCarrito(" + info[key].IdProducto + ")' ></button>";
+                    var Cantidad = info[key].CantidadTotal;
+                    var Nombre = info[key].NombreProducto;
+                    var Moneda = info[key].Moneda + currencyFormat(parseFloat(info[key].PrecioProducto));
+                    var Imagen = "<img style='max-width: 75px; max-height: 100px' src=" + info[key].UrlImagen +" class='responsive'>";
+                    var Eliminar = "<button class='btn btn-danger fa fa-trash' onclick='EliminarProductoCarrito(" + info[key].IdProducto + ")' ></button>";
 
-                //    TablaCarrito.row.add([Cantidad, Nombre, Moneda, Imagen, Eliminar]).draw();
-                //    total = total + parseFloat(info[key].PrecioProducto);
-                //});
-
-
-                Detalle = Detalle + ("<tr ><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Cantidad</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Nombre</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Precio</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Imagen</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Accion</th></tr>");
-
-                $.each(info, function (key, value) {
-                    Detalle = Detalle + "<td>" + info[key].CantidadTotal + "</td>";
-                    Detalle = Detalle + "<td>" + info[key].NombreProducto + "</td>";
-                    Detalle = Detalle + "<td>" + info[key].Moneda + currencyFormat(parseFloat(info[key].PrecioProducto)) + "</td>";
-                    Detalle = Detalle + "<td><img style='max-width: 75px; max-height: 100px' src=" + info[key].UrlImagen +" class='responsive'></td>";
-                    Detalle = Detalle + "<td><button class='btn btn-danger fa fa-trash' onclick='EliminarProductoCarrito(" + info[key].IdProducto + ")' ></button></td></tr>";
+                    TablaCarrito.row.add([Cantidad, Nombre, Moneda, Imagen, Eliminar]).draw();
                     total = total + parseFloat(info[key].PrecioProducto);
                 });
+
+
+                //Detalle = Detalle + ("<tr ><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Cantidad</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Nombre</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Precio</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Imagen</th><th style='text-align:center; background-color:#0074D9;color:#ffffff'>Accion</th></tr>");
+
+                //$.each(info, function (key, value) {
+                //    Detalle = Detalle + "<td>" + info[key].CantidadTotal + "</td>";
+                //    Detalle = Detalle + "<td>" + info[key].NombreProducto + "</td>";
+                //    Detalle = Detalle + "<td>" + info[key].Moneda + currencyFormat(parseFloat(info[key].PrecioProducto)) + "</td>";
+                //    Detalle = Detalle + "<td><img style='max-width: 75px; max-height: 100px' src=" + info[key].UrlImagen +" class='responsive'></td>";
+                //    Detalle = Detalle + "<td><button class='btn btn-danger fa fa-trash' onclick='EliminarProductoCarrito(" + info[key].IdProducto + ")' ></button></td></tr>";
+                //    total = total + parseFloat(info[key].PrecioProducto);
+                //});
 
                 $("#Total").html("Total: " + info[0].Moneda + currencyFormat(total));
                 $("#Total").css("display", "block");
                 $("#btnPagar").css("display", "block");
-                $("#MensajeCarrito").css("display", "none");
+                $("#TablaCarrito").css("display", "block");
 
 
             } else {
@@ -98,10 +99,12 @@ function ObtenerCarrito(a) {
                 $("#MensajeCarrito  ").css("display", "block");
                 $("#Total  ").css("display", "none");
                 $("#btnPagar  ").css("display", "none");
+                $("#TablaCarrito").css("display", "none");
+                
             }
 
             $('#ModalPerfil').modal('hide');
-            $("#DetalleCarrito").html(Detalle);
+            //$("#DetalleCarrito").html(Detalle);
             $('#Carrito').modal('show');
 
         },
@@ -161,10 +164,11 @@ function EliminarProductoCarrito(IdProducto) {
 
             if (info) {
 
-                $("#DetalleCarrito").empty();
+                //$("#DetalleCarrito").empty();
                 ObtenerCarrito();
 
             } else {
+
                 $('#Carrito').modal('hide');
                 $("#msjError").html("Fallo la eliminacion del producto");
                 $('#ModalError').modal('show');

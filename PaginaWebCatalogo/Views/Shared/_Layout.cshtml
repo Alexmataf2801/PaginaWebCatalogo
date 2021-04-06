@@ -302,35 +302,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h5 style="color:#ffffff;text-align:center" class="modal-title">Carrito</h5>
                 </div>
                 <div class="modal-body">
-                    @*<table id="DetalleCarrito" class="table table-bordered">
+                    <div id="TablaCarrito" style="display:none">
+                        <table id="DetalleCarrito" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="TablasMantenimientos">Cantidad</th>
+                                    <th class="TablasMantenimientos">Nombre</th>
+                                    <th class="TablasMantenimientos">Precio</th>
+                                    <th class="TablasMantenimientos">Imagen</th>
+                                    <th class="TablasMantenimientos">Accion</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    @*<table style="width:100%; text-align:center" class="table table-bordered table-responsive" id="DetalleCarrito">
                         <thead>
                             <tr>
-                                <th class="TablasMantenimientos">Cantidad</th>
-                                <th class="TablasMantenimientos">Nombre</th>
-                                <th class="TablasMantenimientos">Precio</th>
-                                <th class="TablasMantenimientos">Imagen</th>
-                                <th class="TablasMantenimientos">Accion</th>
+
                             </tr>
                         </thead>
                     </table>*@
-
-                    <table style="width:100%; text-align:center" class="table table-bordered table-responsive" id="DetalleCarrito">
-                        <thead>
-                            <tr>
-
-                            </tr>
-                        </thead>
-                    </table>
                     <hr />
                     <label id="MensajeCarrito" style="display:none"></label>
                     <label id="Total"></label><br />
                     <button type="button" class="btn btn-primary" id="btnPagar" data-dismiss="modal">Pagar</button>
                 </div>
-                <div class="modal-footer">
+                    <div class="modal-footer">
 
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 
