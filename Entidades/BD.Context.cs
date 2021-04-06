@@ -144,15 +144,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarProductoCarrito", idProductoParameter, idUsuarioParameter, respuesta);
         }
     
-        public virtual ObjectResult<paObtenerCarrito_Result> paObtenerCarrito(Nullable<int> idUsuario)
-        {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerCarrito_Result>("paObtenerCarrito", idUsuarioParameter);
-        }
-    
         public virtual int paEliminarProductoCarro(Nullable<int> idProducto, Nullable<int> idUsuario)
         {
             var idProductoParameter = idProducto.HasValue ?
@@ -995,6 +986,15 @@ namespace Entidades
                 new ObjectParameter("Raiz", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarInformacionEmpresa", idEmpresaParameter, nombreEmpresaParameter, descripcionParameter, correoParameter, telefonoParameter, direccionParameter, nombreImagenParameter, mapaParameter, raizParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerCarrito_Result> paObtenerCarrito(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerCarrito_Result>("paObtenerCarrito", idUsuarioParameter);
         }
     }
 }

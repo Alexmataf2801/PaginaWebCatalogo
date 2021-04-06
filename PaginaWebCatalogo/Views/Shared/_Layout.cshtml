@@ -9,17 +9,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <title>@ViewBag.Title</title>
 
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-        <link href="~/Content/easy-responsive-tabs.css" rel="stylesheet" />
-        <link href="~/Content/flexslider.css" rel="stylesheet" />
-        <link href="~/Content/font-awesome.css" rel="stylesheet" />
-        <link href="~/Content/jquery-ui.css" rel="stylesheet" />
-        <link href="~/Content/style.css" rel="stylesheet" />
-        <link href="~/Content/team.css" rel="stylesheet" />
-        <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
-        <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
-        <link href="~/Content/datatables.min.css" rel="stylesheet" />
-        <link href="~/Content/Paginacion.css" rel="stylesheet" />
+    <link href="~/Content/easy-responsive-tabs.css" rel="stylesheet" />
+    <link href="~/Content/flexslider.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/team.css" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+    <link href="~/Content/datatables.min.css" rel="stylesheet" />
+    <link href="~/Content/Paginacion.css" rel="stylesheet" />
 
+  
 
 </head>
 <body>
@@ -295,20 +296,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--FIN MODAL INFORMACION-->
 
     <div class="modal fade bd-example-modal-lg" id="Carrito" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg" style="overflow-y: scroll; max-height:85%">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:#0074D9;">
                     <h5 style="color:#ffffff;text-align:center" class="modal-title">Carrito</h5>
                 </div>
                 <div class="modal-body">
-                    <table style="width:100%; text-align:center" class="table table-bordered" id="DetalleCarrito">
+                    @*<table id="DetalleCarrito" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Codigo</th>
-                                <th>Cantidad</th>
-                                <th>Nombre</th>
-                                <th>Precio</th>
-                                <th>Accion</th>
+                                <th class="TablasMantenimientos">Cantidad</th>
+                                <th class="TablasMantenimientos">Nombre</th>
+                                <th class="TablasMantenimientos">Precio</th>
+                                <th class="TablasMantenimientos">Imagen</th>
+                                <th class="TablasMantenimientos">Accion</th>
+                            </tr>
+                        </thead>
+                    </table>*@
+
+                    <table style="width:100%; text-align:center" class="table table-bordered table-responsive" id="DetalleCarrito">
+                        <thead>
+                            <tr>
+
                             </tr>
                         </thead>
                     </table>

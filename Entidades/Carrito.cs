@@ -20,6 +20,7 @@ namespace Entidades
         public string NombreSubTipo { get; set; }
         public int? CantidadTotal { get; set; }
         public int? IdUsuario { get; set; }
+        public string UrlImagen { get; set; }
 
     }
 }

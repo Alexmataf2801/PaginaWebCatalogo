@@ -458,9 +458,6 @@
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerCarrito" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerCarrito_Result)">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paEliminarProductoCarro">
             <Parameter Name="IdProducto" Mode="In" Type="Int32" />
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
@@ -712,6 +709,9 @@
             <Parameter Name="Mapa" Mode="In" Type="String" />
             <Parameter Name="Raiz" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerCarrito" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerCarrito_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
           <Property Type="Int32" Name="IdTipo" Nullable="false" />
@@ -756,19 +756,6 @@
           <Property Type="Boolean" Name="Genero" Nullable="false" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
           <Property Type="Boolean" Name="Temporal" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="paObtenerCarrito_Result">
-          <Property Type="Int32" Name="IdProducto" Nullable="false" />
-          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="Descripcion" Nullable="true" />
-          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
-          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="IdTipo" Nullable="true" />
-          <Property Type="String" Name="NombreTipo" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="IdSubTipo" Nullable="true" />
-          <Property Type="String" Name="NombreSubTipo" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="CantTotal" Nullable="true" />
         </ComplexType>
         <ComplexType Name="paObtenerMenuXUsuario_Result">
           <Property Type="Int32" Name="IdMenu" Nullable="false" />
@@ -1057,6 +1044,20 @@
           <Property Type="String" Name="Direccion" Nullable="true" />
           <Property Type="String" Name="UrlMapa" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="paObtenerCarrito_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="String" Name="Moneda" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="PrecioProducto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="IdTipo" Nullable="true" />
+          <Property Type="String" Name="NombreTipo" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="IdSubTipo" Nullable="true" />
+          <Property Type="String" Name="NombreSubTipo" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="CantTotal" Nullable="true" />
+          <Property Type="String" Name="RutaImagen" Nullable="false" MaxLength="560" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1127,23 +1128,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paInsertarProductoCarrito" FunctionName="PaginaWebCatalogosModel.Store.paInsertarProductoCarrito" />
-          <FunctionImportMapping FunctionImportName="paObtenerCarrito" FunctionName="PaginaWebCatalogosModel.Store.paObtenerCarrito">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerCarrito_Result">
-                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
-                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
-                <ScalarProperty Name="NombreTipo" ColumnName="NombreTipo" />
-                <ScalarProperty Name="IdSubTipo" ColumnName="IdSubTipo" />
-                <ScalarProperty Name="NombreSubTipo" ColumnName="NombreSubTipo" />
-                <ScalarProperty Name="CantTotal" ColumnName="CantTotal" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paEliminarProductoCarro" FunctionName="PaginaWebCatalogosModel.Store.paEliminarProductoCarro" />
           <FunctionImportMapping FunctionImportName="paObtenerMenuXUsuario" FunctionName="PaginaWebCatalogosModel.Store.paObtenerMenuXUsuario">
             <ResultMapping>
@@ -1575,6 +1559,24 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarInformacionEmpresa" FunctionName="PaginaWebCatalogosModel.Store.paActualizarInformacionEmpresa" />
+          <FunctionImportMapping FunctionImportName="paObtenerCarrito" FunctionName="PaginaWebCatalogosModel.Store.paObtenerCarrito">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerCarrito_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="PrecioProducto" ColumnName="PrecioProducto" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="NombreTipo" ColumnName="NombreTipo" />
+                <ScalarProperty Name="IdSubTipo" ColumnName="IdSubTipo" />
+                <ScalarProperty Name="NombreSubTipo" ColumnName="NombreSubTipo" />
+                <ScalarProperty Name="CantTotal" ColumnName="CantTotal" />
+                <ScalarProperty Name="RutaImagen" ColumnName="RutaImagen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

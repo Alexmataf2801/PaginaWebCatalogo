@@ -24,5 +24,6 @@ namespace Entidades
         public Nullable<int> IdSubTipo { get; set; }
         public string NombreSubTipo { get; set; }
         public Nullable<int> CantTotal { get; set; }
+        public string RutaImagen { get; set; }
     }
 }

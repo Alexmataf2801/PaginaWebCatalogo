@@ -327,6 +327,7 @@ namespace AccesoDatos.Producto
                     carro.IdSubTipo = item.IdSubTipo;
                     carro.NombreSubTipo = item.NombreSubTipo;
                     carro.CantidadTotal = item.CantTotal;
+                    carro.UrlImagen = item.RutaImagen.Remove(0,2);
 
                     ListaCarrito.Add(carro);
                 }
