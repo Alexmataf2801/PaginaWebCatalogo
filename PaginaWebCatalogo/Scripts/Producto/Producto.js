@@ -45,7 +45,7 @@ function ObtenerCarrito(a) {
         success: function (info) {
 
             if (info.length > 0) {
-                $("#TablaCarrito").css("display", "block");
+                $("#MensajeCarrito").css("display", "none");
 
                 var TablaCarrito = $('#DetalleCarrito').DataTable(
                     {
