@@ -8,119 +8,137 @@
 
     @if (Model.Count > 0)
     {
-        for (int j = 0; j < Model.Count; j++)
-        {
-            <div class="col-md-3 product-men">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item" style="min-width:200px; min-height:400px">
-                        @{
-                            List<Entidades.ImagenesProducto> ListaImagenes = ViewBag.Imagenes;
+        int contadorDivs = 1;
+        int contadorPaginacion = 1;
 
-                            if (ListaImagenes.Count > 0)
-                            {
+       
+            for (int j = 0; j < Model.Count; j++)
+            {
+                <div data-page="@contadorPaginacion">
 
-                                var Info = ListaImagenes.Where(x => x.IdProducto == Model[j].IdProducto);
+                    <div class="col-md-3 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem">
+                            <div class="men-thumb-item" style="min-width:200px; min-height:400px">
+                                @{
+                                    List<Entidades.ImagenesProducto> ListaImagenes = ViewBag.Imagenes;
 
-                                if (Info != null)
-                                {
-                                    string RutaCompleta = string.Empty;
-                                    string RutaImagen = string.Empty;
-
-                                    foreach (var item in Info)
+                                    if (ListaImagenes.Count > 0)
                                     {
-                                        RutaCompleta = AppDomain.CurrentDomain.BaseDirectory + item.Url.ToString().Split('~')[1] + item.NombreImagen + item.Raiz;
-                                        RutaImagen = item.Url + item.NombreImagen + item.Raiz;
-                                    }
 
-                                    //string RutaCompleta = AppDomain.CurrentDomain.BaseDirectory + ListaImagenes[j].Url.ToString().Split('~')[1] + ListaImagenes[j].NombreImagen + ListaImagenes[j].Raiz;
+                                        var Info = ListaImagenes.Where(x => x.IdProducto == Model[j].IdProducto);
+
+                                        if (Info != null)
+                                        {
+                                            string RutaCompleta = string.Empty;
+                                            string RutaImagen = string.Empty;
+
+                                            foreach (var item in Info)
+                                            {
+                                                RutaCompleta = AppDomain.CurrentDomain.BaseDirectory + item.Url.ToString().Split('~')[1] + item.NombreImagen + item.Raiz;
+                                                RutaImagen = item.Url + item.NombreImagen + item.Raiz;
+                                            }
+
+                                            //string RutaCompleta = AppDomain.CurrentDomain.BaseDirectory + ListaImagenes[j].Url.ToString().Split('~')[1] + ListaImagenes[j].NombreImagen + ListaImagenes[j].Raiz;
 
 
-                                    if (File.Exists(RutaCompleta))
-                                    {
-                                        <img src="@Url.Content(RutaImagen)" alt="" class="pro-image-front">
-                                        <img src="@Url.Content(RutaImagen)" alt="" class="pro-image-back">
+                                            if (File.Exists(RutaCompleta))
+                                            {
+                                                <img src="@Url.Content(RutaImagen)" alt="" class="pro-image-front">
+                                                <img src="@Url.Content(RutaImagen)" alt="" class="pro-image-back">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Content/nofoto.jpg" alt="" class="pro-image-front">
+                                                <img src="~/Content/nofoto.jpg" alt="" class="pro-image-back">
+                                            }
+
+                                        }
+
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                @Html.ActionLink("Detalles Producto", "DetalleProducto", "Producto", new { IdProducto = @Model[j].IdProducto }, new { @class = "link-product-add-cart" })
+                                                @*<a onclick="ObtenerDetalleProducto(@ListaImagenes[j].IdProducto)" class="link-product-add-cart">Detalles Producto</a>*@
+                                            </div>
+                                        </div>
+
                                     }
                                     else
                                     {
                                         <img src="~/Content/nofoto.jpg" alt="" class="pro-image-front">
                                         <img src="~/Content/nofoto.jpg" alt="" class="pro-image-back">
+
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                @Html.ActionLink("Detalles Producto", "DetalleProducto", "Producto", new { IdProducto = @Model[j].IdProducto }, new { @class = "link-product-add-cart" })
+                                                @*<a onclick="ObtenerDetalleProducto(@ListaImagenes[j].IdProducto)" class="link-product-add-cart">Detalles Producto</a>*@
+                                            </div>
+                                        </div>
+                                    }
+
+                                    switch (@Model[j].Condicion)
+                                    {
+                                        case 1:
+                                            <span class="product-new-top">Nuevo</span>
+                                            break;
+                                        case 2:
+                                            <span class="product-new-top">Semi-Nuevo</span>
+                                            break;
+                                        default:
+                                            break;
                                     }
 
                                 }
 
-                                <div class="men-cart-pro">
-                                    <div class="inner-men-cart-pro">
-                                        @Html.ActionLink("Detalles Producto", "DetalleProducto", "Producto", new { IdProducto = @Model[j].IdProducto }, new { @class = "link-product-add-cart" })
-                                        @*<a onclick="ObtenerDetalleProducto(@ListaImagenes[j].IdProducto)" class="link-product-add-cart">Detalles Producto</a>*@
-                                    </div>
+                            </div>
+                            <div class="item-info-product ">
+                                <h4><a href="#">@Model[j].Nombre</a></h4>
+                                <div class="info-product-price">
+                                    @{
+                                        if (Convert.ToBoolean(Model[j].Descuento))
+                                        {
+                                            <span class="item_price">@Model[j].Moneda@Model[j].PrecioConDescuento</span><br />
+                                            <span class="item_price"><del>@Model[j].Moneda@Model[j].PrecioProducto</del></span>
+                                        }
+                                        else
+                                        {
+
+                                            <span class="item_price">@Model[j].Moneda@Model[j].PrecioProducto</span><br />
+                                            <span class="item_price">&nbsp;</span>
+                                        }
+
+
+                                    }
+                                </div>
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                                    <form action="#" method="post">
+                                        <fieldset>
+                                            <input type="hidden" name="cmd" value="_cart" />
+                                            <input type="hidden" name="add" value="1" />
+                                            <input type="hidden" name="business" value=" " />
+                                            <input type="hidden" name="item_name" value="@Model[j].Nombre" />
+                                            <input type="hidden" name="amount" value="@Model[j].Moneda@Model[j].PrecioProducto" />
+                                            <input type="hidden" name="cancel_return" value=" " />
+                                            <input type="button" onclick="AgregarAlCarro(@Model[j].IdProducto)" value="Agregar al Carrito" class="button" />
+                                        </fieldset>
+                                    </form>
                                 </div>
 
-                            }
-                            else
-                            {
-                                <img src="~/Content/nofoto.jpg" alt="" class="pro-image-front">
-                                <img src="~/Content/nofoto.jpg" alt="" class="pro-image-back">
+                            </div>
+                        </div>
+                    </div>
 
-                                <div class="men-cart-pro">
-                                    <div class="inner-men-cart-pro">
-                                        @Html.ActionLink("Detalles Producto", "DetalleProducto", "Producto", new { IdProducto = @Model[j].IdProducto }, new { @class = "link-product-add-cart" })
-                                        @*<a onclick="ObtenerDetalleProducto(@ListaImagenes[j].IdProducto)" class="link-product-add-cart">Detalles Producto</a>*@
-                                    </div>
-                                </div>
-                            }
-
-                            switch (@Model[j].Condicion)
-                            {
-                                case 1:
-                                    <span class="product-new-top">Nuevo</span>
-                                    break;
-                                case 2:
-                                    <span class="product-new-top">Semi-Nuevo</span>
-                                    break;
-                                default:
-                                    break;
-                            }
-
+                    @{
+                        if (j % 20 == 0)
+                        {
+                            contadorPaginacion = contadorPaginacion + 1;
                         }
 
-                    </div>
-                    <div class="item-info-product ">
-                        <h4><a href="#">@Model[j].Nombre</a></h4>
-                        <div class="info-product-price">
-                            @{
-                                if (Convert.ToBoolean(Model[j].Descuento))
-                                {
-                                    <span class="item_price">@Model[j].Moneda@Model[j].PrecioConDescuento</span><br />
-                                    <span class="item_price"><del>@Model[j].Moneda@Model[j].PrecioProducto</del></span>
-                                }
-                                else
-                                {
-
-                                    <span class="item_price">@Model[j].Moneda@Model[j].PrecioProducto</span><br />
-                                    <span class="item_price">&nbsp;</span>
-                                }
+                    }
 
 
-                            }
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="business" value=" " />
-                                    <input type="hidden" name="item_name" value="@Model[j].Nombre" />
-                                    <input type="hidden" name="amount" value="@Model[j].Moneda@Model[j].PrecioProducto" />
-                                    <input type="hidden" name="cancel_return" value=" " />
-                                    <input type="button" onclick="AgregarAlCarro(@Model[j].IdProducto)" value="Agregar al Carrito" class="button" />
-                                </fieldset>
-                            </form>
-                        </div>
-
-                    </div>
                 </div>
-            </div>
-        }
+            }
+
     }
     else
     {
