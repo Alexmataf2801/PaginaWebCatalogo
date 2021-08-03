@@ -36,11 +36,11 @@
                 <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
             </div>
             <div class="modal-body">
-                <input type="hidden" id="IdRedSeleccionada"/>
+                <input type="hidden" id="IdRedSeleccionada" />
                 <p id="msjConf" style="text-align:center"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnConfirmarEliminacion" onclick="EliminarRedSocial();" class="btn btn-primary" >Si</button>
+                <button type="button" id="btnConfirmarEliminacion" onclick="EliminarRedSocial();" class="btn btn-primary">Si</button>
                 <button type="button" class="btn btn-primary" id="CerrarEliminarRed" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -48,7 +48,8 @@
 </div>
 <!--FIN MODAL INFORMACION-->
 
+@Scripts.Render("~/bundles/jqueryPlantilla")
+@Scripts.Render("~/bundles/ListRedS")
 
-
-<script src="~/Js/Administracion/jquery.min.js"></script>
-<script src="~/Scripts/Mantenimientos/ListarRedesSociales.js"></script>
+@*<script src="~/Js/Administracion/jquery.min.js"></script>
+<script src="~/Scripts/Mantenimientos/ListarRedesSociales.js"></script>*@
