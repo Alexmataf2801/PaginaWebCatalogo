@@ -623,35 +623,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarbanner", idBannerParameter);
         }
     
-        public virtual int paInsertarBannerPrincipal(string nombre, string raiz, string url, string titulo, string detalle, string usuarioCreacion)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var raizParameter = raiz != null ?
-                new ObjectParameter("Raiz", raiz) :
-                new ObjectParameter("Raiz", typeof(string));
-    
-            var urlParameter = url != null ?
-                new ObjectParameter("Url", url) :
-                new ObjectParameter("Url", typeof(string));
-    
-            var tituloParameter = titulo != null ?
-                new ObjectParameter("Titulo", titulo) :
-                new ObjectParameter("Titulo", typeof(string));
-    
-            var detalleParameter = detalle != null ?
-                new ObjectParameter("Detalle", detalle) :
-                new ObjectParameter("Detalle", typeof(string));
-    
-            var usuarioCreacionParameter = usuarioCreacion != null ?
-                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
-                new ObjectParameter("UsuarioCreacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarBannerPrincipal", nombreParameter, raizParameter, urlParameter, tituloParameter, detalleParameter, usuarioCreacionParameter);
-        }
-    
         public virtual ObjectResult<paObtenerBanners_Result> paObtenerBanners()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerBanners_Result>("paObtenerBanners");
@@ -995,6 +966,35 @@ namespace Entidades
                 new ObjectParameter("IdUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerCarrito_Result>("paObtenerCarrito", idUsuarioParameter);
+        }
+    
+        public virtual int paInsertarBannerPrincipal(string nombre, string raiz, string url, string titulo, string detalle, string usuarioCreacion, ObjectParameter idBanner)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var raizParameter = raiz != null ?
+                new ObjectParameter("Raiz", raiz) :
+                new ObjectParameter("Raiz", typeof(string));
+    
+            var urlParameter = url != null ?
+                new ObjectParameter("Url", url) :
+                new ObjectParameter("Url", typeof(string));
+    
+            var tituloParameter = titulo != null ?
+                new ObjectParameter("Titulo", titulo) :
+                new ObjectParameter("Titulo", typeof(string));
+    
+            var detalleParameter = detalle != null ?
+                new ObjectParameter("Detalle", detalle) :
+                new ObjectParameter("Detalle", typeof(string));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarBannerPrincipal", nombreParameter, raizParameter, urlParameter, tituloParameter, detalleParameter, usuarioCreacionParameter, idBanner);
         }
     }
 }

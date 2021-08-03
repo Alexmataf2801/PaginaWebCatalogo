@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Banners";
+    Layout = "~/Views/Shared/_LayoutAdministracion.cshtml";
+}
+
+<div class="container" style="margin: 0 auto; width: 90%">
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+            <div style="margin: 0 auto; width: 95%">
+                <div style="text-align: center; margin-bottom: 50px">
+                    <h3 id="lblTitulo" class="box-header">Mantenimiento de Banners</h3>
+                    <hr />
+                </div>
+                <div class="form-group row">
+                    <label>Titulo</label>
+                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtTitulo" maxlength="150" />
+                </div>
+                <div class="form-group row">
+                    <label>Detalle</label>
+                    <textarea type="text" class="form-control" style="border-radius:4px; white-space:pre-line" rows="8" cols="5" autocomplete="off" id="txtDetalle"></textarea>
+                </div>
+                <div class="form-group row">
+                    <label>Imagen</label>
+                    <input id="Imagen" type="file" multiple>
+                </div>
+                <div style="text-align: center; margin-bottom: 20px">
+                    <div class="col-md-12">
+                        <div class="row" style="margin: 15px">
+                            <a style="margin:0 auto" id="btnGuardarDatosTipo" onclick="GuardarBanner();" class="btn btn-success">Guardar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--INICIO MODAL CORRECTO-->
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalCorrectoAgrProd">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#5CB85C;">
+                <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
+            </div>
+            <div class="modal-body">
+                <p id="msjCorrectoAgrProd" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <a type="button" style="margin:0 auto" onclick="RedireccionarBanners()" class="btn btn-success" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL CORRECTO-->
+
+@Scripts.Render("~/bundles/jqueryPlantilla")
+@Scripts.Render("~/bundles/Banners")

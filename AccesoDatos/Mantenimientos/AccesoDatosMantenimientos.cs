@@ -251,6 +251,33 @@ namespace AccesoDatos.Mantenimientos
 
             return Correcto;
         }
+
+        public static bool InsertarBanner(Banner banner)
+        {
+            bool Correcto = false;
+            PaginaWebCatalogosEntities entities = new PaginaWebCatalogosEntities();
+            ObjectParameter respuesta;
+            int IdBanner = 0;
+            try
+            {
+                respuesta = new ObjectParameter("IdBanner", typeof(int));
+                entities.paInsertarBannerPrincipal(banner.NombreBanner, banner.Raiz, banner.Url,banner.Titulo,banner.Detalle,banner.UsuarioCreacionBanner, respuesta);
+                IdBanner = Convert.ToInt32(respuesta.Value.ToString());
+
+                if (IdBanner > 0)
+                {
+                    Correcto = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
         #endregion
 
 

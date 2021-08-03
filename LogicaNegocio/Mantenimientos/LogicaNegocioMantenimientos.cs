@@ -72,6 +72,11 @@ namespace LogicaNegocio.Mantenimientos
 
             return AccesoDatosMantenimientos.InsertarBeneficios(beneficios);
         }
+        public static bool InsertarBanner(Banner banner)
+        {
+
+            return AccesoDatosMantenimientos.InsertarBanner(banner);
+        }
         #endregion
 
         #region SELECT 

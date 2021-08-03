@@ -44,6 +44,7 @@ namespace PaginaWebCatalogo
             bundles.Add(new ScriptBundle("~/bundles/RedSocial").Include("~/Scripts/Mantenimientos/RedSocial.js"));
             bundles.Add(new ScriptBundle("~/bundles/SubTipo").Include("~/Scripts/Mantenimientos/SubTipo.js"));
             bundles.Add(new ScriptBundle("~/bundles/Tipo").Include("~/Scripts/Mantenimientos/Tipo.js"));
+            bundles.Add(new ScriptBundle("~/bundles/Banners").Include("~/Scripts/Mantenimientos/Banners.js"));
 
             BundleTable.EnableOptimizations = true;
         }

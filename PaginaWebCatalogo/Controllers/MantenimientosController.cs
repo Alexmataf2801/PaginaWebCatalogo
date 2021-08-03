@@ -116,6 +116,14 @@ namespace PaginaWebCatalogo.Controllers
             Iniciarlizar();
             return View();
         }
+        [HttpGet]
+        public ActionResult Banners()
+        {
+
+            Iniciarlizar();
+            return View();
+        }
+
 
         [HttpGet]
         public ActionResult RedesSociales()
@@ -268,16 +276,72 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult InsertarBanner()
+        {
+            bool Correcto = false;
+
+            if (Session["UsuarioLogueado"] != null)
+            {
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["UsuarioLogueado"];
+                if (Request.Files.Count > 0)
+                {
+                    try
+                    {
+
+                        HttpFileCollectionBase files = Request.Files;
+                        // se hace asi con indice 0 porque al ser un banner solo se debe poder car uno por uno ya que 
+                        //cada banner tiene un titulo y detalle por ende no se puede permitir muchas imagenes por cada titulo y detalle
+                        HttpPostedFileBase file = files[0];
+                        string fname = file.FileName;
+
+                        Banner banner = new Banner();
+                        banner.Titulo = Request.Form["Titulo"];
+                        banner.Detalle = Request.Form["Detalle"];
+                        banner.Url = "../../Imagenes//Banners/";
+                        banner.NombreBanner = fname.Split('.')[0];
+                        banner.Raiz = "." + fname.Split('.')[1];
+                        banner.UsuarioCreacionBanner = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+                        bool Respuesta = LogicaNegocioMantenimientos.InsertarBanner(banner);
+
+                        if (Respuesta)
+                        {
+                            string Ruta = Path.Combine(Server.MapPath("~//Imagenes//Banners//") );
+
+                            if (Directory.Exists(Ruta))
+                            {
+                                file.SaveAs(Ruta + "/" + fname);
+                            }
+                            else
+                            {
+                                Directory.CreateDirectory(Ruta);
+                                file.SaveAs(Ruta + "/" + fname);
+
+                            }
+                        }
+
+                        return Json(Respuesta, JsonRequestBehavior.AllowGet);
+                    }
+                    catch (Exception ex)
+                    {
+                        return Json(false, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult InsertarProducto()
         {
-            string Codigo = string.Empty;
-            string Nombre = string.Empty;
-            string Descripcion = string.Empty;
-            string Moneda = string.Empty;
-            string Precio = string.Empty;
-            string TipoProd = string.Empty;
-            string SubTipo = string.Empty;
+
             string TextoTipo = string.Empty;
             string TextoSubTipo = string.Empty;
 
@@ -293,7 +357,7 @@ namespace PaginaWebCatalogo.Controllers
                         Productos productos = new Productos();
 
                         productos.Codigo = Request.Form["Codigo"];
-                        productos.Nombre = Nombre = Request.Form["Nombre"];
+                        productos.Nombre = Request.Form["Nombre"];
                         productos.Descripcion = Request.Form["Descripcion"];
                         productos.Moneda = Request.Form["Moneda"];
                         productos.PrecioProducto = Request.Form["Precio"];
@@ -716,7 +780,7 @@ namespace PaginaWebCatalogo.Controllers
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
 
-                beneficio = LogicaNegocioMantenimientos.ObtenerBeneficioXId(IdBeneficio);               
+                beneficio = LogicaNegocioMantenimientos.ObtenerBeneficioXId(IdBeneficio);
                 ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
             }
@@ -941,12 +1005,13 @@ namespace PaginaWebCatalogo.Controllers
                         productos.TipoDescuento = Convert.ToInt32(Request.Form["TipoDescuento"]);
                         productos.CantidadDescuento = Convert.ToDecimal(Request.Form["CantidadDescuento"]);
                     }
-                    else {
+                    else
+                    {
                         productos.TipoDescuento = 0;
                         productos.CantidadDescuento = 0;
                     }
 
-                  
+
                     productos.UsuarioUltimaModificacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
                     Correcto = LogicaNegocioMantenimientos.ActualizarProducto(productos);
@@ -1055,7 +1120,7 @@ namespace PaginaWebCatalogo.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
- 
+
 
 
         #endregion
@@ -1085,7 +1150,7 @@ namespace PaginaWebCatalogo.Controllers
 
             if (Session["UsuarioLogueado"] != null)
             {
-                
+
                 Usuario usuario = new Usuario();
                 usuario = (Usuario)Session["UsuarioLogueado"];
                 Correcto = LogicaNegocioMantenimientos.EliminarTipo(IdTipo, ref DescTipo);
@@ -1096,7 +1161,7 @@ namespace PaginaWebCatalogo.Controllers
                     string rutaCompleta = RutaBase + "\\Imagenes\\" + DescTipo;
                     if (Directory.Exists(rutaCompleta))
                     {
-                        Directory.Delete(rutaCompleta,true);
+                        Directory.Delete(rutaCompleta, true);
                     }
                 }
 

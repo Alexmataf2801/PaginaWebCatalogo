@@ -229,6 +229,7 @@
           <Parameter Name="Titulo" Type="varchar" Mode="In" />
           <Parameter Name="Detalle" Type="varchar" Mode="In" />
           <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="IdBanner" Type="int" Mode="InOut" />
         </Function>
         <Function Name="paInsertarBeneficios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -604,14 +605,6 @@
           <FunctionImport Name="paEliminarbanner">
           <Parameter Name="IdBanner" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paInsertarBannerPrincipal">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Raiz" Mode="In" Type="String" />
-            <Parameter Name="Url" Mode="In" Type="String" />
-            <Parameter Name="Titulo" Mode="In" Type="String" />
-            <Parameter Name="Detalle" Mode="In" Type="String" />
-            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="paObtenerBanners" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerBanners_Result)" />
           <FunctionImport Name="paObtenerBannersActivos" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerBannersActivos_Result)" />
           <FunctionImport Name="paObtenerDetalleProducto" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerDetalleProducto_Result)">
@@ -710,7 +703,16 @@
             <Parameter Name="Raiz" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="paObtenerCarrito" ReturnType="Collection(PaginaWebCatalogosModel.paObtenerCarrito_Result)">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paInsertarBannerPrincipal">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Raiz" Mode="In" Type="String" />
+            <Parameter Name="Url" Mode="In" Type="String" />
+            <Parameter Name="Titulo" Mode="In" Type="String" />
+            <Parameter Name="Detalle" Mode="In" Type="String" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="IdBanner" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerTipoProductosActivos_Result">
@@ -1374,7 +1376,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paDesactivarActivarBanner" FunctionName="PaginaWebCatalogosModel.Store.paDesactivarActivarBanner" />
           <FunctionImportMapping FunctionImportName="paEliminarbanner" FunctionName="PaginaWebCatalogosModel.Store.paEliminarbanner" />
-          <FunctionImportMapping FunctionImportName="paInsertarBannerPrincipal" FunctionName="PaginaWebCatalogosModel.Store.paInsertarBannerPrincipal" />
           <FunctionImportMapping FunctionImportName="paObtenerBanners" FunctionName="PaginaWebCatalogosModel.Store.paObtenerBanners">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PaginaWebCatalogosModel.paObtenerBanners_Result">
@@ -1577,6 +1578,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarBannerPrincipal" FunctionName="PaginaWebCatalogosModel.Store.paInsertarBannerPrincipal" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
